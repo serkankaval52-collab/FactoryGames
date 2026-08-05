@@ -1,6 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.9-taslak. Red-team turu ve Aşama 0B (pilot) sonunda v1.0'a kilitlenir.
+**Sürüm:** v0.10 (red-team tur 1 uygulandı: B1–B6). v1.0 kilitlenmesi için iki kullanıcı
+kararı bekleniyor: Play hesap tipi (Kilit Kararlar) ve `toplam_butce_usd` (Ek C).
 **Amaç:** reklam gelirli mobil oyunları tekrarlanabilir, ölçülebilir ve geliştirici
 hesabını koruyan bir hatla üretmek. Hattın kendisi üründür; oyunlar hattın çıktısıdır.
 **Okuma kuralı:** her oyun reposunun CLAUDE.md dosyası bu belgeye ve standartlara
@@ -16,10 +17,11 @@ bağlantıyla başlar; bağlanmamış belge yok sayılır.
 | Analitik | GameAnalytics; MMP (AppsFlyer) ilk ÖLÇEKLE'de | Ücretsiz, hafif, D1/D7 kohortu hazır |
 | Sahne | Bootstrap-only, veri `StreamingAssets` JSON | GUID-YAML kilidi yok; diff insan-okur |
 | Repo | FactoryGames = fabrika + `factory.core` UPM paketi; oyunlar ayrı repo | Öldürme/mağaza/sürüm oyun başına |
-| CI | Public dönemde hosted runner'lar ücretsiz; ÖLÇEKLE'de private + Linux/macOS bölüşümü | Maliyeti ölçek anına ertele |
+| CI | Public dönemde hosted runner'lar ücretsiz; ÖLÇEKLE'de private + Linux/macOS bölüşümü | Maliyeti ölçek anına ertele. Bedel: kaynak açık → reskin/klon riski public dönemin fiyatıdır |
 | Varlık | T1 çok-kaynaklı CC0 katalog + zorunlu transform; T2 sentez SFX; T3 mağaza yüzeyi (insan vetolu) | Otonomluk + "asset flip" deseninden kaçış |
 | Executor | VS Code Claude Code (Opus); Unity MCP yalnız gözlemci | Kod-öncelikli kural |
 | iOS | GitHub Actions macOS runner + xcodebuild + App Store Connect API key | Mac sahipliği yok; test: TestFlight internal (iPhone 15) |
+| Play hesap tipi | Hedef: organizasyon — **kullanıcı kararı bekleniyor** (tüzel kişilik + D-U-N-S + org web sitesi) | Kişisel→org dönüşümü Play Console içinde mümkün ve tek yönlüdür (org→kişisel yok). Kişisel hesapta (13.11.2023 sonrası) üretim erişimi her uygulama için ≥12 testçi × 14 gün kesintisiz kapalı test ister; sayaç 12 altına düşerse sıfırlanır; açık test dahi üretim erişimine bağlıdır — fabrika takvimi kişisel hesapta yaşamaz (kural 20→12 olarak değişti, tekrar değişebilir) |
 
 ## EXECUTOR SÖZLEŞMESİ — her koşuda, tüm aşamalarda geçerli
 
@@ -31,9 +33,14 @@ bağlantıyla başlar; bağlanmamış belge yok sayılır.
    (MCP: konsol okuma, play-mode, durum doğrulama, build tetikleme).
    Zorlama: CI lint (`.unity`/`.prefab` nesne eşiği + Bootstrap dışı MonoBehaviour yasağı)
    + PR kapısı; pre-commit hook yalnız hızlı uyarıdır.
-3. **CLAUDE.md tavanı:** en fazla 30 kural; her kural kaynak PR/incident no taşır;
-   tavan CI satır sayımıyla zorlanır. Her koşunun kapanışında en az bir prose maddesi
-   teste/lint'e dönüştürülür ya da silinir. Hafıza büyümez, sertleşir.
+3. **Normatif yük disiplini:** CLAUDE.md en fazla 30 kural (her koşuda tam yüklenir;
+   tavan CI satır sayımıyla zorlanır; her kural kaynak PR/incident no taşır; her
+   koşunun kapanışında en az bir prose maddesi teste/lint'e dönüştürülür ya da
+   silinir). PIPELINE.md ve standartlar için sınır **satır değil okuma kapsamıdır**:
+   executor her koşuda yalnız bu Sözleşme + aktif aşamanın satırları + ilgili eki
+   yükler; belge toptan okunmaz. Şişme telemetriye girer: Aşama 11 hat bakım raporu
+   normatif satır delta'sını yazar; tek koşuda +50 satır üstü Sözleşme-5 yükseltme
+   adayıdır. Tavanın hedefi bağlam maliyetidir, korpus boyutu değil.
 4. **Sır kuralı:** repoya hiçbir sır girmez (sertifika, keystore, token); hepsi
    Actions secrets. CI secret-scan kırmızısı merge'i engeller. Public dönemde
    döndürülemeyecek sır yok (private'a geçiş fork'ları geri almaz).
@@ -49,6 +56,11 @@ bağlantıyla başlar; bağlanmamış belge yok sayılır.
 8. **Para kararları insana:** UA harcaması, ölçekleme, satın alma — onaysız olmaz.
    Hat bütçe **üretmez, ölçer**; birim-hedefi dosyasında olmayan sayı hiçbir kapıda
    kullanılamaz.
+9. **WIP limiti:** eşzamanlı aktif oyun ≤ 2 (Aşama 1 girişinden Aşama 11 kararına
+   kadar sayılır; ölçüm penceresinde bekleyen oyun WIP'i işgal eder ama insan-kapısı
+   kuyruğunu işgal etmez). İnsan kapısı kuyruğunda aynı anda ≤ 2 oyun. WIP doluyken
+   Aşama 1 kapısı açılmaz. Başlangıç değeri 2; telemetride insan beklemesi büyürse
+   düşürülür — değer uydurma değil, ölçümden gelir.
 
 ## AŞAMALAR
 
@@ -64,11 +76,18 @@ test, Android build); CLAUDE.md iskeleti; FALLBACK.md; telemetry şeması; PR ş
 (post-mortem/öğrenme); pre-mortem risk taksonomisi; rubrik şablonu; çeşitlilik defteri +
 hesap-deseni envanteri iskeleti; birim-hedefi dosyası (**kullanıcı doldurur**);
 başvurular (Apple Developer, Play Console, MAX/AdMob, ASC API key); Unity CI lisansı
-(.alf → license.unity3d.com → .ulf → secret; gh CLI ile oyun repolarına basılır).
+(.alf → license.unity3d.com → .ulf → secret; gh CLI ile oyun repolarına basılır);
+hesap tipi kararı (org: D-U-N-S + org web sitesi doğrulaması başlatıldı — kritik yol;
+kişisel: 12-testçi kapalı test halkası kurma görevi — bu halka Aşama 9'un dış gözüdür);
+dış göz halkası ≥ 2 kişi (org yolunda sabit test halkası; kişisel yolda kapalı testçi
+grubundan süzülür).
 Doğrulamalar (kilitleme anında): GitHub billing sayfası (public = hosted ücretsiz),
-Unity güncel LTS numarası, MCP sunucusu canlı.
+Unity güncel LTS numarası, MCP sunucusu canlı, Play 12×14 kuralının güncel testçi
+sayısı ve kapsamı (kural 20→12 değişti; tekrar değişebilir — Play Console Help'ten
+yazılı teyit).
 **0A geçiş:** hello-build iki platformda CI'da yeşil; kasıtlı ihlal testi kanıtlı
 (lint ve secret-scan gerçekten yakalıyor); tüm başvuru numaraları repo'da.
+**0B önkoşul:** `toplam_butce_usd` kullanıcıdan alınmadan pilot başlamaz (Ek C).
 **0B çıktı (pilot koşu):** Aşama 1–11'i yarı-elle geçen ilk oyun, iki mağazada
 review'a **gönderildi** (kabul şart değil); aşama bazında darboğaz kaydı; standartlar
 pilottan damıtılıp v1.0 etiketlendi; öğrenme PR'ı FactoryGames'e açıldı.
@@ -147,17 +166,24 @@ yaşayabilirliği insana sorulur (erken-öldür adayı).
 
 ### AŞAMA 6 — D1 Kapısı (sınırlı yayın ölçümü)
 
-**Girdi:** çökmezliği kanıtlı gri kutu; Google Play sınırlı listeleme taslağı;
-D1 eşiği ve bu kapının UA bütçesi (birim-hedefinden); minimum kohort büyüklüğü.
-**Çıktı:** Google Play'de sınırlı yayın; küçük UA kohortu; D1/D2 tutunma raporu;
-GEÇ/ÖLDÜR kararı kaydı.
+**Girdi:** çökmezliği kanıtlı gri kutu; **önkoşul: üretim veya açık test erişimi
+mevcut** — kişisel Play hesabında bu, uygulama başına ≥12 testçi × 14 gün kapalı test
+demektir (kapalı teste UA koşulamaz; erişim yoksa bu aşama koşulamaz, hat Aşama 5'te
+bekler); Google Play sınırlı listeleme taslağı; D1 eşiği ve kapı bütçesi
+(birim-hedefinden); minimum kohort büyüklüğü.
+**Çıktı:** Google Play'de sınırlı yayın + küçük UA kohortu; D1/D2 tutunma raporu;
+GEÇ/ÖLDÜR kararı — **öldürme yetkisi kalibrasyona tabidir**: ilk 3 koşuda
+(kalibrasyon dosyası dolmadan) bu aşama ÖLDÜRMEZ, yalnız ölçer ve raporlar. Gerekçe:
+gri-kutu D1'i bitmiş oyunun D1'i değildir; kalibresiz eşik iyi konseptleri öldürür
+ve bu hata karşı-olgu bırakmadığı için telemetride görünmez.
 **Yürüten:** karma — listeleme gönderimi ve harcama insan onaylı; kurulum + ölçüm otonom.
 **Geçiş kriteri:** kohort ≥ minimum kurulum; D1 gerçekleşeni eşik tablosunda yazıldı;
-karar kayıtlı.
-**Geri kenarı:** eşik altı → konsept ölür: vaka post-mortem'i (Sözleşme 5–7) + defter
-güncellemesi, Aşama 1'e dön. "İyileştir" istisnasını yalnız insan verebilir, konsept
-başına **1 kez**, hedefi Aşama 5. Not: iOS bu kapıda yok (TestFlight'a UA koşulamaz);
-sinyal tek mağazadan alınır, Apple review riski Aşama 10'dadır.
+karar kayıtlı (kalibrasyon öncesi "karar" = GEÇ veya insan-onaylı istisna).
+**Geri kenarı:** kalibrasyon sonrası eşik altı → konsept ölür: vaka post-mortem'i
+(Sözleşme 5–7) + defter güncellemesi, Aşama 1'e dön. "İyileştir" istisnası yalnız
+insanda, konsept başına **1 kez**, hedefi Aşama 5. Not: iOS bu kapıda yok
+(TestFlight'a UA koşulamaz); sinyal tek mağazadan alınır, Apple review riski
+Aşama 10'dadır.
 
 ### AŞAMA 7 — İnce Üretim: İçerik, Görsel, Ses, Ekonomi
 
@@ -191,11 +217,15 @@ sonra insana.
 screenshot paketi.
 **Çıktı:** 5 eksen rubrik (ilk-60-sn anlaşılırlık*, ilk-başarı hissi*, kontrol
 tepkiselliği, ses-görsel doygunluk, tekrar oynama isteği — her eksen 1–5, eşikler
-birim-hedefinden; \* işaretli eksenler yalnız o build'in **ilk oturumunda** puanlanır);
-P0/P1/P2 etiketli geri bildirim; yazılı "yayınla" onayı.
+birim-hedefinden). \* işaretli iki eksen **kullanıcı tarafından puanlanamaz**: konsepti
+Aşama 1'de onaylayan kişi ilk izlenimi ölçemez — kirlenme tekrar değil ön bilgidir.
+Bu eksenler ≥ 2 dış gözden gelir (org: Aşama 0A test halkası; kişisel: kapalı testçi
+grubu); kayıt `tester_id + build_hash` ile tutulur. Dış göz yoksa rubrik 3 eksene iner
+ve kapı öyle işler — sahte nesnellikle 5 eksen puanlanmaz. P0/P1/P2 etiketli geri
+bildirim; yazılı "yayınla" onayı.
 **Yürüten:** insan kapısı (düzeltmeler otonom).
-**Geçiş kriteri:** tüm eksenler eşik üstü VE yazılı onay; rubrik satırı build hash'iyle
-telemetry'ye yazıldı.
+**Geçiş kriteri:** aktif eksenler (dış göz varsa 5, yoksa 3) eşik üstü VE yazılı
+onay; rubrik satırı build hash'iyle telemetry'ye yazıldı.
 **Geri kenarı:** eşik altı eksen ilgili aşamaya döner: işlev/tepkisellik → 5;
 görsel-işitsel → 7; anlaşılırlık/akış → 3. Max **3 tur**; P0 zorunlu, P1 bütçeye tabi,
 P2 sonraki sürüme ertelenir. 3. tur sonunda hâlâ eşik altı → erken-öldür kararı
@@ -220,8 +250,11 @@ defter + envanter revizyonu + insana eskalasyon, sessizce yeniden gönderim yok.
 **Girdi:** yayında oyun; birim-hedefi eşikleri; ölçüm penceresi (örn. 14 gün veya
 N kurulum — birim-hedefi dosyasında).
 **Çıktı:** karar raporu — **ÖLÇEKLE / TEK TUR İYİLEŞTİR / ÖLDÜR** + eşik–gerçekleşen
-tablosu; hat bakım raporu (telemetri: aşama süreleri, kapı ret oranları, insan
-beklemeleri, CI dakikası, tavan–gerçekleşen bütçe farkı); çeşitlilik defteri +
+tablosu; kalibrasyon dosyası (gri-kutu D1 ↔ yayın D1 eşleşmeleri; 3 koşu dolunca öneri
+offset = medyan fark; `d1_kalibrasyon_offset` yazımı kullanıcı onaylı — Sözleşme-8);
+hat bakım raporu (telemetri: aşama süreleri, kapı ret oranları, insan beklemeleri,
+CI dakikası, tavan–gerçekleşen bütçe farkı, **normatif satır delta'sı**);
+çeşitlilik defteri +
 hesap-deseni envanteri güncellemesi; öğrenme/post-mortem PR'ı FactoryGames'e
 (factory.core sürümü + telemetri özeti içerir); ÖLDÜR'de: repo arşiv + mağazadan
 çekme planı, hücre serbestliği Ek A'ya işlenir.
@@ -261,6 +294,7 @@ issue'su + insan onaylı T1/T3 kürasyonu); hat duraklar — kural sessizce esne
 
 | Aşama | Takvim |
 |---|---|
+| 0 Kurulum (tek seferlik) | 4–8 hafta — kritik yol: org doğrulama/D-U-N-S; kişisel yolda 1–2 hafta + her oyun için +14 gün kapalı test |
 | 1 Fikir+seçim | 1 gün (veto penceresi dahil) |
 | 2 Sinyal testi | 2–3 gün |
 | 3 Plan+pre-mortem | 1 gün |
@@ -273,7 +307,9 @@ issue'su + insan onaylı T1/T3 kürasyonu); hat duraklar — kural sessizce esne
 | 10 Mağaza+gönderim | 2–3 gün |
 | 11 Ölçüm penceresi | 14 gün |
 
-**Toplam: yayına ~14–21 gün; karara ~28–35 gün.**
+**Toplam: yayına ~14–21 gün; karara ~28–35 gün.** Kişisel Play hesabı senaryosunda
+her oyuna **+≥14 gün** eklenir (12×14 kapalı test; üretim *ve* açık test erişimi buna
+bağlı, kapalı teste UA koşulamaz) — takvim bu yüzden organizasyon hesabını hedefler.
 **İnsan-saat/oyun ≈ 4–6 sa** (veto 0,1 + harcama onayları 0,3 + form/listeleme
 inceleme 1,5 + üç tur oynama 1,5 + yayınla/karar 0,5).
 
@@ -299,4 +335,7 @@ kullanılamaz; değişiklik yalnız kullanıcı onayıyla.
 | `olcum_penceresi_gun` | Aşama 11 pencere |
 | `ollekle_esik`, `oldur_esik` | Aşama 11 karar eşikleri (D7, ROAS göstergeleri) |
 | `rubrik_esik` | Aşama 9 eksen bazında asgari puan |
+| `toplam_butce_usd` | Fabrika toplam UA tavanı — Aşama 0B önkoşulu; yoksa pilot başlamaz |
+| `paralel_ua_tavan` | Aynı anda açık tutulabilecek UA harcaması (WIP limitiyle uyumlu) |
+| `d1_kalibrasyon_offset` | Gri-kutu D1 düzeltmesi; 3 koşu sonrası, kullanıcı onaylı |
 | `iyilestir_hakki` | Konsept başına 1 (Aşama 6) + oyun başına 1 (Aşama 11) |
