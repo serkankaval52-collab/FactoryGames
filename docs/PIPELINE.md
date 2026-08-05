@@ -1,7 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
 **Sürüm:** v0.12 — K4 kullanıcı kararı (çapraz tanıtım tamamen yasak), D1 halka
-standardı, D2 organik kit zorunluluğu, Aşama -1/0 mikro adımları.
+standardı, D2 organik kit zorunluluğu, Aşama -1/0 mikro adımları, E1–E3 sonda
+düzeltmeleri. Sonda koşulmadan aşama detayı AÇILMAZ.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle

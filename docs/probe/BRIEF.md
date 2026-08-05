@@ -24,3 +24,10 @@ standartlarının metin olarak tek başına yeterli olup olmadığını da ölç
 
 Play mode'da çökme/exception yok; bot çıktı logları dosyada; rapor
 `docs/probe/rapor.md`'ye işlendi.
+
+## Devir testi notu
+
+Bu brief aynı zamanda fabrikanın plan→kod devir mekanizmasının minyatürüdür:
+fabrikada planı yazacak olan da uygulayıcıdır (Claude Code). Brief uygulanamaz
+bulunursa revizyonu — tasarımcı değil — executor yapar ve revizyon rapora
+işlenir. İnsan eliyle brief düzeltmesi ölçümü geçersiz kılar.
