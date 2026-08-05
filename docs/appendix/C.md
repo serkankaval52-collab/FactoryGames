@@ -28,13 +28,12 @@ kullanılamaz; değişiklik yalnız kullanıcı onayıyla. Hat standart akışta
 |---|---|
 | `istisna_butce_usd` | Varsa ayrılabilecek toplam istisnai yatırım havuzu (0 olabilir) |
 | `ua_tavan_usd` | Tek oyuna koşulabilecek azami UA tutarı (yatırım ofisi onayıyla) |
-| `capraz_gosterim_hakki` | Mevcut oyunlarda çapraz tanıtım hakkı: **90 günde 1 kampanya**; C4-B açık onayı şart; tur numarası kaydedilir, ölçüm eşikleri tura göre normalize edilir |
 | `ipm_esik`, `ctr_esik` | Standart kapı DEĞİL; yalnız yatırım ofisinin UA analizi kullanır |
 | `sinyal_test_butcesi`, `d1_kapi_butcesi` | ARŞİV — G2 ile standart akıştan düştü; yatırım ofisi isterse doldurur |
 
 **Kurallar:**
 - Bölüm 2 boşsa (tamamı 0/kapalı) hat eksiksiz çalışır; hiçbir kapı kilitlenmez.
-- `capraz_gosterim_hakki` kullanımı Kilit Kararlar'daki "mevcut oyun ilişkisi"
-  satırının B durumuna geçmesini gerektirir — kullanıcının açık onayı.
+- Oyunlar arası çapraz tanıtım bu hatta tanımlı değildir (kullanıcı kararı);
+  hiçbir alan, istisna veya onay bunu açamaz — Sözleşme-8.
 - Para içeren her Bölüm-2 kararı tek kullanımlık insan onayına tabidir
   (Sözleşme-8); hat bakiye üzerinden kendiliğinden harcama yapamaz.
