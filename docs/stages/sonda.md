@@ -1,9 +1,8 @@
 # AŞAMA -1 — SONDA (tek seferlik; 0A'dan ÖNCE)
 
-**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (sahne el değmeden şablon
-varsayılanı; tüm kurulum `[RuntimeInitializeOnLoadMethod]` ile kodda; JSON veri;
-MCP yalnız gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya
-girilmez.
+**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (tek kaynak; sahne şablon
+varsayılanı; `[RuntimeInitializeOnLoadMethod]` kurulumu; JSON veri; MCP yalnız
+gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya girilmez.
 
 ## Önkoşullar (raporda her biri tik işaretlenir)
 
@@ -22,18 +21,29 @@ girilmez.
 ## Görev (özet; tam tanım BRIEF.md'de)
 
 Tek ekran, tek input (tap/hold), skor + fail + restart, 60–90 sn döngü; sahne
-şablon varsayılanı olarak kalır (nesne eklenemez); veri JSON; deterministik
-zaman adımlı bot ile 3 otomatik döngü; Windows batchmode'da testler yeşil.
+şablon varsayılanı olarak kalır; veri JSON; deterministik zaman adımlı bot ile
+3 otomatik döngü; proje URP yapılandırmasıyla ayağa kalkar; batchmode yeşil.
 
-**Proje topolojisi (değişmez):** proje repo DIŞINDA, kardeş dizin `../probe-project`
-— `-createProject` ile Unity üretir; executor yalnız .cs/.json ekler; sahneye ve
-ProjectSettings'e elle DOKUNMAZ. Repoya girenler: `docs/probe/` altında rapor,
-`.markers/`, `unity-pin.txt` ve `kaynak/` (.cs/.json/.unity kopyası; rapordan hemen
-önce: `robocopy ../probe-project/Assets docs/probe/kaynak *.cs *.json *.unity /S`).
+**Proje topolojisi (değişmez):** proje repo DIŞINDA (`../probe-project`,
+`-createProject` ile); sahneye elle DOKUNMAZ. URP dahil motor ayarları sürümlü
+setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler:
+`docs/probe/` altında rapor, `.markers/`, `unity-pin.txt`, `kaynak/`,
+`scene-baseline.json`. Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
+docs/probe/kaynak *.cs *.json *.unity *.asset *.meta /S`.
 
-**İnsan kapısı (sondada var):** tıkanma = tek cümle + `marker.py insan-kapisi`.
-Kurulum kapılarından farkı: kapı süresi T_uretim'e GİRER ve müdahale SAYILIR —
-tıkanmak saklanamaz, ölçülür. Beklenti 0'dır; çıkarsa ölçülmüş bulgudur.
+**Preset çıkarma (ilk koşu — sonrası hazır gelir):** set, Unity'nin KENDİ şablon
+paketinden mekanik çıkarılır (kurulumdaki ProjectTemplates arşivi; yoksa resmî
+kaynak) — tek kaynak = pinli sürüm şablonu, elle YAML yok. Komutlar rapora düşer;
+set `presets/unity-<pin>/` + README (sürüm + kaynak) ile commit'lenir.
+
+**Sahne baseline'ı (ilk koşu adımı):** `-createProject` + preset kopyasından
+SONRA, oyundan ÖNCE varsayılan sahnenin sha256'sı ve nesne sayısı
+`docs/probe/scene-baseline.json`'a yazılır `{pin, dosya, sha256, nesne_sayisi}`.
+Lint ve report.py BU KAYDA göre ölçer (kural kendini günceller); baseline
+yoksa P1 ölçülemez → SARI.
+
+**İnsan kapısı (sondada var):** tıkanma = tek cümle + `marker.py insan-kapisi`;
+fark: kapı süresi T_uretim'e GİRER ve müdahale SAYILIR — tıkanmak saklanamaz.
 
 ## Ölçümün kaydı — beyan yok, iz var (Sözleşme-10)
 
@@ -42,28 +52,25 @@ Raporu executor YAZMAZ; `tools/probe/report.py` artefaktlardan ÜRETİR.
 - **T_kurulum:** kurulum damgaları; karar tablosuna girmez.
 - **T_uretim:** `uretim-start` (BRIEF okunduğunda İLK iş) ↔ `uretim-end` (bot
   yeşil + test XML yazıldığı an). İnsan kapısı beklemeleri dahildir.
-- **T_build:** `build-start` ↔ `build-end` — `uretim-end`'den SONRA koşulan yerel
-  Android build'i ayrı ölçülür (soğuk Gradle/IL2CPP dakikalar sürer); tabloya
-  girmez, 0A CI takvimini besler. Build kırılması = "araç zinciri", üretim kusuru değil.
-- **Editor/MCP oturumları:** yukarıdaki koşullu tetikle açılır; damgalar
-  `editor-acik/kapali-N`; her batchmode öncesi `Temp/UnityLockfile` YOK kanıtı.
+- **T_build:** `build-start` ↔ `build-end` — `uretim-end`'den SONRA yerel Android
+  build'i ayrı ölçülür (soğuk Gradle + URP shader dakikalar sürer); tabloya
+  girmez, 0A CI takvimini besler. Kırılma = "araç zinciri", üretim kusuru değil.
+- **Editor/MCP oturumları:** koşullu tetikle açılır; damgalar `editor-acik/kapali-N`;
+  her batchmode öncesi `Temp/UnityLockfile` YOK kanıtı.
 - **Editor dokunuşu ÖLÇÜLMEZ (H2):** sahne varsayılandan sapmadığı için elle
-  kurulum oyuna zaten etki etmez; sayım metriği yok, kör nokta beyanı var.
-- **İnsan müdahalesi:** birincil sayım = `insan-kapisi-N` damgaları; çapraz
-  kontrol = transkriptteki insan mesajı sayısı. Uyuşmazlık SARI — uyuşmazlık
-  kendisi bilgidir.
-- **P1 ikilisi:** kaynak kopyasındaki sahne/prefab GameObject sayımı ≤ 2
-  (şablon varsayılanı; report.py) + CI lint. Kopya yoksa P1 ölçülemez → SARI.
+  kurulum oyuna etki etmez; sayım yok, kör nokta beyanı var.
+- **İnsan müdahalesi:** birincil = `insan-kapisi-N` damgaları; çapraz kontrol =
+  transkript mesaj sayısı. Uyuşmazlık SARI — uyuşmazlık kendisi bilgidir.
+- **P1 ikilisi:** kaynak kopyasındaki her sahnenin nesne sayısı ≤ baseline
+  sayısı; prefab'da >0 nesne = ihlal. + CI lint.
 - **Test/bot:** NUnit XML (batchmode `-runTests`; editmode + playmode takımları).
 
-Rapor içeriği: T_kurulum/T_uretim/T_build, müdahale iki sayıyla, MCP oturum
-satırı (veya "tetiklenmedi"), P1 sayımları, test özeti, lockfile durumu, kör
-nokta beyanı.
+Rapor içeriği: üç kronometre, müdahale iki sayıyla, MCP satırı (veya
+"tetiklenmedi"), baseline + P1 sayımları, test özeti, lockfile, kör nokta beyanı.
 
 ## Sayısal karar tablosu (ilk sonda bu eşikleri de kalibre eder)
 
-- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE insan-kapisi ≤ 10
-  VE P1 temiz. (T_build ve transkript çapraz kontrolü tabloya girmez.)
+- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE insan-kapisi ≤ 10 VE P1 temiz.
 - **SARI:** çalışıyor ama T_uretim 6–12 sa veya insan-kapisi 11–20 veya sayım
   tutarsızlığı → 0A'ya geçilebilir; Ek B Aşama-4 satırı gerçekleşenle yazılır.
 - **BAŞARISIZ:** T_uretim > 12 sa veya insan-kapisi > 20 veya bot 3 döngüyü
@@ -71,20 +78,15 @@ nokta beyanı.
 
 ## İki denemenin farkı
 
-- **Deneme-1 (soğuk):** yalnız BRIEF + bu doküman ağacı. Başarısızsa engel
-  listesi üçe sınıflandırılır: brief kusuru / ortam kusuru / prensip kusuru.
-- **Kural: brief'e insan tasarımcı dokunmaz.** BRIEF kusuru KEŞİFTİR — brief
-  fabrikanın plan→kod devir minyatürüdür; fabrikada planı da Claude Code yazar.
-  Elle iyileştirilmiş brief "Claude üretebilir mi"yi değil "ben brief yazabilir
-  miyim"i ölçer. Kusur varsa düzeltme de executor'a: "brief'i uygulanabilir kıl,
-  sonra uygula" — revizyon rapora işlenir.
-- **Deneme-2:** değişen tek şey ortam/destek (MCP, kurulum notları, iskelet);
-  brief'i değiştiren executor'dır, kaydedilir. Otomatik üçüncü deneme YOK.
+- **Deneme-1 (soğuk):** yalnız BRIEF + bu ağaç. Engel sınıfı: brief / ortam / prensip.
+- **Kural: brief'e insan dokunmaz** — kusur KEŞİFTİR (brief = plan→kod devir
+  minyatürü); düzeltme executor'a: "uygulanabilir kıl, sonra uygula"; rapora işlenir.
+- **Deneme-2:** değişen tek şey ortam/destek; brief'i değiştiren executor'dır,
+  kaydedilir. Otomatik üçüncü deneme YOK.
 - **İlk koşu teyitleri (bulgu olabilir):** RuntimeInitializeOnLoadMethod 6000.3'te
-  beklenen sırada; şablon sahnesi = 2 GameObject; bot adımı deterministik — aksi bulgu.
+  beklenen sırada; baseline yazıldı; şablon paketi konumu bulundu — aksi bulgudur.
 
-**Yürüten:** otonom — insan yalnız deklare kapılarda (sayılır) ve nihai
-BAŞARISIZ kararında; rapor script ürünüdür, beyan yok.
-**Geçiş kriteri:** BAŞARILI veya SARI + rapor script tarafından üretildi +
-Ek B Aşama-4 satırı ölçümle güncellendi.
+**Yürüten:** otonom — insan yalnız deklare kapılarda (sayılır) ve nihai BAŞARISIZ
+kararında; rapor script ürünüdür, beyan yok.
+**Geçiş kriteri:** BAŞARILI veya SARI + rapor script ürünü + Ek B Aşama-4 satırı ölçümle.
 **Geri kenarı:** BAŞARISIZ → 0A kilitli; max 2 deneme.

@@ -29,13 +29,26 @@ import sys
 import time
 import xml.etree.ElementTree as ET
 
-# Thresholds — sonda v0.16+ (ilk sonda bunları da kalibre eder)
+# Thresholds — sonda v0.17+ (ilk sonda bunları da kalibre eder)
 T_OK = 6 * 3600          # T_uretim ≤ 6 sa
 T_FAIL = 12 * 3600       # T_uretim > 12 sa
 KAPI_OK = 10
 KAPI_FAIL = 20
-SCENE_OBJECT_LIMIT = 2   # şablon varsayılan sahnesi (Main Camera + Directional Light);
-                         # ilk koşu bu sayıyı teyit eder, farklıysa sabitlenir (sonda.md)
+# P1 limiti sabit DEĞİL: ilk koşunun ölçtüğü scene-baseline.json kaydıdır (K2) —
+# "{pin, dosya, sha256, nesne_sayisi}". Unity/şablon değişince kural güncellenir.
+
+
+def read_baseline(probe_root):
+    p = os.path.join(probe_root, "scene-baseline.json")
+    if not os.path.exists(p):
+        return None
+    try:
+        d = json.loads(open(p, encoding="utf-8").read())
+        if isinstance(d.get("nesne_sayisi"), int):
+            return d
+    except (json.JSONDecodeError, ValueError):
+        pass
+    return None
 
 
 def read_marker(probe_root, name):
@@ -145,9 +158,18 @@ def main() -> int:
     lockfile = os.path.join(args.project, "Temp", "UnityLockfile")
     lockfile_present = os.path.exists(lockfile)
 
+    baseline = read_baseline(args.probe_root)
     kaynak_dir = os.path.join(args.probe_root, "kaynak")
     scenes = scene_object_counts(kaynak_dir)
-    p1_violations = [(p, n) for p, n in scenes if n > SCENE_OBJECT_LIMIT]
+    p1_violations = []
+    if baseline is not None:
+        lim = baseline["nesne_sayisi"]
+        for p, n in scenes:
+            if p.endswith(".prefab"):
+                if n > 0:
+                    p1_violations.append((p, n))
+            elif n > lim:
+                p1_violations.append((p, n))
 
     tests = []
     for xp in args.test_xml:
@@ -184,6 +206,8 @@ def main() -> int:
         missing.append("test XML")
     if not os.path.isdir(kaynak_dir) or not scenes:
         missing.append("kaynak kopyası (P1 ölçülemez)")
+    if baseline is None:
+        missing.append("scene-baseline.json (P1 referansı ölçülemedi)")
     if b0 is None or b1 is None:
         missing.append("build damgası (T_build)")
     if missing:
@@ -226,12 +250,20 @@ def main() -> int:
         else:
             ok = r["failed"] == 0 and r["errors"] == 0
             A(f"| Testler/bot: {os.path.basename(xp)} | {r['passed']}/{r['total']} geçti, {r['failed']} kırmızı | NUnit XML (batchmode) | fail=0 | {'yeşil' if ok else 'kırmızı'} |")
+    if baseline is not None:
+        A(f"| Sahne baseline | {baseline.get('nesne_sayisi')} GameObject, pin {baseline.get('pin')} | `scene-baseline.json` (dosya: `{baseline.get('dosya')}`, sha256 `{str(baseline.get('sha256'))[:12]}…`) | referans | bilgi |")
     if scenes:
         for p, n in scenes:
-            st = "yeşil" if 0 <= n <= SCENE_OBJECT_LIMIT else "kırmızı"
-            A(f"| P1 nesne sayımı: {p} | {n} GameObject | `kaynak/{p}` | ≤{SCENE_OBJECT_LIMIT} | {st} |")
+            if baseline is None:
+                st = "—"
+            elif p.endswith(".prefab"):
+                st = "yeşil" if n <= 0 else "kırmızı"
+            else:
+                st = "yeşil" if 0 <= n <= baseline["nesne_sayisi"] else "kırmızı"
+            lim_txt = "(prefab: 0)" if p.endswith(".prefab") else f"≤{baseline['nesne_sayisi'] if baseline else '?'}"
+            A(f"| P1 nesne sayımı: {p} | {n} GameObject | `kaynak/{p}` | {lim_txt} | {st} |")
     else:
-        A(f"| P1 nesne sayımı | kopya/sahne yok | `{kaynak_dir}` | ≤{SCENE_OBJECT_LIMIT} | — |")
+        A(f"| P1 nesne sayımı | kopya/sahne yok | `{kaynak_dir}` | baseline'a göre | — |")
     A("\n## Kör nokta beyanı (H2)\n")
     A("Editor GUI'sindeki elle dokunuş **ölçülmez** — hiçbir artefakt onu güvenilir "
       "saymıyor; üstelik sahne varsayılandan sapamadığı için elle kurulum oyuna "

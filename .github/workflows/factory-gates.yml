@@ -1,0 +1,56 @@
+name: factory-gates
+on:
+  pull_request:
+  push:
+    branches: [main, 'arena/**']
+
+jobs:
+  boyut-kapisi:
+    # K3: public repo + otonom yazan executor => mekanik boyut bekçisi.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Tek dosya > 1 MB = kırmızı
+        run: |
+          bad=0
+          while IFS= read -r f; do
+            s=$(stat -c%s "$f" 2>/dev/null || echo 0)
+            if [ "$s" -gt 1048576 ]; then echo "BOYUT: $f ($s bayt)"; bad=1; fi
+          done < <(git ls-files)
+          [ "$bad" -eq 1 ] && exit 1 || echo "tek-dosya boyutu yeşil"
+      - name: PR toplam ekleme > 10 MB = kırmızı
+        if: github.event_name == 'pull_request'
+        run: |
+          total=0
+          while IFS= read -r f; do
+            [ -f "$f" ] && total=$((total + $(stat -c%s "$f")))
+          done < <(git diff --name-only --diff-filter=A "${{ github.event.pull_request.base.sha }}" HEAD)
+          echo "eklenen toplam: $total bayt"
+          [ "$total" -gt 10485760 ] && exit 1 || echo "ekleme boyutu yeşil"
+
+  satir-butcesi:
+    # Sözleşme-3: PIPELINE ≤ 140, stage dosyaları ≤ 90.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          p=$(wc -l < docs/PIPELINE.md)
+          [ "$p" -gt 140 ] && { echo "PIPELINE $p>140"; exit 1; }
+          for f in docs/stages/*.md; do
+            l=$(wc -l < "$f")
+            [ "$l" -gt 90 ] && { echo "$f $l>90"; exit 1; }
+          done
+          echo "satır bütçesi yeşil (PIPELINE=$p)"
+
+  kaynak-beyaz-liste:
+    # K3: docs/probe/kaynak yalnız beyaz listedeki uzantıları taşır.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          if [ -d docs/probe/kaynak ]; then
+            bad=$(find docs/probe/kaynak -type f ! -name '*.cs' ! -name '*.json' ! -name '*.unity' ! -name '*.asset' ! -name '*.meta')
+            [ -n "$bad" ] && { echo "beyaz liste ihlali:"; echo "$bad"; exit 1; }
+          fi
+          echo "kaynak beyaz liste yeşil"
