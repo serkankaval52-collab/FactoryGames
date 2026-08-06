@@ -1,10 +1,9 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.19 — M2 bütünlük denetimi (belgenin baştan sona tek okuması), 14
-bulgulu: zincir boşlukları (A2→A3 araç listesi, A4→A5 APK, A7→A8 TestFlight
-taslağı), ölü referanslar temizlendi (`_full.md`, Editor.log, kapalı track),
-tanımsız "N" değişkenleri 3'e sabitlendi, Ek B en-kötü-senaryo satırı eklendi,
-sondaya `../probe-project` yetki satırı, A8 girdisi APK+TestFlight.
+**Sürüm:** v1.0 — 2026-08-06, DONDURULDU. Masa başı hat tanımı tamam: hiçbir
+aşama koşulmadı; tüm takvim ve eşik sayıları tahmindir. Belge ancak sonda
+raporuyla açılır; ilk değişecek yerler Ek B'nin satırları, Ek C'nin etiketli
+alanları ve 0B anlatımıdır. Sürüm geçmişi git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
