@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Probe marker — writes an epoch-timestamp marker file.
+"""Probe marker — writes an epoch-MILLISECONDS marker file.
+
+Format (v1.0.2): tek satır TAM SAYI epoch milisaniye — ondalık ayıracı YOK,
+sistem yerel ayarından bağımsız. report.py saniyeye böler; kurulum.md'deki
+PowerShell başlangıç damgası birebir aynı formatı üretir.
 
 Usage: python tools/probe/marker.py <name> [--probe-root docs/probe]
 
@@ -43,7 +47,7 @@ def main() -> int:
             return 2
 
     with open(path, "w", encoding="utf-8") as f:
-        f.write(f"{time.time():.3f}\n")
+        f.write(f"{int(time.time() * 1000)}\n")
     print(f"ok: {path}")
     return 0
 

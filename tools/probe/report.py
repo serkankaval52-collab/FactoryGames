@@ -51,13 +51,18 @@ def read_baseline(probe_root):
     return None
 
 
+corrupt_markers = []  # (yol, ham_icerik) — dosya VAR ama okunamıyor; eksikten FARKLI
+
+
 def read_marker(probe_root, name):
     p = os.path.join(probe_root, ".markers", f"{name}.ts")
     if not os.path.exists(p):
-        return None
+        return None  # dosya yok = adım atlanmış (beklenebilir)
+    raw = open(p, encoding="utf-8", errors="replace").read().strip()
     try:
-        return float(open(p, encoding="utf-8").read().strip())
+        return int(raw) / 1000.0  # epoch milisaniye (marker.py v1.0.2; kültür-bağımsız)
     except ValueError:
+        corrupt_markers.append((p, raw))  # BOZUK = hata; sessizce yutulmaz
         return None
 
 
@@ -210,6 +215,9 @@ def main() -> int:
         missing.append("scene-baseline.json (P1 referansı ölçülemedi)")
     if b0 is None or b1 is None:
         missing.append("build damgası (T_build)")
+    if corrupt_markers:
+        warns.append("marker bozuk: " + "; ".join(
+            f"{p}, içerik: {raw[:80]!r}" for p, raw in corrupt_markers))
     if missing:
         warns.append("ölçülemeyen kaynak: " + ", ".join(missing))
 
@@ -233,6 +241,9 @@ def main() -> int:
     durum_t = "—" if t_ure is None else ("yeşil" if t_ure <= T_OK else ("kırmızı" if t_ure > T_FAIL else "sarı"))
     A(f"| T_uretim | {fmt_dur(t_ure)} | `.markers/uretim-*.ts` (kapı beklemeleri dahil) | {lim_t} | {durum_t} |")
     A(f"| T_build | {fmt_dur(t_build)} | `.markers/build-*.ts` | tabloya girmez — 0A takvimini besler | bilgi |")
+    for p, raw in corrupt_markers:
+        ham = raw[:80].replace("`", "'")
+        A(f"| Marker bozuk | dosya var, okunamıyor | `{p}` — içerik: `{ham}` | tam sayı epoch ms | sarı |")
     dk = "yeşil" if kapi <= KAPI_OK else ("kırmızı" if kapi > KAPI_FAIL else "sarı")
     A(f"| İnsan müdahalesi (birincil) | {kapi} | `.markers/insan-kapisi-N.ts` | ≤{KAPI_OK} / >{KAPI_FAIL} | {dk} |")
     cc = "ölçülemedi (isteğe bağlı)" if transcript_n is None else str(transcript_n)

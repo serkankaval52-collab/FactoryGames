@@ -40,7 +40,9 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
   başsız (Editor kapalı, batchmode koşar). Eşzamanlılık yok; bekçi
   `Temp/UnityLockfile`. Editor'ü açan/kapatan executor'dır (komut, insan değil).
 - **Damga (T_kurulum):** başlangıç Python'suz (Python satır 4'te kurulur; ölçüm aracı
-  ölçtüğü şeye bağımlı olamaz), marker.py formatıyla aynı (epoch sn): `powershell -NoProfile -Command "New-Item -ItemType Directory -Force docs/probe/.markers > $null; '{0:F3}' -f ([DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()/1000.0) | Out-File -Encoding ascii docs/probe/.markers/kurulum-start.ts"`
+  ölçtüğü şeye bağımlı olamaz) ve kültür-BAĞIMSIZ (hiç ondalık ayıracı yok — tr-TR'nin
+  virgülü bu dosyaya giremez): marker formatı sistem genelinde TAM SAYI epoch milisaniye
+  (marker.py de aynısını yazar, report.py saniyeye böler): `powershell -NoProfile -Command "New-Item -ItemType Directory -Force docs/probe/.markers > $null; [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() | Out-File -Encoding ascii docs/probe/.markers/kurulum-start.ts"`
   Bitiş: `py -3.12 tools/probe/marker.py kurulum-end` (Python o noktada doğrulanmıştır).
 
 ## Yetki sınırı ("tam yetkili kur" SADECE bunu kapsar)
