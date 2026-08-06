@@ -26,6 +26,15 @@ değişirse yalnız bu dosya tekrar koşulur; 0A değil.
   bir sonraki koşuda "kurulu" sayılamaz. BAŞARISIZ'da rapora **"makinede bırakılan
   durum"** bölümü eklenir: ne kuruldu, ne yarım kaldı, temizlik gerekiyorsa hangi
   komutla.
+- **Kapı ön-bildirimi:** koşunun ilk işi, beklenen TÜM insan kapılarını tek mesajda
+  saymak (kesin: ≥2 UAC onayı; koşullu: hesap oturumları). Sürpriz kapı YOK.
+- **Bekleme disiplini:** ≥2 dk sürebilecek iş tek bloklayıcı komutla koşulmaz
+  (terminal zaman aşımı): desen = başlat → 60 sn'de bir durumu yokla → azami süre
+  aşımında İNSAN KAPISI. Unity Hub'ın headless install'ı ASENKRON döner; "kurulu"
+  kararı yalnız yoklama döngüsünün sonundaki doğrulamayla verilir.
+- **İki durum:** proje ya EDITOR OTURUMU'ndadır (MCP canlı, batchmode YASAK) ya
+  başsız (Editor kapalı, batchmode koşar). Eşzamanlılık yok; bekçi
+  `Temp/UnityLockfile`. Editor'ü açan/kapatan executor'dır (komut, insan değil).
 - Başlangıç/bitiş `tools/probe/marker.py` ile `.markers/kurulum-start.ts` /
   `kurulum-end.ts` damgalanır (T_kurulum buradan hesaplanır).
 
@@ -54,15 +63,16 @@ değişirse yalnız bu dosya tekrar koşulur; 0A değil.
 | 2 | Git | `winget install --id Git.Git -e --silent` | `git --version` | `git version 2.*` | — |
 | 3 | GitHub CLI | `winget install --id GitHub.cli -e --silent` | `gh --version`; `gh auth status` | `gh version 2.*`; "Logged in" | Tarayıcıda `gh auth login` (scope: Yetki sınırı) |
 | 4 | Python 3.12+ | `winget install --id Python.Python.3.12 -e --silent` | `py -3.12 --version`; yoksa `%LOCALAPPDATA%\Programs\Python\Python312\python.exe --version` | `Python 3.12.*` | İkisi de yok → insan. NOT: `python` komutu Windows'ta Microsoft Store stub'ına gidebilir; doğrulamada KULLANILMAZ |
-| 5 | Unity Hub | `winget install --id UnityTechnologies.UnityHub -e --silent` | Hub ikilisi var + `Unity Hub.exe -- --headless help` | yardım metni | Yükleyici UAC istemi |
+| 5 | Unity Hub | `winget install --id UnityTechnologies.UnityHub -e --silent` | Hub ikilisi var + `Unity Hub.exe -- --headless help` | yardım metni | UAC onayı KESİN (yükleyici yönetici ister) |
 | 6 | Unity LTS pini | Unity'nin resmî sürüm arşivinden güncel 6000.3 yaması + changeset okunur; `docs/probe/unity-pin.txt`'e `6000.3.xfN — <changeset>` olarak yazılır. **Dosya varsa sayfaya tekrar GİDİLMEZ** (tek seferlik kilit) | pin dosyası okunur (satır 7 bu değerle kurar) | dosya mevcut + format doğru | Ağ erişimi yoksa pini insan girer |
-| 7 | Unity 6000.3 LTS + Android modülü + Personal lisans | Hub headless: `--headless install --version <pin> --changeset <cs> --module android` (pin satır 6 dosyasından okunur); lisans genelde Hub oturumundan akar, akmazsa Hub GUI | ARA KANIT: `--headless editors --installed` çıktısında pinli sürüm + android modülü. GATE: fabrika dizini altında geçici boş projede `Unity.exe -batchmode -quit -logFile -` (proje iş bitince silinir) | gate çıkış kodu **0** + lisans satırı (log) | Hub oturumu/UAC; Unity hesap oturumu (ilk sefer) |
-| 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, kullandığı her komutu rapora yazar); yapılandırmada sahne-düzenleme araçları KAPALI yapılır | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki kontrol yöntemiyle) | handshake **+ araç listesinde sahne-düzenleme araçları kapalı/yok**; liste çıktısı rapora düşer | Hesap/kabul ekranı varsa |
+| 7 | Unity 6000.3 LTS + Android modülü + Personal lisans | Hub headless: `--headless install --version <pin> --changeset <cs> --module android` (pin satır 6'dan) — **asenkron döner**: 60 sn'de bir yokla, azami 90 dk (10–15 GB iner); lisans genelde Hub oturumundan akar, akmazsa Hub GUI | ARA KANIT: `--headless editors --installed` çıktısında pinli sürüm + android modülü. GATE: fabrika dizini altında geçici boş projede `Unity.exe -batchmode -quit -logFile -` (proje silinmez — satır 8 de kullanır) | gate çıkış kodu **0** + lisans satırı (log) | Hub oturumu/UAC; Unity hesap oturumu (ilk sefer) |
+| 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, her komutu rapora yazar); sahne-düzenleme araçları KAPALI yapılandırılır; **Editor'ü executor başlatır** — satır 7'nin geçici projesinde deklare edilmiş EDITOR OTURUMU (insan kapısı DEĞİL, komut) | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki yöntem); sonra Editor kapatılır, `Temp/UnityLockfile`'ın kaybolduğu doğrulanır, geçici proje silinir | handshake + **araç listesinde sahne-düzenleme araçları kapalı/yok** (liste çıktısı rapora) + kilit-kayboldu kanıtı | Hesap/kabul ekranı varsa |
 | 9 | VS Code + Claude Code | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
 
 ## Alanlar
 
-**Girdi:** Windows 10/11; bu dosya; kullanıcının bir kerelik "tam yetkili kur" komutu.
+**Girdi:** Windows 10/11; bu dosya; kullanıcının bir kerelik "tam yetkili kur"
+komutu + UAC onayları için makine başında durması (kesin kapılar ön-bildirilir).
 **Çıktı:** `docs/probe/kurulum-raporu.md` — her satır: komut, beklenen, gerçekleşen,
 durum. Başlıkta makine kimliği = hostname + Windows sürümü + mimari
 (`PROCESSOR_ARCHITECTURE`). BAŞARISIZ satır yok; varsa "makinede bırakılan durum".

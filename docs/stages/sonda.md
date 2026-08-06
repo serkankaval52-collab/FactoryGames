@@ -12,12 +12,12 @@ yalnız gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0
    (iOS modülü Windows'ta yok — sorun değil; iOS derlemesi CI'ın işi.)
 3. Git ve gh CLI kurulu, oturum açık.
 4. VS Code + Claude Code çalışan oturumda.
-5. Resmî Unity MCP köprüsü **KURULU ve ZORUNLU** — Sözleşme-2 sınırlarında
-   yapılandırılmış (sahne-düzenleme araçları kapalı). Kurulamıyorsa sonda
-   KOŞULMAZ: bu durum Deneme-1 bulgusu olarak rapora "MCP kurulamadı" diye
-   geçer. FALLBACK yolu üretim koşuları içindir, ölçüm koşusu için değil —
-   MCP'siz koşulan sonda, kurmak istediğimiz hattı test etmez ve dokunma
-   metriğini karşılaştırılamaz kılar.
+5. Resmî Unity MCP köprüsü `kurulum.md` satır 8'de KANITLI (önkoşul 0'ın parçası).
+   Sonda koşusu içinde MCP kullanımı **SEÇİMLİDİR**: kullanılırsa yalnız deklare
+   edilmiş EDITOR OTURUMU'nda (batchmode ile eşzamanlı OLMAZ — iki-durum kuralı,
+   PIPELINE kilit kararları); hiç kullanılmazsa bu rapora düşülür. MCP kanıtı
+   kurulumdan geldiği için MCP'siz koşulan sonda hattı eksik test ETMEZ; üretim
+   koşularının FALLBACK davranışı Sözleşme-6'dadır.
 6. Görev dosyası `docs/probe/BRIEF.md`. Başka ipucu/yol haritası kullanılmaz —
    Deneme-1 soğuk koşudur.
 
@@ -38,11 +38,13 @@ kanıt koşularını `-batchmode`'da tutmak.
 - **T_uretim:** `.markers/uretim-start.ts` ↔ `uretim-end.ts`. Kural: BRIEF'i
   okuyan executor'ın İLK işi `python tools/probe/marker.py uretim-start`;
   son test çıktısı yazıldığında `uretim-end`. Süre = damga farkı.
-- **Editor'e elle dokunma** — beyanla ölçülmez, iki bağımsız iz birbirini
-  doğrular: (a) koşu penceresinde `.unity`/`.prefab` dosyalarında
-  executor-commit dışı değişiklik (git geçmişi + rapor öncesi `git status`
-  temizliği); (b) `Editor.log` GUI izleri (best-effort gösterge). Kanıt
-  koşuları (test/bot) `-batchmode`'da koşar: GUI'siz süreçte insan dokunamaz.
+- **Editor dokunuşu ÖLÇÜLMEZ (H2):** P1 altında sahneler neredeyse değişmez, bu
+  yüzden git izine dayalı dokunma sayımı kördü — sayımdan DÜŞÜRÜLDÜ; ölçemediğimiz
+  şeyi ölçüyormuş gibi yapmıyoruz. Yerine: (a) P1 ikili kapısı (aşağıda); (b) iki-
+  durum disiplini — her Editor oturumu `marker.py editor-acik/editor-kapali` ile
+  damgalanır ve her batchmode koşusu öncesi `Temp/UnityLockfile` YOK kanıtı
+  rapora düşer; (c) kanıt koşuları (test/bot) batchmode'dadır: GUI'siz süreçte
+  insan dokunamaz.
 - **İnsan müdahalesi:** oturum transkriptinden insan yazılı mesaj sayısı —
   sayımı script yapar, executor saymaz. Kurulum kapısı durakları pencerenin
   dışındadır ve sayıma girmez.
@@ -50,17 +52,18 @@ kanıt koşularını `-batchmode`'da tutmak.
   GameObject > 3). Beyan gerekmez.
 - **Test/bot:** NUnit XML (batchmode `-runTests`). **Kurulum durakları:** T_uretim dışı (F2).
 
-Rapor içeriği: T_kurulum, T_uretim, müdahale, dokunma izi, P1 sayımları,
-test özeti, GUI göstergesi ve **kör nokta beyanı** (kaydedilmemiş GUI
-değişikliği; batchmode kuralı + temiz worktree şartıyla sınırlı).
+Rapor içeriği: T_kurulum, T_uretim, müdahale, P1 sayımları, test özeti,
+iki-durum izleri (Editor oturum damgaları + lockfile kanıtı) ve **kör nokta
+beyanı** — Editor GUI dokunuşu ölçülemiyor; ölçülmeyen bu alan beyanla kayıtlı,
+P1 ikilisi + iki-durum + batchmode disipliniyle sınırlı.
 
 ## Sayısal karar tablosu (ilk sonda bu eşikleri de kalibre eder)
 
-- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE müdahale ≤ 10
-  VE elle dokunma = 0.
-- **SARI:** çalışıyor ama T_uretim 6–12 sa veya 11–20 müdahale veya 1–3 elle
-  dokunma → 0A'ya geçilebilir; Ek B'nin Aşama-4 beklentisi gerçekleşenle
-  yazılır, P1 sürtünmesi Sözleşme-5 kaydı açılır.
+- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE müdahale ≤ 10 VE
+  P1 sayımı temiz.
+- **SARI:** çalışıyor ama T_uretim 6–12 sa veya 11–20 müdahale → 0A'ya
+  geçilebilir; Ek B'nin Aşama-4 beklentisi gerçekleşenle yazılır, P1 sürtünmesi
+  Sözleşme-5 kaydı açılır.
 - **BAŞARISIZ:** T_uretim > 12 sa veya > 20 müdahale veya bot 3 döngüyü
   geçemiyor veya P1 ihlali (sahne Editor'de kurulmak zorunda kaldı) →
   0A'ya GİRİLMEZ.

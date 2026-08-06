@@ -12,6 +12,7 @@ import sys
 import time
 
 KNOWN = {"kurulum-start", "kurulum-end", "uretim-start", "uretim-end"}
+EDITOR = {"editor-acik", "editor-kapali"}  # deklare edilmiş oturumlar; çoklu koşuda sıralı
 
 
 def main() -> int:
@@ -20,16 +21,22 @@ def main() -> int:
     ap.add_argument("--probe-root", default="docs/probe")
     args = ap.parse_args()
 
-    if args.name not in KNOWN:
-        print(f"bilinmeyen marker: {args.name} (bilinenler: {sorted(KNOWN)})", file=sys.stderr)
+    if args.name not in KNOWN and args.name not in EDITOR:
+        print(f"bilinmeyen marker: {args.name} (bilinenler: {sorted(KNOWN | EDITOR)})", file=sys.stderr)
         return 2
 
     mdir = os.path.join(args.probe_root, ".markers")
     os.makedirs(mdir, exist_ok=True)
-    path = os.path.join(mdir, f"{args.name}.ts")
-    if os.path.exists(path):
-        print(f"marker zaten var, ezilmez: {path}", file=sys.stderr)
-        return 2
+    if args.name in EDITOR:
+        n = 1
+        while os.path.exists(os.path.join(mdir, f"{args.name}-{n}.ts")):
+            n += 1
+        path = os.path.join(mdir, f"{args.name}-{n}.ts")
+    else:
+        path = os.path.join(mdir, f"{args.name}.ts")
+        if os.path.exists(path):
+            print(f"marker zaten var, ezilmez: {path}", file=sys.stderr)
+            return 2
 
     with open(path, "w", encoding="utf-8") as f:
         f.write(f"{time.time():.3f}\n")

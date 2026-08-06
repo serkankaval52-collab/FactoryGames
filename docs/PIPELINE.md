@@ -1,9 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.14 — G turu: kuruluma yetki sınırı (İZİN/YASAK), çalışır-hal
-doğrulaması (yarım kurulum sayılmaz), Unity pin kilidi (`probe/unity-pin.txt`),
-Windows Python stub düzeltmesi, MCP kapalılık kanıtı. Sıra: kurulum → sonda → 0A → 0B.
-Sonda koşulmadan aşama detayı AÇILMAZ.
+**Sürüm:** v0.15 — H turu: iki-durum disiplini (MCP↔batchmode eşzamanlı olamaz),
+dokunma metriği ölçülemezlikten düştü (yerine P1 ikilisi), halka kapısı APK'ya
+çevrildi (mağaza önkoşulu Aşama 9'da kaldı), CI Unity lisansına doğrulama adımı,
+Aşama 1 kapısı %40 yüzdesinden 8-eksen tablosuna. Usul (kullanıcı): koşudan önce her
+aşama anlatım→saldırı→mutabakat turundan geçer; kalibrasyon için sonda yine şart.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle
@@ -38,6 +39,7 @@ envanterleri Ek C'de izlenir.
 | CI | Public dönemde hosted runner ücretsiz; ÖLÇEKLE'de private | Bedel: kaynak açık → reskin/klon riski public dönemin fiyatı |
 | Varlık | T1 çok-kaynaklı CC0 + zorunlu transform; T2 sentez SFX; T3 mağaza yüzeyi (insan vetolu) | Otonomluk + "asset flip" deseninden kaçış |
 | Executor | VS Code Claude Code (Opus); Unity MCP yalnız gözlemci | Kod-öncelikli kural |
+| İki durum | Proje ya EDITOR OTURUMU'nda (MCP canlı; batchmode YASAK) ya BAŞSIZ'da (Editor kapalı; test/bot batchmode'da, MCP yok) | Aynı proje aynı anda tek süreçle açılır (UnityLockfile); bekçi = lockfile, geçişler damgalanır |
 | iOS | GH Actions macOS runner + xcodebuild + ASC API key | Test: TestFlight internal (iPhone 15) |
 | Hesaplar | Mevcut bireysel Play + Apple hesapları (ikisinde de yayında oyun); org dönüşümü = ÖLÇEK borcu | Kişisel→org Console içinde tek yönlü mümkün; aciliyet yok. 0A doğrulaması: yeni uygulamada üretim sekmesi açık mı |
 | Mevcut oyun | Hattın dışında, dokunulmaz | Kullanıcı kararı (K4): oyunlar arası çapraz tanıtım her koşulda YASAK; tanıtım yalnız organik |
