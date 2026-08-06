@@ -1,89 +1,90 @@
 # AŞAMA -1 — SONDA (tek seferlik; 0A'dan ÖNCE)
 
-**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (bootstrap-only, JSON veri, MCP
-yalnız gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya girilmez.
+**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (sahne el değmeden şablon
+varsayılanı; tüm kurulum `[RuntimeInitializeOnLoadMethod]` ile kodda; JSON veri;
+MCP yalnız gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya
+girilmez.
 
 ## Önkoşullar (raporda her biri tik işaretlenir)
 
-0. `docs/stages/kurulum.md` KAPALI — tüm araçlar kanıtlı kurulu. Kurulum
-   durakları bu aşamaya taşmaz (T_uretim dışı).
-1–4. Hub+lisans, Unity+Android modülü, git+gh, VS Code+Claude Code: tamamı önkoşul
-   0'ın içindedir, tekrar listelenmez. Not: iOS modülü Windows'ta yok — iOS
-   derlemesi CI'ın işi.
-5. Resmî Unity MCP köprüsü `kurulum.md` satır 8'de KANITLI (önkoşul 0'ın parçası).
-   Koşu içinde MCP kullanımı **SEÇİMLİDİR**: yalnız deklare EDITOR OTURUMU'nda
-   (batchmode ile eşzamanlı OLMAZ — iki-durum, PIPELINE); kullanılmazsa rapora
-   düşülür. MCP kanıtı kurulumdan geldiğinden MCP'siz sonda hattı eksik test ETMEZ;
-   üretim FALLBACK'ı Sözleşme-6.
+0. `docs/stages/kurulum.md` KAPALI — tüm araçlar kanıtlı kurulu; kurulum
+   durakları bu aşamaya taşmaz.
+1–4. Hub+lisans, Unity+Android modülü, git+gh, VS Code: önkoşul 0'ın içinde.
+   (iOS modülü Windows'ta yok — iOS derlemesi CI'ın işi.)
+5. Resmî Unity MCP köprüsü kurulum satır 8'de KANITLI. Koşuda MCP **koşullu
+   ZORUNLU**: log/stack trace'in açıklamadığı ilk runtime hatada oturum AÇAR
+   (`editor-acik/kapali` damgalı; ne gözlemlendi + süre rapora — MCP zaman
+   kazandırıyor mu ölçülüyor, Sözleşme-2'nin dayanağı). Hata hiç çıkmazsa
+   rapora "MCP tetiklenmedi" — o da bulgu. Oturum batchmode ile eşzamanlı OLMAZ.
 6. Görev dosyası `docs/probe/BRIEF.md`. Başka ipucu/yol haritası kullanılmaz —
    Deneme-1 soğuk koşudur.
 
 ## Görev (özet; tam tanım BRIEF.md'de)
 
-Tek ekran, tek input (tap/hold), skor + fail + restart içeren 60–90 saniyelik
-döngü; bootstrap-only sahne; veri JSON; bot ile 3 otomatik döngü; Windows
-play-mode'da hatasız.
+Tek ekran, tek input (tap/hold), skor + fail + restart, 60–90 sn döngü; sahne
+şablon varsayılanı olarak kalır (nesne eklenemez); veri JSON; deterministik
+zaman adımlı bot ile 3 otomatik döngü; Windows batchmode'da testler yeşil.
+
+**Proje topolojisi (değişmez):** proje repo DIŞINDA, kardeş dizin `../probe-project`
+— `-createProject` ile Unity üretir; executor yalnız .cs/.json ekler; sahneye ve
+ProjectSettings'e elle DOKUNMAZ. Repoya girenler: `docs/probe/` altında rapor,
+`.markers/`, `unity-pin.txt` ve `kaynak/` (.cs/.json/.unity kopyası; rapordan hemen
+önce: `robocopy ../probe-project/Assets docs/probe/kaynak *.cs *.json *.unity /S`).
+
+**İnsan kapısı (sondada var):** tıkanma = tek cümle + `marker.py insan-kapisi`.
+Kurulum kapılarından farkı: kapı süresi T_uretim'e GİRER ve müdahale SAYILIR —
+tıkanmak saklanamaz, ölçülür. Beklenti 0'dır; çıkarsa ölçülmüş bulgudur.
 
 ## Ölçümün kaydı — beyan yok, iz var (Sözleşme-10)
 
 Raporu executor YAZMAZ; `tools/probe/report.py` artefaktlardan ÜRETİR.
-Executor'un tek iz görevi: doğru anda `tools/probe/marker.py` koşturmak ve
-kanıt koşularını `-batchmode`'da tutmak.
 
-- **T_kurulum:** `.markers/kurulum-start.ts` ↔ `kurulum-end.ts` (kurulum.md
-  damgaları). Karar tablosuna GİRMEZ; 0A takvimini besler.
-- **T_uretim:** `.markers/uretim-start.ts` ↔ `uretim-end.ts`. Kural: BRIEF'i
-  okuyan executor'ın İLK işi `python tools/probe/marker.py uretim-start`;
-  son test çıktısı yazıldığında `uretim-end`. Süre = damga farkı.
-- **Editor dokunuşu ÖLÇÜLMEZ (H2):** P1 altında sahneler neredeyse değişmediği
-  için git izine dayalı sayım kördü — DÜŞÜRÜLDÜ; ölçemediğimizi ölçüyormuş gibi
-  yapmayız. Yerine: (a) P1 ikili kapısı (aşağıda); (b) iki-durum — her Editor
-  oturumu `marker.py editor-acik/editor-kapali` ile damgalı, her batchmode öncesi
-  `Temp/UnityLockfile` YOK kanıtı raporda; (c) kanıt koşuları batchmode'dadır:
-  GUI'siz süreçte insan dokunamaz.
-- **İnsan müdahalesi:** oturum transkriptinden insan yazılı mesaj sayısı —
-  sayımı script yapar, executor saymaz. Kurulum kapısı durakları pencerenin
-  dışındadır ve sayıma girmez.
-- **P1 ihlali:** CI lint + script'in sahne nesne sayımı (Bootstrap dışı
-  GameObject > 3). Beyan gerekmez.
-- **Test/bot:** NUnit XML (batchmode `-runTests`). **Kurulum durakları:** T_uretim dışı (F2).
+- **T_kurulum:** kurulum damgaları; karar tablosuna girmez.
+- **T_uretim:** `uretim-start` (BRIEF okunduğunda İLK iş) ↔ `uretim-end` (bot
+  yeşil + test XML yazıldığı an). İnsan kapısı beklemeleri dahildir.
+- **T_build:** `build-start` ↔ `build-end` — `uretim-end`'den SONRA koşulan yerel
+  Android build'i ayrı ölçülür (soğuk Gradle/IL2CPP dakikalar sürer); tabloya
+  girmez, 0A CI takvimini besler. Build kırılması = "araç zinciri", üretim kusuru değil.
+- **Editor/MCP oturumları:** yukarıdaki koşullu tetikle açılır; damgalar
+  `editor-acik/kapali-N`; her batchmode öncesi `Temp/UnityLockfile` YOK kanıtı.
+- **Editor dokunuşu ÖLÇÜLMEZ (H2):** sahne varsayılandan sapmadığı için elle
+  kurulum oyuna zaten etki etmez; sayım metriği yok, kör nokta beyanı var.
+- **İnsan müdahalesi:** birincil sayım = `insan-kapisi-N` damgaları; çapraz
+  kontrol = transkriptteki insan mesajı sayısı. Uyuşmazlık SARI — uyuşmazlık
+  kendisi bilgidir.
+- **P1 ikilisi:** kaynak kopyasındaki sahne/prefab GameObject sayımı ≤ 2
+  (şablon varsayılanı; report.py) + CI lint. Kopya yoksa P1 ölçülemez → SARI.
+- **Test/bot:** NUnit XML (batchmode `-runTests`; editmode + playmode takımları).
 
-Rapor içeriği: T_kurulum, T_uretim, müdahale, P1 sayımları, test özeti,
-iki-durum izleri (Editor oturum damgaları + lockfile kanıtı) ve **kör nokta
-beyanı** — Editor GUI dokunuşu ölçülemiyor; ölçülmeyen bu alan beyanla kayıtlı,
-P1 ikilisi + iki-durum + batchmode disipliniyle sınırlı.
+Rapor içeriği: T_kurulum/T_uretim/T_build, müdahale iki sayıyla, MCP oturum
+satırı (veya "tetiklenmedi"), P1 sayımları, test özeti, lockfile durumu, kör
+nokta beyanı.
 
 ## Sayısal karar tablosu (ilk sonda bu eşikleri de kalibre eder)
 
-- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE müdahale ≤ 10 VE
-  P1 sayımı temiz.
-- **SARI:** çalışıyor ama T_uretim 6–12 sa veya 11–20 müdahale → 0A'ya
-  geçilebilir; Ek B'nin Aşama-4 beklentisi gerçekleşenle yazılır, P1 sürtünmesi
-  Sözleşme-5 kaydı açılır.
-- **BAŞARISIZ:** T_uretim > 12 sa veya > 20 müdahale veya bot 3 döngüyü
-  geçemiyor veya P1 ihlali (sahne Editor'de kurulmak zorunda kaldı) →
-  0A'ya GİRİLMEZ.
+- **BAŞARILI:** döngü + testler yeşil VE T_uretim ≤ 6 sa VE insan-kapisi ≤ 10
+  VE P1 temiz. (T_build ve transkript çapraz kontrolü tabloya girmez.)
+- **SARI:** çalışıyor ama T_uretim 6–12 sa veya insan-kapisi 11–20 veya sayım
+  tutarsızlığı → 0A'ya geçilebilir; Ek B Aşama-4 satırı gerçekleşenle yazılır.
+- **BAŞARISIZ:** T_uretim > 12 sa veya insan-kapisi > 20 veya bot 3 döngüyü
+  geçemiyor veya P1 ihlali → 0A'ya GİRİLMEZ.
 
 ## İki denemenin farkı
 
 - **Deneme-1 (soğuk):** yalnız BRIEF + bu doküman ağacı. Başarısızsa engel
   listesi üçe sınıflandırılır: brief kusuru / ortam kusuru / prensip kusuru.
-- **Kural: brief'e insan tasarımcı dokunmaz.** BRIEF kusuru bir KEŞİFTİR —
-  BRIEF, fabrikanın plan→kod devir mekanizmasının minyatürüdür ve fabrikada
-  brief'i (planı) yazan da Claude Code olacaktır. Brief'i elle iyileştirip
-  Deneme-2'yi geçmek bu keşfi gizler; ölçülen şey "Claude Code üretebilir mi"
-  değil "ben iyi brief yazabilir miyim" olur. Brief kusuru bulunduysa düzeltme
-  işi de executor'a verilir: "bu brief'i uygulanabilir hale getir, sonra
-  uygula." Revizyon executor ürünü olarak rapora işlenir.
-- **Deneme-2:** değişen tek şey ortam/destektir (MCP konfigürasyonu, kurulum
-  notları, iskelet desteği). Brief değiştiyse değiştiren executor'dır ve bu
-  ayrıca kaydedilir — değişken yine tektir: destek.
-- **Deneme-2 de başarısızsa** karar tamamen insana + fabrikaya (motor ve/veya
-  Sözleşme-2 yeniden açılır).
-- Otomatik üçüncü deneme YOK.
+- **Kural: brief'e insan tasarımcı dokunmaz.** BRIEF kusuru KEŞİFTİR — brief
+  fabrikanın plan→kod devir minyatürüdür; fabrikada planı da Claude Code yazar.
+  Elle iyileştirilmiş brief "Claude üretebilir mi"yi değil "ben brief yazabilir
+  miyim"i ölçer. Kusur varsa düzeltme de executor'a: "brief'i uygulanabilir kıl,
+  sonra uygula" — revizyon rapora işlenir.
+- **Deneme-2:** değişen tek şey ortam/destek (MCP, kurulum notları, iskelet);
+  brief'i değiştiren executor'dır, kaydedilir. Otomatik üçüncü deneme YOK.
+- **İlk koşu teyitleri (bulgu olabilir):** RuntimeInitializeOnLoadMethod 6000.3'te
+  beklenen sırada; şablon sahnesi = 2 GameObject; bot adımı deterministik — aksi bulgu.
 
-**Yürüten:** otonom — insan yalnız kurulum kapılarında (varsa) ve nihai BAŞARISIZ
-kararında; sayım ve rapor script ürünüdür, executor beyan üretmez.
-**Geçiş kriteri:** tabloya göre BAŞARILI veya SARI + rapor **script tarafından**
-üretildi (`docs/probe/rapor.md`) + Ek B'nin Aşama-4 satırı ölçümle güncellendi.
-**Geri kenarı:** BAŞARISIZ → 0A kilitli kalır; max 2 deneme.
+**Yürüten:** otonom — insan yalnız deklare kapılarda (sayılır) ve nihai
+BAŞARISIZ kararında; rapor script ürünüdür, beyan yok.
+**Geçiş kriteri:** BAŞARILI veya SARI + rapor script tarafından üretildi +
+Ek B Aşama-4 satırı ölçümle güncellendi.
+**Geri kenarı:** BAŞARISIZ → 0A kilitli; max 2 deneme.

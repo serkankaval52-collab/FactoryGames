@@ -13,12 +13,15 @@ standartlarının metin olarak tek başına yeterli olup olmadığını da ölç
 
 ## Kurallar (Sözleşme-2 uygulaması)
 
-- Sahne bootstrap-only: tek sahne ≈ tek GameObject (Bootstrap bileşeni);
-  tüm hiyerarşi saf C# kodundan kurulur.
+- Sahne şablon varsayılanı olarak kalır — sahneye/prefab'a elle veya kodla nesne
+  EKLENMEZ (şablonun Main Camera + Directional Light'ı hariç GameObject yok); tüm
+  kurulum `[RuntimeInitializeOnLoadMethod]` (BeforeSceneLoad) ile saf C#'tan.
 - Ayarlanabilir değerler (hız, skor, eşikler) `StreamingAssets` altında JSON.
 - Editor'de elle sahne/prefab kurulumu YOK.
 - En az bir EditMode test takımı (çekirdek mantık) + bot ile 3 otomatik döngü
-  (PlayMode veya scripted input) hatasız geçmeli.
+  (PlayMode, scripted input) hatasız geçmeli; bot deterministik zaman adımı
+  kullanır (örn. sabit `Time.captureDeltaTime` ya da kendi saati) — kırılgan
+  test ölçümü kirletir.
 
 ## Kabul kanıtı
 

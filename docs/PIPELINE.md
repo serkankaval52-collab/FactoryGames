@@ -1,10 +1,11 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.15 — H turu: iki-durum disiplini (MCP↔batchmode eşzamanlı olamaz),
-dokunma metriği ölçülemezlikten düştü (yerine P1 ikilisi), halka kapısı APK'ya
-çevrildi (mağaza önkoşulu Aşama 9'da kaldı), CI Unity lisansına doğrulama adımı,
-Aşama 1 kapısı %40 yüzdesinden 8-eksen tablosuna. Usul (kullanıcı): koşudan önce her
-aşama anlatım→saldırı→mutabakat turundan geçer; kalibrasyon için sonda yine şart.
+**Sürüm:** v0.16 — H turu kapanışı: sahne = şablon varsayılanı (elle YAML yok;
+tüm kurulum `[RuntimeInitializeOnLoadMethod]` ile kodda; P1 lint = nesne sayımı
+≤2, yargı değil). Proje fabrika reposunun kardeş dizininde (`../probe-project`;
+Library repo dışı). T_build üçüncü kronometre; müdahale = insan-kapisi damgası +
+transkript çapraz kontrolü; MCP koşullu zorunlu; sonda insan kapısı tanır (süre
+T_uretim'e girer, müdahale sayılır); bot deterministik zaman adımlı.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle
@@ -34,7 +35,7 @@ envanterleri Ek C'de izlenir.
 | Render | URP + 2D Renderer | Ekosistem/yol haritası; boyut stripping ile telafi |
 | Mediation | AppLovin MAX (AdMob hesabı adaptörle bağlanır) | ROAS UA yalnız MAX'te; mevcut oyunun AdMob kurulumuna DOKUNULMAZ |
 | Analitik | GameAnalytics; MMP (AppsFlyer) istisnai UA durumunda | Ücretsiz, hafif, D1/D7 hazır |
-| Sahne | Bootstrap-only, veri `StreamingAssets` JSON | GUID-YAML kilidi yok; diff insan-okur |
+| Sahne | Şablon varsayılan sahnesi değiştirilmez (nesne ≤2); tüm kurulum `[RuntimeInitializeOnLoadMethod]` (BeforeSceneLoad) ile koddan; veri `StreamingAssets` JSON | Elle YAML yok; GUID kilidi yok; P1 lint = mekanik sayım |
 | Repo | FactoryGames = fabrika + `factory.core` UPM; oyunlar ayrı repo | Raf/mağaza/sürüm kararı oyun başına |
 | CI | Public dönemde hosted runner ücretsiz; ÖLÇEKLE'de private | Bedel: kaynak açık → reskin/klon riski public dönemin fiyatı |
 | Varlık | T1 çok-kaynaklı CC0 + zorunlu transform; T2 sentez SFX; T3 mağaza yüzeyi (insan vetolu) | Otonomluk + "asset flip" deseninden kaçış |
@@ -50,9 +51,12 @@ envanterleri Ek C'de izlenir.
 1. **Telemetri:** her aşama giriş/çıkışında oyun reposunda `.factory/telemetry.jsonl`
    satırı: `{ts, aşama, olay, sure_dk, kapi_sonucu, insan_saat, factory_core_surumu,
    build_hash, ci_dakika}`. İnsan beklemesi yorum zaman damgalarından hesaplanır.
-2. **Kod-öncelikli sahne:** bootstrap-only; hiyerarşi saf C#; veri JSON; MCP ile sahne
-   düzenlemek yasak (MCP: konsol, play-mode, doğrulama, build tetikleme). Zorlama:
-   CI lint + PR kapısı; pre-commit hook yalnız hızlı uyarı.
+2. **Sahne el değmez:** sahne dosyası şablon varsayılanı olarak kalır — sahneye/
+   prefab'a elle veya kodla nesne eklenemez; tüm hiyerarşi
+   `[RuntimeInitializeOnLoadMethod]` (BeforeSceneLoad) ile koddan kurulur; veri
+   JSON; MCP ile sahne düzenlemek yasak (MCP: konsol, play-mode, doğrulama, build
+   tetikleme). Zorlama: CI lint (sahne/prefab nesne sayımı ≤2 + EditorBuildSettings
+   diff'i — mekanik sayım, yargı değil) + PR kapısı; pre-commit hook hızlı uyarı.
 3. **Normatif yük:** CLAUDE.md ≤ 30 kural, her koşuda tam yüklenir, satır sayımı CI'da;
    her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Bu ağacın disiplini
    dosya sınırıdır: stage dosyası ≤ 90 satır, PIPELINE.md ≤ 140; aşım CI uyarır ve

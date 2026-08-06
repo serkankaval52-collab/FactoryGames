@@ -4,15 +4,19 @@
 Usage: python tools/probe/marker.py <name> [--probe-root docs/probe]
 
 The executor MUST call this instead of reporting times by hand (Sözleşme‑10).
-Known names: kurulum-start, kurulum-end, uretim-start, uretim-end.
+Single (once per run): kurulum-start, kurulum-end, uretim-start, uretim-end,
+build-start, build-end.
+Numbered (repeat, auto-suffixed -N): editor-acik, editor-kapali (deklare
+edilmiş MCP/Editor oturumları), insan-kapisi (sondaki insan kapısı olayları).
 """
 import argparse
 import os
 import sys
 import time
 
-KNOWN = {"kurulum-start", "kurulum-end", "uretim-start", "uretim-end"}
-EDITOR = {"editor-acik", "editor-kapali"}  # deklare edilmiş oturumlar; çoklu koşuda sıralı
+SINGLE = {"kurulum-start", "kurulum-end", "uretim-start", "uretim-end",
+          "build-start", "build-end"}
+MULTI = {"editor-acik", "editor-kapali", "insan-kapisi"}
 
 
 def main() -> int:
@@ -21,13 +25,13 @@ def main() -> int:
     ap.add_argument("--probe-root", default="docs/probe")
     args = ap.parse_args()
 
-    if args.name not in KNOWN and args.name not in EDITOR:
-        print(f"bilinmeyen marker: {args.name} (bilinenler: {sorted(KNOWN | EDITOR)})", file=sys.stderr)
+    if args.name not in SINGLE and args.name not in MULTI:
+        print(f"bilinmeyen marker: {args.name} (bilinenler: {sorted(SINGLE | MULTI)})", file=sys.stderr)
         return 2
 
     mdir = os.path.join(args.probe_root, ".markers")
     os.makedirs(mdir, exist_ok=True)
-    if args.name in EDITOR:
+    if args.name in MULTI:
         n = 1
         while os.path.exists(os.path.join(mdir, f"{args.name}-{n}.ts")):
             n += 1
