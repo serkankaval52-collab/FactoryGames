@@ -1,14 +1,13 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.18 — L turu: 0A sırası düzeltildi (CI lisans kanıtı İLK kapı:
-doküman → .ulf → boş-proje işi, haftalık canary cron'uyla ULF rot yakalama);
-ham artefakt yasağı Sözleşme-4 (doğrulama kanıtı metindir); factory.core ayrı
-public repo; kasıtlı ihlal 5 + temiz-PR testi; halka eşleme private ikiz repoda;
-Ek C Bölüm-1 tek form + "ilk koşuda ölçülecek" tahmin etiketi.
+**Sürüm:** v0.19 — M2 bütünlük denetimi (belgenin baştan sona tek okuması), 14
+bulgulu: zincir boşlukları (A2→A3 araç listesi, A4→A5 APK, A7→A8 TestFlight
+taslağı), ölü referanslar temizlendi (`_full.md`, Editor.log, kapalı track),
+tanımsız "N" değişkenleri 3'e sabitlendi, Ek B en-kötü-senaryo satırı eklendi,
+sondaya `../probe-project` yetki satırı, A8 girdisi APK+TestFlight.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
-yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle
-düzenlenmez.
+yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` +
 gerekli eki yükler. Başka dosya açmaz. Oyun repolarının CLAUDE.md'si bu dosyaya
 bağlantıyla başlar.
@@ -81,11 +80,10 @@ envanterleri Ek C'de izlenir.
 9. **WIP limiti:** eşzamanlı aktif oyun ≤ 2 (Aşama 1 girişinden Aşama 10 kararına);
    insan kapısı kuyruğu ≤ 2; WIP doluyken Aşama 1 açılmaz. Değer telemetriden ayarlanır.
 10. **Metrik bağımsızlığı:** hattın kendini ölçtüğü hiçbir metrik executor beyanına
-   dayanamaz; her metriğin tanımlı artefakt kaynağı vardır (dosya damgası, git
-   geçmişi, Editor.log, CI çıktısı, transkript, mağaza konsolu). Kanıt üreten
-   koşular mümkün olduğunca GUI'siz/batchmode'da koşar. Beyana dayanan metrik ya
-   artefakta bağlanır ya standartlardan düşer. Telemetrinin tamamı ve Aşama 10'un
-   hat bakım raporu dahildir.
+   dayanamaz; her metriğin tanımlı artefakt kaynağı vardır (dosya damgası, CI çıktısı,
+   lint sayımları, transkript, mağaza konsolu). Kanıt üreten koşular mümkün olduğunca
+   GUI'siz/batchmode'da koşar. Beyana dayanan metrik ya artefakta bağlanır ya
+   standartlardan düşer. Telemetrinin tamamı ve Aşama 10'un hat bakım raporu dahildir.
 
 ## Aşama İndeksi
 

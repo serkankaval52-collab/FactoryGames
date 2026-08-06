@@ -4,7 +4,8 @@
 |---|---|
 | -2 Kurulum (makine başına, tek seferlik) | 1–3 sa (insan kapısı sayısına bağlı) |
 | -1 Sonda (tek seferlik) | 1–2 gün |
-| 0 Kurulum (tek seferlik) | 1–2 hafta (hesaplar hazır; yalnız şablon/CI/standart işi) |
+| 0A Hat kurulumu (tek seferlik) | 1 hafta (insan ≈4 sa + bekleme) |
+| 0B Pilot (tek seferlik) | kendi tam turuyla ayrı ölçülür (oyun satırlarının toplamı + iOS imza 2–4 sa ilk sefer) |
 | 1 Fikir + seçim | 1 gün (veto + paralel hasat penceresi dahil) |
 | 2 Plan + pre-mortem | 1 gün |
 | 3 Envanter | 0,5 gün |
@@ -25,6 +26,11 @@ oynama/rubrik 2–3 + yayınla/karar 0,5 + sosyal kit gözden geçirme 0,5).
 **Halka maliyeti:** Aşama 5 + Aşama 8 birlikte oyun başına ~8–15 dış-göz oturumu
 tüketir; havuz yenilenme hızı Ek C `halka_hakki` karşılığıdır — kıt kaynak
 takviminden önce burası tükenebilir; telemetride ayrı sayılır.
+
+**En kötü senaryo (geri kenarları yakarak):** Aşama 1:3 + 2:2 + 4:3 + 6:2 + 7:4 +
+8:3 + 9:3-ret limitleri tam yakılırsa yayın öncesi +~12–20 gün. Sessiz taşma olamaz:
+**her geri kenarı insana biter**. Takvim tavanı aşımı koşu sırasında telemetriyle
+görülür; aşırı durumda karar insandadır.
 
 Bu tablo Ek C `takvim_tavan_gun` ile her koşuda karşılaştırılır (Aşama 10 hat bakım
 raporu). Tahmin uydurma varsayılır, ölçüm gerçektir.

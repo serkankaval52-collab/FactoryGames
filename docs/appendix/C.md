@@ -22,7 +22,7 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `olcum_penceresi_gun` | Aşama 10 pencere (örn. 14) |
 | `organik_indirme_esik` | ÖLÇEKLE tetik: pencerede asgari organik indirme |
 | `organik_d1_esik` | ÖLÇEKLE tetik: organik kohort D1 alt sınırı |
-| `olcekle_arpu_esik` | ÖLÇEKLE tetik: organik AdMob ARPU alt sınırı |
+| `olcekle_arpu_esik` | ÖLÇEKLE tetik: organik reklam ARPU alt sınırı (MAX/AdMob) |
 | `d1_kalibrasyon_offset` | Halka D1 düzeltmesi; 3 koşu sonrası, kullanıcı onaylı |
 | `iyilestir_hakki` | Konsept başına 1 (Aşama 5) + oyun başına 1 (Aşama 10) |
 | `raf_gozden_gecirme_gun` | RAFTA TUT kararının yeniden bakım periyodu |

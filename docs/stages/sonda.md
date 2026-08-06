@@ -29,10 +29,9 @@ setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler:
 `scene-baseline.json`. Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
 docs/probe/kaynak *.cs *.json *.unity *.asset *.meta /S`.
 
-**Preset çıkarma (ilk koşu — sonrası hazır gelir):** set, Unity'nin KENDİ şablon
-paketinden mekanik çıkarılır (kurulumdaki ProjectTemplates arşivi; yoksa resmî
-kaynak) — tek kaynak = pinli sürüm şablonu, elle YAML yok. Komutlar rapora düşer;
-set `presets/unity-<pin>/` + README (sürüm + kaynak) ile commit'lenir.
+**Preset çıkarma (ilk koşu):** set, Unity'nin KENDİ şablon paketinden mekanik
+çıkarılır (kurulumdaki ProjectTemplates arşivi; yoksa resmî kaynak) — tek kaynak,
+elle YAML yok. Komutlar rapora; set `presets/unity-<pin>/` + README commit'lenir.
 
 **Sahne baseline'ı (ilk koşu adımı):** `-createProject` + preset kopyasından
 SONRA, oyundan ÖNCE varsayılan sahnenin sha256'sı ve nesne sayısı
@@ -42,6 +41,8 @@ yoksa P1 ölçülemez → SARI.
 
 **İnsan kapısı (sondada var):** tıkanma = tek cümle + `marker.py insan-kapisi`;
 fark: kapı süresi T_uretim'e GİRER ve müdahale SAYILIR — tıkanmak saklanamaz.
+**Sonda yetkisi:** repo + `../probe-project` alanını kapsar; kurulum yetki sınırı
+yalnız kendi aşamasındadır.
 
 ## Ölçümün kaydı — beyan yok, iz var (Sözleşme-10)
 
