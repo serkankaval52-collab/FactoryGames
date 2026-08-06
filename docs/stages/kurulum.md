@@ -39,10 +39,8 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 - **İki durum:** proje ya EDITOR OTURUMU'ndadır (MCP canlı, batchmode YASAK) ya
   başsız (Editor kapalı, batchmode koşar). Eşzamanlılık yok; bekçi
   `Temp/UnityLockfile`. Editor'ü açan/kapatan executor'dır (komut, insan değil).
-- **Damga (T_kurulum):** başlangıç Python'suz (Python satır 4'te kurulur; ölçüm aracı
-  ölçtüğü şeye bağımlı olamaz) ve kültür-BAĞIMSIZ (hiç ondalık ayıracı yok — tr-TR'nin
-  virgülü bu dosyaya giremez): marker formatı sistem genelinde TAM SAYI epoch milisaniye
-  (marker.py de aynısını yazar, report.py saniyeye böler): `powershell -NoProfile -Command "New-Item -ItemType Directory -Force docs/probe/.markers > $null; [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() | Out-File -Encoding ascii docs/probe/.markers/kurulum-start.ts"`
+- **Damga (T_kurulum):** marker formatı sistem genelinde TAM SAYI epoch milisaniyedir
+  (kültür-bağımsız — tr-TR'nin virgülü bu dosyaya giremez; marker.py de bunu yazar, report.py saniyeye böler). Başlangıç Python'suz atılır (Python satır 4'te kurulur; araç kendi ölçtüğüne bağımlı olmaz): `powershell -NoProfile -Command "New-Item -ItemType Directory -Force docs/probe/.markers > $null; [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() | Out-File -Encoding ascii docs/probe/.markers/kurulum-start.ts"`
   Bitiş: `py -3.12 tools/probe/marker.py kurulum-end` (Python o noktada doğrulanmıştır).
 
 ## Yetki sınırı ("tam yetkili kur" SADECE bunu kapsar)
