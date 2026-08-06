@@ -4,6 +4,11 @@
 kullanılamaz; değişiklik yalnız kullanıcı onayıyla. Hat standart akışta yalnız
 **Bölüm 1**'i okur. **Bölüm 2**'yi yalnız Aşama 10 yatırım ofisi okur.
 
+**Doldurma protokolü (L8):** kullanıcı TEK form doldurur (0A adım 6); ilk koşudan
+önce ölçülemeyecek alanlar "ilk koşuda ölçülecek — şimdilik tahmin" etiketi taşır.
+Etiketsiz tahmin YASAK (üç oyun sonra gerçek sanılır); etiket ilk ölçüm gelince
+düşer ve eski tahminle ölçüm yan yana not edilir.
+
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
 | Alan | Anlam |

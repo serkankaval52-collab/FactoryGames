@@ -1,3 +1,14 @@
 __pycache__/
 *.pyc
 .markers/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tif
+*.tiff
+*.psd
+*.mp4
+*.mov

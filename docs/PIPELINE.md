@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.17 — K turu: Sözleşme-2 tek-kaynak ekseninde yeniden yazıldı
-(yasak = kaynağı olmayan durum; kopya/kod değil). URP preset'i sondaya girdi
-(kaynak = Unity'nin kendi şablon paketi). Sahne limiti sabit değil: ilk koşunun
-ölçtüğü `scene-baseline.json`. CI boyut kapısı + kaynak kopyası beyaz listesi +
-satır bütçesi geçişleri aktif.
+**Sürüm:** v0.18 — L turu: 0A sırası düzeltildi (CI lisans kanıtı İLK kapı:
+doküman → .ulf → boş-proje işi, haftalık canary cron'uyla ULF rot yakalama);
+ham artefakt yasağı Sözleşme-4 (doğrulama kanıtı metindir); factory.core ayrı
+public repo; kasıtlı ihlal 5 + temiz-PR testi; halka eşleme private ikiz repoda;
+Ek C Bölüm-1 tek form + "ilk koşuda ölçülecek" tahmin etiketi.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle
@@ -35,7 +35,7 @@ envanterleri Ek C'de izlenir.
 | Mediation | AppLovin MAX (AdMob hesabı adaptörle bağlanır) | ROAS UA yalnız MAX'te; mevcut oyunun AdMob kurulumuna DOKUNULMAZ |
 | Analitik | GameAnalytics; MMP (AppsFlyer) istisnai UA durumunda | Ücretsiz, hafif, D1/D7 hazır |
 | Sahne | Şablon varsayılan sahnesi değiştirilmez (nesne ≤ `scene-baseline.json`); kurulum `[RuntimeInitializeOnLoadMethod]` (BeforeSceneLoad) ile; veri `StreamingAssets` JSON | Elle YAML yok; P1 = baseline'a göre mekanik sayım |
-| Repo | FactoryGames = fabrika + `factory.core` UPM; oyunlar ayrı repo | Raf/mağaza/sürüm kararı oyun başına |
+| Repo | Fabrika ≠ kitaplık ≠ oyun: FactoryGames = fabrika (doküman/araç), `factory.core` = ayrı public repo (UPM), oyunlar ayrı repo | UPM tam-repo klonu şişmesin; ÖLÇEKLE private kararı bağımlılığı kırmasın (L4) |
 | CI | Public dönemde hosted runner ücretsiz; ÖLÇEKLE'de private | Bedel: kaynak açık → reskin/klon riski public dönemin fiyatı |
 | Varlık | T1 çok-kaynaklı CC0 + zorunlu transform; T2 sentez SFX; T3 mağaza yüzeyi (insan vetolu) | Otonomluk + "asset flip" deseninden kaçış |
 | Executor | VS Code Claude Code (Opus); Unity MCP yalnız gözlemci | Kod-öncelikli kural |
@@ -63,7 +63,10 @@ envanterleri Ek C'de izlenir.
    her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Bu ağacın disiplini
    dosya sınırıdır: stage dosyası ≤ 90 satır, PIPELINE.md ≤ 140; aşım CI uyarır ve
    Sözleşme-5 yükseltme adayı açar. Okuma kapsamı yukarıda tanımlı; toptan okuma yok.
-4. **Sır kuralı:** repoya sır girmez; Actions secrets + CI secret-scan.
+4. **Sır ve ham artefakt:** repoya sır girmez; public repoya insan ürünü ham
+   artefakt (görüntü, log dökümü, dışa aktarım) da girmez — doğrulama kanıtı
+   metin özetidir, ham dosya cihazda kalır (L2). Zorlama: CI secret-scan +
+   görüntü/video uzantısı kapısı.
 5. **Hata→test yükseltmesi:** her kapı reddi ve post-mortem bulgusu: (a) lint/test
    (önce-kırmızı kanıtlı PR), (b) kontrol listesine tek satır, (c) CLAUDE.md kuralı
    (son çare, tavana tabi). Kayıt kaynak PR no taşır.

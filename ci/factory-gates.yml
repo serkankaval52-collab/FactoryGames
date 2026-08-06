@@ -54,3 +54,14 @@ jobs:
             [ -n "$bad" ] && { echo "beyaz liste ihlali:"; echo "$bad"; exit 1; }
           fi
           echo "kaynak beyaz liste yeşil"
+
+  ham-artefakt-kapisi:
+    # L2 / Sözleşme-4: public repoya insan ürünü ham artefakt girmez;
+    # doğrulama kanıtı metin özetidir, ham dosya cihazda kalır.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          bad=$(git ls-files | grep -iE '\.(png|jpe?g|gif|webp|bmp|tiff?|psd|mp4|mov)$' || true)
+          [ -n "$bad" ] && { echo "ham artefakt (metin-kanıt kuralı ihlali):"; echo "$bad"; exit 1; }
+          echo "ham artefakt kapısı yeşil"
