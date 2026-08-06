@@ -2,6 +2,7 @@
 
 | Aşama | Takvim |
 |---|---|
+| -2 Kurulum (makine başına, tek seferlik) | 1–3 sa (insan kapısı sayısına bağlı) |
 | -1 Sonda (tek seferlik) | 1–2 gün |
 | 0 Kurulum (tek seferlik) | 1–2 hafta (hesaplar hazır; yalnız şablon/CI/standart işi) |
 | 1 Fikir + seçim | 1 gün (veto + paralel hasat penceresi dahil) |

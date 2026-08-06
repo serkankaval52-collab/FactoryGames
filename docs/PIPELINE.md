@@ -1,8 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.12 — K4 kullanıcı kararı (çapraz tanıtım tamamen yasak), D1 halka
-standardı, D2 organik kit zorunluluğu, Aşama -1/0 mikro adımları, E1–E3 sonda
-düzeltmeleri. Sonda koşulmadan aşama detayı AÇILMAZ.
+**Sürüm:** v0.13 — F turu: otonom ortam kurulumu (`stages/kurulum.md`), metrikler
+beyandan ize (Sözleşme-10), sonda yürüteni otonom. Sıra: kurulum → sonda → 0A → 0B.
+Sonda koşulmadan aşama detayı AÇILMAZ.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır. `docs/_full.md` insan okuması için CI tarafından üretilir; elle
@@ -68,11 +68,18 @@ envanterleri Ek C'de izlenir.
    açamaz). Hat bütçe üretmez, ölçer; Ek C'de olmayan sayı hiçbir kapıda kullanılamaz.
 9. **WIP limiti:** eşzamanlı aktif oyun ≤ 2 (Aşama 1 girişinden Aşama 10 kararına);
    insan kapısı kuyruğu ≤ 2; WIP doluyken Aşama 1 açılmaz. Değer telemetriden ayarlanır.
+10. **Metrik bağımsızlığı:** hattın kendini ölçtüğü hiçbir metrik executor beyanına
+   dayanamaz; her metriğin tanımlı artefakt kaynağı vardır (dosya damgası, git
+   geçmişi, Editor.log, CI çıktısı, transkript, mağaza konsolu). Kanıt üreten
+   koşular mümkün olduğunca GUI'siz/batchmode'da koşar. Beyana dayanan metrik ya
+   artefakta bağlanır ya standartlardan düşer. Telemetrinin tamamı ve Aşama 10'un
+   hat bakım raporu dahildir.
 
 ## Aşama İndeksi
 
 | Dosya | Aşama | Amaç (tek satır) |
 |---|---|---|
+| `docs/stages/kurulum.md` | -2 (tek seferlik, makine başına) | Otonom ortam kurulumu: denetle, kur, kanıtla |
 | `docs/stages/sonda.md` | -1 (tek seferlik) | Üretilebilirlik ölçümü; başarısızsa 0A'ya girilmez |
 | `docs/stages/0A.md` | 0A (tek seferlik) | Hat kurulumu: teyitler, şablon, CI kanıtları, standartlar |
 | `docs/stages/0B.md` | 0B (tek seferlik) | Pilot koşu: standartların damıtıldığı ilk tam tur |
