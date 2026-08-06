@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.3 — 2026-08-06, DONDURULDU (v1.0.2: marker formatı kültür-
-bağımsız — tam sayı epoch milisaniye, report.py bozuk/eksik ayrımı; v1.0.3:
-v1.0.2'nin aştığı satır bütçesi 90/90'a sıkıştırıldı; yeni özellik yok).
-Hiçbir aşama koşulmadı; takvim/eşik sayıları tahmindir. Belge sonda raporuyla
-açılır. Sürüm geçmişi git'tedir (v1.0→v1.0.3).
+**Sürüm:** v1.0.4 — 2026-08-06, DONDURULDU (v1.0.4: ürün tanımı değişikliği —
+hyper-casual'dan küçük ama gerçek oyuna; Ek B'deki tüm tahminlere "eski ürün
+tanımına aittir, sonda + tasarım standardı sonrası baştan yazılacak" şerhi;
+yeni aşama metni yok). Hiçbir aşama koşulmadı; Belge sonda raporuyla açılır.
+Sürüm geçmişi git'tedir (v1.0→v1.0.4).
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.

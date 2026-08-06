@@ -1,5 +1,13 @@
 # EK B — Kapasite Tahmini (ideal koşu, geri kenarsız)
 
+> **ŞERH (2026-08-06 — ürün tanımı değişikliği):** bu tablodaki TÜM takvim ve
+> insan-saat tahminleri eski ürün tanımına aittir (hyper-casual: tek ekran,
+> ucuz deneme, hızlı öldür). Yeni tanım (küçük ama gerçek oyun: çok ekranlı,
+> ilerlemeli, tasarım dokümanı + matematik modeli önceden) bu sayıları
+> geçersiz kılar. Tablo, tasarım standardı yerleşip sonda ölçümü geldikten
+> sonra BAŞTAN yazılacaktır; o güne kadar bu sayılarla planlama YAPILAMAZ.
+
+
 | Aşama | Takvim |
 |---|---|
 | -2 Kurulum (makine başına, tek seferlik) | 1–3 sa (insan kapısı sayısına bağlı) |
