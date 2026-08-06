@@ -7,17 +7,14 @@ yalnız gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0
 
 0. `docs/stages/kurulum.md` KAPALI — tüm araçlar kanıtlı kurulu. Kurulum
    durakları bu aşamaya taşmaz (T_uretim dışı).
-1. Unity Hub kurulu, Personal lisans oturumu açık.
-2. Unity 6000.3 LTS kurulu; Hub'da **Android Build Support** modülü seçili.
-   (iOS modülü Windows'ta yok — sorun değil; iOS derlemesi CI'ın işi.)
-3. Git ve gh CLI kurulu, oturum açık.
-4. VS Code + Claude Code çalışan oturumda.
+1–4. Hub+lisans, Unity+Android modülü, git+gh, VS Code+Claude Code: tamamı önkoşul
+   0'ın içindedir, tekrar listelenmez. Not: iOS modülü Windows'ta yok — iOS
+   derlemesi CI'ın işi.
 5. Resmî Unity MCP köprüsü `kurulum.md` satır 8'de KANITLI (önkoşul 0'ın parçası).
-   Sonda koşusu içinde MCP kullanımı **SEÇİMLİDİR**: kullanılırsa yalnız deklare
-   edilmiş EDITOR OTURUMU'nda (batchmode ile eşzamanlı OLMAZ — iki-durum kuralı,
-   PIPELINE kilit kararları); hiç kullanılmazsa bu rapora düşülür. MCP kanıtı
-   kurulumdan geldiği için MCP'siz koşulan sonda hattı eksik test ETMEZ; üretim
-   koşularının FALLBACK davranışı Sözleşme-6'dadır.
+   Koşu içinde MCP kullanımı **SEÇİMLİDİR**: yalnız deklare EDITOR OTURUMU'nda
+   (batchmode ile eşzamanlı OLMAZ — iki-durum, PIPELINE); kullanılmazsa rapora
+   düşülür. MCP kanıtı kurulumdan geldiğinden MCP'siz sonda hattı eksik test ETMEZ;
+   üretim FALLBACK'ı Sözleşme-6.
 6. Görev dosyası `docs/probe/BRIEF.md`. Başka ipucu/yol haritası kullanılmaz —
    Deneme-1 soğuk koşudur.
 
@@ -38,13 +35,12 @@ kanıt koşularını `-batchmode`'da tutmak.
 - **T_uretim:** `.markers/uretim-start.ts` ↔ `uretim-end.ts`. Kural: BRIEF'i
   okuyan executor'ın İLK işi `python tools/probe/marker.py uretim-start`;
   son test çıktısı yazıldığında `uretim-end`. Süre = damga farkı.
-- **Editor dokunuşu ÖLÇÜLMEZ (H2):** P1 altında sahneler neredeyse değişmez, bu
-  yüzden git izine dayalı dokunma sayımı kördü — sayımdan DÜŞÜRÜLDÜ; ölçemediğimiz
-  şeyi ölçüyormuş gibi yapmıyoruz. Yerine: (a) P1 ikili kapısı (aşağıda); (b) iki-
-  durum disiplini — her Editor oturumu `marker.py editor-acik/editor-kapali` ile
-  damgalanır ve her batchmode koşusu öncesi `Temp/UnityLockfile` YOK kanıtı
-  rapora düşer; (c) kanıt koşuları (test/bot) batchmode'dadır: GUI'siz süreçte
-  insan dokunamaz.
+- **Editor dokunuşu ÖLÇÜLMEZ (H2):** P1 altında sahneler neredeyse değişmediği
+  için git izine dayalı sayım kördü — DÜŞÜRÜLDÜ; ölçemediğimizi ölçüyormuş gibi
+  yapmayız. Yerine: (a) P1 ikili kapısı (aşağıda); (b) iki-durum — her Editor
+  oturumu `marker.py editor-acik/editor-kapali` ile damgalı, her batchmode öncesi
+  `Temp/UnityLockfile` YOK kanıtı raporda; (c) kanıt koşuları batchmode'dadır:
+  GUI'siz süreçte insan dokunamaz.
 - **İnsan müdahalesi:** oturum transkriptinden insan yazılı mesaj sayısı —
   sayımı script yapar, executor saymaz. Kurulum kapısı durakları pencerenin
   dışındadır ve sayıma girmez.
