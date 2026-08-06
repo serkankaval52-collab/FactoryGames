@@ -19,9 +19,32 @@ değişirse yalnız bu dosya tekrar koşulur; 0A değil.
   - **BAŞARISIZ** — 3 otomatik denemede doğrulanamadı → insan kapısına döner;
     orada da çözülemezse hat DURUR, karar insandadır.
 - **Kanıt disiplini:** "kurulu" iddiası yok. Her satır rapora komut + beklenen
-  çıktı + gerçekleşen çıktı ile düşer.
+  çıktı + gerçekleşen çıktı ile düşer. Doğrulama ÇALIŞIR HALİ ölçer: dosya/liste
+  çıktısı tek başına kanıt değildir, araç gerçekten koşturulur (Unity'de gate =
+  batchmode çıkış kodu 0; listeleme yalnız ara kanıttır).
+- **Yarım kurulum kalamaz:** doğrulama çalışır hali ölçtüğü için yarım kurulum
+  bir sonraki koşuda "kurulu" sayılamaz. BAŞARISIZ'da rapora **"makinede bırakılan
+  durum"** bölümü eklenir: ne kuruldu, ne yarım kaldı, temizlik gerekiyorsa hangi
+  komutla.
 - Başlangıç/bitiş `tools/probe/marker.py` ile `.markers/kurulum-start.ts` /
   `kurulum-end.ts` damgalanır (T_kurulum buradan hesaplanır).
+
+## Yetki sınırı ("tam yetkili kur" SADECE bunu kapsar)
+
+- **İZİN VERİLEN:** tablodaki 9 satırın kurulumu ve doğrulanması; pin dosyası ve
+  geçici doğrulama projeleri dahil yalnız **fabrika dizini altında** dosya/klasör
+  oluşturmak.
+- **YASAK (insan onayı olmadan, her koşulda):** tabloda olmayan yazılım kurmak;
+  herhangi bir yazılımı kaldırmak veya sürüm düşürmek; sistem ortam değişkenlerini
+  kalıcı değiştirmek (yükleyicinin kendi yaptığı hariç); Defender / güvenlik
+  yazılımı ayarına dokunmak; yükleyicinin kendi yazdığı dışında kayıt defteri
+  düzenlemek; fabrika dizini dışında dosya silmek ya da değiştirmek; kullanıcının
+  mevcut Unity projelerine ve mevcut oyununun kaynağına erişmek.
+- **Tabloda olmayan bir araç gerekirse:** kurulMAZ. İnsan kapısı açılır, öneri
+  rapora düşülür; tabloya ancak insan ekler.
+- **GitHub yetkisi scope'ları:** `gh auth login` yalnız `repo, workflow`; mümkünse
+  bu repoyla sınırlı fine-grained token. Tam hesap yetkisi (org/admin silme vb.
+  scope'lar) istenmez; varsayılan hiçbir koşulda tam yetki değildir.
 
 ## Araç tablosu (Windows)
 
@@ -29,21 +52,23 @@ değişirse yalnız bu dosya tekrar koşulur; 0A değil.
 |---|---|---|---|---|---|
 | 1 | winget (App Installer) | Genelde kurulu | `winget --version` | `v1.*` | Microsoft Store girişi |
 | 2 | Git | `winget install --id Git.Git -e --silent` | `git --version` | `git version 2.*` | — |
-| 3 | GitHub CLI | `winget install --id GitHub.cli -e --silent` | `gh --version`; `gh auth status` | `gh version 2.*`; "Logged in" | Tarayıcıda `gh auth login` |
-| 4 | Python 3.12+ | `winget install --id Python.Python.3.12 -e --silent` | `python --version` | `Python 3.1*` | Yeni terminal (PATH) |
+| 3 | GitHub CLI | `winget install --id GitHub.cli -e --silent` | `gh --version`; `gh auth status` | `gh version 2.*`; "Logged in" | Tarayıcıda `gh auth login` (scope: Yetki sınırı) |
+| 4 | Python 3.12+ | `winget install --id Python.Python.3.12 -e --silent` | `py -3.12 --version`; yoksa `%LOCALAPPDATA%\Programs\Python\Python312\python.exe --version` | `Python 3.12.*` | İkisi de yok → insan. NOT: `python` komutu Windows'ta Microsoft Store stub'ına gidebilir; doğrulamada KULLANILMAZ |
 | 5 | Unity Hub | `winget install --id UnityTechnologies.UnityHub -e --silent` | Hub ikilisi var + `Unity Hub.exe -- --headless help` | yardım metni | Yükleyici UAC istemi |
-| 6 | Unity 6000.3 LTS + Android modülü | Hub headless: `--headless install --version 6000.3.<pin> --changeset <cs> --module android` | `--headless editors --installed` | pinli sürüm + android modülü | Hub oturum/lisans ekranı |
-| 7 | Unity Personal lisansı | Genelde Hub'dan otomatik; değilse Hub GUI | Boş projede `Unity.exe -batchmode -quit` çıkış kodu | `0` + lisans satırı (log) | Unity hesap oturumu (ilk sefer) |
-| 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, kullandığı her komutu rapora yazar); sahne-düzenleme araçları KAPALI | Editor açıkken köprü uç noktası canlı (dokümandaki kontrol yöntemi) | yanıt/handshake | Hesap/kabul ekranı varsa |
+| 6 | Unity LTS pini | Unity'nin resmî sürüm arşivinden güncel 6000.3 yaması + changeset okunur; `docs/probe/unity-pin.txt`'e `6000.3.xfN — <changeset>` olarak yazılır. **Dosya varsa sayfaya tekrar GİDİLMEZ** (tek seferlik kilit) | pin dosyası okunur (satır 7 bu değerle kurar) | dosya mevcut + format doğru | Ağ erişimi yoksa pini insan girer |
+| 7 | Unity 6000.3 LTS + Android modülü + Personal lisans | Hub headless: `--headless install --version <pin> --changeset <cs> --module android` (pin satır 6 dosyasından okunur); lisans genelde Hub oturumundan akar, akmazsa Hub GUI | ARA KANIT: `--headless editors --installed` çıktısında pinli sürüm + android modülü. GATE: fabrika dizini altında geçici boş projede `Unity.exe -batchmode -quit -logFile -` (proje iş bitince silinir) | gate çıkış kodu **0** + lisans satırı (log) | Hub oturumu/UAC; Unity hesap oturumu (ilk sefer) |
+| 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, kullandığı her komutu rapora yazar); yapılandırmada sahne-düzenleme araçları KAPALI yapılır | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki kontrol yöntemiyle) | handshake **+ araç listesinde sahne-düzenleme araçları kapalı/yok**; liste çıktısı rapora düşer | Hesap/kabul ekranı varsa |
 | 9 | VS Code + Claude Code | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
 
 ## Alanlar
 
 **Girdi:** Windows 10/11; bu dosya; kullanıcının bir kerelik "tam yetkili kur" komutu.
-**Çıktı:** `docs/probe/kurulum-raporu.md` — her araç: komut, beklenen, gerçekleşen,
-durum (makine kimliği/hostname başlıkta); BAŞARISIZ satır yok.
+**Çıktı:** `docs/probe/kurulum-raporu.md` — her satır: komut, beklenen, gerçekleşen,
+durum. Başlıkta makine kimliği = hostname + Windows sürümü + mimari
+(`PROCESSOR_ARCHITECTURE`). BAŞARISIZ satır yok; varsa "makinede bırakılan durum".
 **Yürüten:** otonom (işaretli insan kapıları hariç).
-**Geçiş kriteri:** tablodaki 9 satırın tamamı "doğrulandı"; rapor dosyada.
+**Geçiş kriteri:** tablodaki 9 satırın tamamı "doğrulandı" (satır 7'nin gate'i
+batchmode çıkış kodu 0); rapor dosyada.
 **Geri kenarı:** üç durum yukarıda; kapı beklemesinin limiti yok ama her açık kapı
 raporda "bekleyen iş" olarak durur — sessizce unutulamaz; BAŞARISIZ'da hat durur,
 sonda kilitli kalır.

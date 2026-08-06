@@ -1,7 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v0.13 — F turu: otonom ortam kurulumu (`stages/kurulum.md`), metrikler
-beyandan ize (Sözleşme-10), sonda yürüteni otonom. Sıra: kurulum → sonda → 0A → 0B.
+**Sürüm:** v0.14 — G turu: kuruluma yetki sınırı (İZİN/YASAK), çalışır-hal
+doğrulaması (yarım kurulum sayılmaz), Unity pin kilidi (`probe/unity-pin.txt`),
+Windows Python stub düzeltmesi, MCP kapalılık kanıtı. Sıra: kurulum → sonda → 0A → 0B.
 Sonda koşulmadan aşama detayı AÇILMAZ.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
