@@ -1,9 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0 — 2026-08-06, DONDURULDU. Masa başı hat tanımı tamam: hiçbir
-aşama koşulmadı; tüm takvim ve eşik sayıları tahmindir. Belge ancak sonda
-raporuyla açılır; ilk değişecek yerler Ek B'nin satırları, Ek C'nin etiketli
-alanları ve 0B anlatımıdır. Sürüm geçmişi git'tedir.
+**Sürüm:** v1.0.1 — 2026-08-06, DONDURULDU (yama: kurulum aşamasında koşumu
+engelleyen 5 hata giderildi — ön-durum, damga sırası, mevcut-kurulum pini,
+fabrika dizini tanımı, MCP kapı bildirimi; yeni özellik yok). Masa başı hat
+tanımı: hiçbir aşama koşulmadı; takvim/eşik sayıları tahmindir. Belge sonda
+raporuyla açılır. Sürüm geçmişi git'tedir (v1.0 → v1.0.1).
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
