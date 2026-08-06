@@ -1,8 +1,8 @@
 # AŞAMA -1 — SONDA (tek seferlik; 0A'dan ÖNCE)
 
-**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (tek kaynak; sahne şablon
-varsayılanı; `[RuntimeInitializeOnLoadMethod]` kurulumu; JSON veri; MCP yalnız
-gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya girilmez.
+**Amaç:** Claude Code'un Sözleşme-2 kurallarıyla (tek kaynak; sahne değiştirilmez;
+kurulum RuntimeInitializeOnLoadMethod ile; JSON veri; MCP gözlemci) gri kutu
+döngü üretebiliyor mu — ÖLÇMEK. Ölçmeden 0A'ya girilmez.
 
 ## Önkoşullar (raporda her biri tik işaretlenir)
 
@@ -12,11 +12,9 @@ gözlem) gri kutu döngü üretip üretemediğini ÖLÇMEK. Ölçmeden 0A'ya gir
    (iOS modülü Windows'ta yok — iOS derlemesi CI'ın işi.)
 5. Resmî Unity MCP köprüsü kurulum satır 8'de KANITLI. Koşuda MCP **koşullu
    ZORUNLU**: log/stack trace'in açıklamadığı ilk runtime hatada oturum AÇAR
-   (`editor-acik/kapali` damgalı; ne gözlemlendi + süre rapora — MCP zaman
-   kazandırıyor mu ölçülüyor, Sözleşme-2'nin dayanağı). Hata hiç çıkmazsa
-   rapora "MCP tetiklenmedi" — o da bulgu. Oturum batchmode ile eşzamanlı OLMAZ.
-6. Görev dosyası `docs/probe/BRIEF.md`. Başka ipucu/yol haritası kullanılmaz —
-   Deneme-1 soğuk koşudur.
+   (`editor-acik/kapali` damgalı; gözlem + süre rapora — Sözleşme-2'nin dayanağı
+   ölçülür). Hata çıkmazsa "MCP tetiklenmedi" — o da bulgu. Batchmode ile OLMAZ.
+6. Görev dosyası `docs/probe/BRIEF.md` — başka ipucu yok; Deneme-1 soğuk koşudur.
 
 ## Görev (özet; tam tanım BRIEF.md'de)
 
