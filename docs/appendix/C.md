@@ -9,6 +9,12 @@ kullanılamaz; değişiklik yalnız kullanıcı onayıyla. Hat standart akışta
 Etiketsiz tahmin YASAK (üç oyun sonra gerçek sanılır); etiket ilk ölçüm gelince
 düşer ve eski tahminle ölçüm yan yana not edilir.
 
+> **ŞERH (2026-08-06 — ürün tanımı değişikliği):** Bölüm-1'deki takvim/insan-saat/
+> halka/pencere ölçekli değerler eski ürün tanımına (hyper-casual) göre
+> düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
+> günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
+> `ortusme_esik_yuzde` politika sabitleridir, bu şerhin kapsamı dışındadır.
+
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
 | Alan | Anlam |
@@ -26,6 +32,10 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `d1_kalibrasyon_offset` | Halka D1 düzeltmesi; 3 koşu sonrası, kullanıcı onaylı |
 | `iyilestir_hakki` | Konsept başına 1 (Aşama 5) + oyun başına 1 (Aşama 10) |
 | `raf_gozden_gecirme_gun` | RAFTA TUT kararının yeniden bakım periyodu |
+| `reklam_siklik_tavan` | R1: oturum başına azami tam-ekran reklam (varsayılan 3) |
+| `reklam_arasi_min_sn` | R1: iki tam-ekran reklam arası asgari saniye (varsayılan 90) |
+| `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
+| `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 
 ## Bölüm 2 — İstisna girdileri (varsayılan KAPALI; yalnız yatırım ofisi açar)
 

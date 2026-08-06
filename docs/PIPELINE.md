@@ -1,15 +1,17 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.4 — 2026-08-06, DONDURULDU (v1.0.4: ürün tanımı değişikliği —
-hyper-casual'dan küçük ama gerçek oyuna; Ek B'deki tüm tahminlere "eski ürün
-tanımına aittir, sonda + tasarım standardı sonrası baştan yazılacak" şerhi;
-yeni aşama metni yok). Hiçbir aşama koşulmadı; Belge sonda raporuyla açılır.
-Sürüm geçmişi git'tedir (v1.0→v1.0.4).
+**Sürüm:** v1.0.5 — 2026-08-06, freeze korunuyor (yetkili istisna: ürün tanımı
+standartlara indi — `docs/standards/`: tasarım standardı K1–K3/B1–B7 + red-flag
+R1–R9; kapı bağları Aşama 1/2/7 + 8'in insan bloğu; WIP 2→1 (D1); Ek A'ya
+target-API bakım borcu (F4); Ek C'ye 4 politika eşiği + eski-tanım şerhi (D2)).
+Takvim/insan-saat sayıları hâlâ eski-tanım şerhli; yeni sayı sonda + bu
+standartlar sonrası. Sürüm geçmişi git'tedir (v1.0→v1.0.5).
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` +
-gerekli eki yükler. Başka dosya açmaz. Oyun repolarının CLAUDE.md'si bu dosyaya
+gerekli eki/standardı (`docs/appendix/`, `docs/standards/`) yükler. Başka dosya
+açmaz. Oyun repolarının CLAUDE.md'si bu dosyaya
 bağlantıyla başlar.
 
 ## Çerçeve (G1/G2 sonrası)
@@ -77,8 +79,10 @@ envanterleri Ek C'de izlenir.
    ofisi + kullanıcı onayıyla, Ek C Bölüm-2 sınırlarında açılır. Oyunlar arası çapraz
    tanıtım her koşulda **yasaktır** (kullanıcı kararı; bu dosyada hiçbir alan bunu
    açamaz). Hat bütçe üretmez, ölçer; Ek C'de olmayan sayı hiçbir kapıda kullanılamaz.
-9. **WIP limiti:** eşzamanlı aktif oyun ≤ 2 (Aşama 1 girişinden Aşama 10 kararına);
-   insan kapısı kuyruğu ≤ 2; WIP doluyken Aşama 1 açılmaz. Değer telemetriden ayarlanır.
+9. **WIP limiti:** eşzamanlı aktif oyun ≤ **1** (D1 — kapılar büyüdü; rubrik hattın
+   tek kalite yargıcıdır, iki eşzamanlı kapı onu yüzeyselleştirir); insan kapısı
+   kuyruğu ≤ 2; WIP doluyken Aşama 1 açılmaz. Değer telemetriden yalnız
+   **gevşetilerek** ayarlanır; sıkılaştırma yok.
 10. **Metrik bağımsızlığı:** hattın kendini ölçtüğü hiçbir metrik executor beyanına
    dayanamaz; her metriğin tanımlı artefakt kaynağı vardır (dosya damgası, CI çıktısı,
    lint sayımları, transkript, mağaza konsolu). Kanıt üreten koşular mümkün olduğunca
@@ -106,6 +110,9 @@ envanterleri Ek C'de izlenir.
 
 Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
 (kapasite), `docs/appendix/C.md` (kaynak dosyası şeması).
+Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
+K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
+insan maddeleri R2b/R4 Aşama 8'de yaşar).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik

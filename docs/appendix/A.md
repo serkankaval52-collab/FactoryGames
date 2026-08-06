@@ -26,6 +26,13 @@ matrisi. Eşzamanlı ~12 canlı görsel hücre (6 aile × 2); tür/mekanik çeş
 kaba tavan **~20 canlı oyun**. Raf'taki oyunlar bu tavanı yer; tavan dolunca yeni
 konsept için ya mağaza ölümü ya katalog genişlemesi gerekir.
 
+**Bakım borcu ve canlı tavan (F4):** her canlı oyun, Google target-API kuralı
+yüzünden yılda en az bir yeniden-derleme bakım turu borcu üretir; raf'taki oyun
+yayında kaldığı için borcu SÜRER. Canlı oyun tavanı desen aritmetiği kadar bu
+borcun insan-saat toplamıyla da sınırlıdır — borç, kapasiteyi aşacaksa yeni canlı
+oyun açmak yerine mağaza ölümü/katalog çözümü insana gider. Aşama 10'un kapasite
+hesabına ve yıllık bakım takvimine girdi budur.
+
 **Havuz tükenmesi protokolü:** rotasyonu sağlayan konsept üretilemiyorsa Aşama 1
 kapısı açılmaz; otomatik "katalog genişletme" görevi açılır (FactoryGames backlog
 issue'su + insan onaylı T1/T3 kürasyonu); hat duraklar — kural sessizce esnetilmez.

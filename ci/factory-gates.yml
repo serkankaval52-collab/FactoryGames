@@ -37,7 +37,7 @@ jobs:
       - run: |
           p=$(wc -l < docs/PIPELINE.md)
           [ "$p" -gt 140 ] && { echo "PIPELINE $p>140"; exit 1; }
-          for f in docs/stages/*.md; do
+          for f in docs/stages/*.md docs/standards/*.md; do
             l=$(wc -l < "$f")
             [ "$l" -gt 90 ] && { echo "$f $l>90"; exit 1; }
           done

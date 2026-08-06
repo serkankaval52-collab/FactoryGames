@@ -1,0 +1,57 @@
+# TASARIM STANDARDI — Aşama 1/2 kapılarının zorunlu alanları (ürün tanımı v1.0.5)
+
+Bu dosya "küçük ama gerçek oyun" tanımının ölçülebilir karşılığıdır. Alanları
+**executor** doldurur; kapı yalnız "dolu ve tutarlı mı" diye bakar. Estetik/tat
+yargısı bu standardın konusu değildir — Aşama 8 rubriğinindir; burada yargı
+isteyen madde YOKTUR. Kısaltma: K = konsept kartı alanı, B = GDD bölümü.
+Sayısal sınırların kaynağı Ek C'dir (Sözleşme-8); bu dosya yapıyı tanımlar.
+
+## Bölüm A — Konsept kartı ek alanları (Aşama 1 çıktısına eklenir; 3 alan)
+
+- **K1 Hedef yaş beyanı + reklam modeli etkisi:** kart ikisinden birini işaretler:
+  "genel kitle" veya "Families/Kids kapsamı". Families seçilirse kart, reklam
+  modelinin nasıl değiştiğini de yazar (yalnız sertifikalı ağlar + kişiselleştirme
+  kapalı → belirgin düşük eCPM beklentisi). Stil ailesi seçimi bu beyanla tutarlı
+  olmak zorundadır — stil seçimi bir gelir kararıdır (E1).
+- **K2 Keşif videosu çekim listesi:** 15–45 sn'lik organik video için ≥3 sahnelik
+  çekim planı (kanca / çekirdek döngü / doruk). Videosu yazılamayan konsept
+  kapıdan geçemez — organik video hattın tek büyüme kanalıdır; dağıtım pazarlama
+  aşaması değil, tasarım girdisidir (F1).
+- **K3 Ödül takası:** oyuncunun gerçekten isteyeceği tekil ödül (ikinci şans,
+  çarpan, kilit açma) + karşılığında gösterilecek reklam biçimi. Takasın değeri
+  B3'te sayılandırılır; takası olmayan konsept geçemez — reklam döngünün
+  parçası olarak tasarlanır, sonradan yapıştırılmaz (E4).
+
+## Bölüm B — GDD zorunlu bölümleri (Aşama 2 plan belgesi; 7 bölüm)
+
+- **B1 FTUE:** ilk 60 saniyenin adım adım akışı; her adım "metin okumadan
+  anlaşılır mı" işaretli. Okuma gerektiren adım ya metinsizleştirilir ya açıkça
+  gerekçelendirilir (E2).
+- **B2 Ekran listesi + wireframe:** zorunlu ekranlar — ana menü, ayarlar
+  (ses/müzik anahtarları), duraklat, gizlilik politikası bağlantısı, oyun-sonu
+  (kazan/kaybet). Her ekran tek-kutu wireframe + geçiş okları. Son satır: kayıt
+  dayanıklılığı beyanı ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7).
+- **B3 Matematik modeli:** zorluk eğrisi (seviye/dakika başarısızlık oranı hedefi),
+  ilerleme temposu, hedef oturum uzunluğu + oturum/gün, ekonomi dengesi (kaynak
+  giriş-çıkış tablosu), doğal reklam anı yoğunluğu (oturum başına). Hepsi SAYI;
+  "dengeli olur" türü cümle TBD sayılır (E5).
+- **B4 Analitik olay haritası:** B3'ün her sayısal iddiası ↔ isimlendirilmiş olay
+  (snake_case, tek kaynak). CI kapısı: GDD olay listesi ile koddaki event
+  gönderimleri grep-paritesinde (F6).
+- **B5 Reklam planı:** her yerleşim için satır: tür, tetikleyici, sıklık sınırı.
+  Sınırlar Ek C `reklam_siklik_tavan` / `reklam_arasi_min_sn` sınırlarını aşamaz;
+  aşan satır kapıdan döner (E3).
+- **B6 Ses listesi + boyut bütçesi:** zorunlu set (çekirdek geri bildirim, kazan,
+  kaybet, UI dokunuşları) + müzik; dosya biçimiyle; toplam MB tavanı. Sessizde-
+  oynama notu: kritik geri bildirim yalnız sese bağlanamaz (F5).
+- **B7 Cihaz/çözünürlük matrisi:** hedef en-boy aralığı (16:9–21:9) + çentik/
+  güvenli alan varsayımı + asgari dokunma hedefi boyutu; her ekran matrisin tüm
+  hücrelerinde taşmadan çizilir. Kanıt red-flag R9'da verilir (G1).
+
+## Kapı disiplini
+
+Eksik alan, TBD veya çapraz tutarsızlık (ör. B5 sınırının Ek C'yi aşması, K1
+beyanıyla stil ailesinin çelişmesi) = kapıdan dönme. Bu standart doğruluk/tat
+ÖLÇMEZ; varlık + tutarlılık ölçer. "Çevrilemeyen" maddeler (gerçekten oyun mu,
+profesyonel mi, zanaat iyi mi) bilinçli yoktur: vekilleri Bölüm A/B'de, yargıları
+Aşama 8'dedir.
