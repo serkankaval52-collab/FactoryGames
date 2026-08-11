@@ -1,8 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.17 — 2026-08-11, freeze korunuyor (Alan 3 düzeltmeleri A3.1–A3.5: form Sözleşme-10
-temizliği, kurulum hunisi, metinsizlik etiketi, private ikiz yedeği; kullanıcı kararları: iki-dil
-EN+TR — A3.6, ekran matrisi Ek C'de sayısal — A3.7). Sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.18 — 2026-08-11, freeze korunuyor (Alan 4: geçiş yeterlilik denetimi — tek kopuk
+bulundu, 5→6 bulgu listesiyle kapandı; A1.2 araç süzgeci kural 30 olarak CLAUDE.md'de; kural tavanı
+30/30 DOLDU). Sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
