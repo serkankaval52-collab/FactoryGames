@@ -7,7 +7,8 @@ yapmaz — arşiv o ayın tek kaynağıdır (Sözleşme-2). Kaynak: Play + App S
 
 Dosya formatı:
 - okuma tarihi + kaynak URL'leri (iki liste),
-- 10 klişe mekanik: kısa ad + tek satır kanıt (hangi listede kaçıncı sırada görüldü).
+- 10 klişe mekanik: `- **kısa ad** — kanıt (hangi listede kaçıncı sırada görüldü)`
+  satırları; kura script'i (tools/kura.py) bu satırları ayrıştırır (M1).
 
 Aylar üst üste birikince tekrar eden klişelerin örüntüsü görünür; bu örüntü Ek A
 katalog genişletme görevine girdi olur.

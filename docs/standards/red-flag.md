@@ -7,7 +7,7 @@ kontrol listesinde yaşar — Aşama 7 otonomdur, içine insan işi konmaz.
 
 | # | Madde | İkili soru | Kontrol |
 |---|---|---|---|
-| R1 | Reklam sıklığı | Sınırlar içinde mi: oturum başına tam-ekran ≤ Ek C `reklam_siklik_tavan`; iki tam-ekran arası ≥ Ek C `reklam_arasi_min_sn`; açılışta reklam YOK; kaybın hemen ardından reklam YOK; ödüllü reklam isteğe bağlı + etiketli | OTOMATİK (config lint + bot oturumunda olay-sayı/sıra kontrolü) |
+| R1 | Reklam sıklığı | Sınırlar içinde mi: oturum başına tam-ekran ≤ Ek C `reklam_siklik_tavan`; iki tam-ekran arası ≥ Ek C `reklam_arasi_min_sn`; açılışta reklam YOK; kaybın hemen ardından reklam YOK; ödüllü reklam isteğe bağlı + etiketli; tür kırılımı: Ek C `reklam_ilk_gun_sifir_turler`'deki türlerde (vars. bulmaca/mantık) ilk gün tam-ekran YOK | OTOMATİK (config lint + bot oturumunda olay-sayı/sıra kontrolü) |
 | R2a | Yaş sınıfı SDK yapılandırması | K1 beyanı Families ise çocuk-yönelimi/içerik-sınırı bayrakları AÇIK, genel kitle ise KAPALI mı (SDK manifest/config) | OTOMATİK (manifest/config assertleri) |
 | R2b | İçerik ↔ yaş beyanı uyumu | Görsel/işitsel içerik, beyan edilen yaş sınıfıyla mağaza gözüyle uyumlu mu | İNSAN (Aşama 8) |
 | R3 | Lisans defteri | Her üçüncü-taraf varlığın defter kaydı var mı (kaynak URL, lisans tipi, indirme tarihi, lisans metni kopyası); fontlarda gömme izni açıkça işaretli mi | OTOMATİK (CI defter↔dosya paritesi; **yeni lisans AİLESİ ilk kez geliyorsa insana** — beyaz liste defterdedir) |

@@ -1,0 +1,14 @@
+{
+  "_meta": {
+    "surum": "0.1 (2026-08-11, v1.0.10 / M5)",
+    "kaynak": "tür ekseni DIŞ kaynaklıdır (mağaza kategorileri); kısıt/kamera/oturum listesi kürasyon taslağı. Duygu/atmosfer ekseni bilinçli YOK — model orada kendi çekim merkezine düşüyor (bkz. model-klise-defteri.md başlık notu).",
+    "yazim_kurali": "bu dosyaya yazılan her değer model-klise-defteri.md ile çaprazlanır; defterdeki hiçbir şey buraya değer olarak girmez. Defterin sıfırıncı sürümü (dış kaynak) gelince mevcut değerler yeniden çaprazlanır.",
+    "buyume": "havuz sabit değil; Ek A katalog genişletme görevi bu dosyayı büyütür. İlk sürüm küçük tutulur (eksen başına ~5-6); kısıt en kalabalık eksendir — özgünlük çarpımdan gelir: doymuş tür x alışılmadık kısıt."
+  },
+  "eksenler": {
+    "tur": ["bulmaca/mantık", "kelime", "arcade (refleks)", "simülasyon (idle)", "strateji", "bilgi/trivia"],
+    "kisit": ["tek el, dikey ekran", "oturum sınırı 30 sn", "geri alma yok", "tek renk paleti", "sınırlı görüş alanı", "kaynak azalır, yenilenmez", "ters kontrol şeması", "yalnızca kaydırma girdisi"],
+    "kamera": ["tek ekran (sabit)", "üstten", "yandan", "izometrik", "önden (derinlikli)"],
+    "oturum_uzunlugu": ["30 sn", "60-90 sn", "2-3 dk", "5 dk", "sınırsız (sonsuz mod)"]
+  }
+}

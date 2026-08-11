@@ -32,8 +32,9 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `d1_kalibrasyon_offset` | Halka D1 düzeltmesi; 3 koşu sonrası, kullanıcı onaylı |
 | `iyilestir_hakki` | Konsept başına 1 (Aşama 5) + oyun başına 1 (Aşama 10) |
 | `raf_gozden_gecirme_gun` | RAFTA TUT kararının yeniden bakım periyodu |
-| `reklam_siklik_tavan` | R1: oturum başına azami tam-ekran reklam (varsayılan 3) |
+| `reklam_siklik_tavan` | R1: oturum başına azami tam-ekran reklam (varsayılan 3; tür kırılımı aşağıdaki satırda) |
 | `reklam_arasi_min_sn` | R1: iki tam-ekran reklam arası asgari saniye (varsayılan 90) |
+| `reklam_ilk_gun_sifir_turler` | R1 tür kırılımı: ilk gün (kurulum günü) tam-ekran reklam = 0 olan türler — varsayılan: bulmaca/mantık; kartın `tur` beyanıyla eşleşir, lint denetler (M3) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 
