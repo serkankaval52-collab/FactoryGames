@@ -13,7 +13,8 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 > halka/pencere ölçekli değerler eski ürün tanımına (hyper-casual) göre
 > düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
 > günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
-> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*`, `min_spec_*`, `testlab_*`
+> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*`, `min_spec_*`, `testlab_*`,
+> `ilk_surum_diller`, `ekran_*`, `dokunma_*`
 > politika sabitleridir, bu şerhin kapsamı dışındadır.
 
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
@@ -59,6 +60,14 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `min_spec_cihaz` | P1/P3/P6/P8/P9 ölçüm cihazının TANIMI — referans model: Samsung Galaxy A14 (4 GB RAM, Android 13 / API 33); "düşük seviye" sıfatı değil bu satır ölçüdür (A2.1) |
 | `min_spec_testlab_pin` | Test Lab'de koşulacak FİZİKSEL model kimliği: ilk koşuda `gcloud firebase test android models list` çıktısından referansa eş/alt özellikteki model seçilir; kullanıcı onayıyla pinlenir — tek seferlik kilit (kurulum satır 6 disiplininin kardeşi) |
 | `testlab_gunluk_kota_fiziksel` | Test Lab fiziksel cihaz koşu kotası, koşu/gün, proje bazlı (Spark planı varsayılan 5; plan değişirse kullanıcı günceller — "şimdilik tahmin" etiketi gerekmez, politika sabitidir) |
+| `ilk_surum_diller` | İlk sürüm dilleri (varsayılan: `en, tr`); mağaza listelemesi aynı iki dilde (kullanıcı kararı — A3.6) |
+| `ekran_enboy_min` | B7 matrisi en dar oran, uzun/kısa kenar (varsayılan 1,78 ≈ 16:9 — eski telefon tabanı) (A3.7) |
+| `ekran_enboy_max` | B7 matrisi en geniş oran (varsayılan 2,33 ≈ 21:9 — üst uç) (A3.7) |
+| `ekran_tablet_dahil` | B7: tablet matris kapsamında mı — hayır; telefon dışı form Aşama 10 ölçekleme konusudur (A3.7) |
+| `ekran_katlanabilir_dahil` | B7: katlanabilir kapsamda mı — hayır (aynı gerekçe) (A3.7) |
+| `ekran_centik_varsayimi` | B7: çentik/delik VAR; arayüz kökleri güvenli alana (Screen.safeArea) oturur — R9'un temeli (A3.7) |
+| `dokunma_hedef_min_mm` | B7: asgari dokunma hedefi FİZİKSEL boyutu (varsayılan 9 mm ≈ 48 dp; kaynak: Material Design erişilebilirlik kılavuzu) (A3.7) |
+| `ekran_matris_min_hucre` | R9'un test ettiği asgari oran hücresi (varsayılan 3: ~1,78 / ~2,17 / ~2,33; yaygın küme 2,16–2,22 — kaynak: StatCounter mobil çözünürlük dağılımı, 2026-08 taraması) (A3.7) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 

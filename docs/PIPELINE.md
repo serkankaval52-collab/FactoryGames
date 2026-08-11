@@ -1,9 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.16 — 2026-08-11, freeze korunuyor (Alan 3: `standards/halka-standardi.md`
-— davet/form/kanal/coğrafya; dış-kültür gözü zorunlu. v1.0.15: Alan 2 saldırı
-düzeltmeleri — min-spec + Test Lab, P1–P9). Sayılar şerhli; sıra kullanıcıda
-(kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.17 — 2026-08-11, freeze korunuyor (Alan 3 düzeltmeleri A3.1–A3.5: form Sözleşme-10
+temizliği, kurulum hunisi, metinsizlik etiketi, private ikiz yedeği; kullanıcı kararları: iki-dil
+EN+TR — A3.6, ekran matrisi Ek C'de sayısal — A3.7). Sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -131,8 +130,8 @@ insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md`
 (görsel/ses uyum kapıları G1–G7 + S1; eşikler Ek C) + `docs/standards/premium-sozlesme.md`
 (davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı),
-`docs/standards/halka-standardi.md` (Aşama 5 dış-halka metinleri: davet TR/EN,
-5 soruluk davranış formu, büyütme kanalları, coğrafya kuralı; halka İNSANDIR).
+`docs/standards/halka-standardi.md` (Aşama 5 halka metinleri: davet TR/EN, davranış formu,
+kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik

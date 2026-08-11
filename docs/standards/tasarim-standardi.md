@@ -5,8 +5,11 @@ Bu dosya "küçük ama gerçek oyun" tanımının ölçülebilir karşılığıd
 yargısı bu standardın konusu değildir — Aşama 8 rubriğinindir; burada yargı
 isteyen madde YOKTUR. Kısaltma: K = konsept kartı alanı, B = GDD bölümü.
 Sayısal sınırların kaynağı Ek C'dir (Sözleşme-8); bu dosya yapıyı tanımlar.
-Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil Aşama
-10'un parasal olmayan ölçekleme kalemidir (kapı değil).
+Kapsam (A3.6 — v1.0.17'de tek-dil kararı geri alındı): ilk sürüm İKİ dilde
+çıkar — İngilizce + Türkçe (Ek C `ilk_surum_diller`; mağaza listelemesi aynı
+iki dilde). Yerelleştirme YAPISI ilk günden zorundur: koda gömülü kullanıcı
+metni bulunamaz (lint kapısı — kod-standardi §6). Çok dil genişlemesi Aşama
+10'un parasal olmayan ölçekleme kalemidir.
 
 ## Bölüm A — Konsept kartı ek alanları (Aşama 1 çıktısına eklenir; 3 alan)
 
@@ -37,6 +40,8 @@ Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil
   açıkken arkadaki içerik de tanımlıdır. Son satır: kayıt dayanıklılığı beyanı
   ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7) + renk-yalnız-bilgi
   beyanı (G6): tehlike/vurgu ayrımının biçim/ikon desteği — ikili satır.
+  **Metin diyeti (A3.6):** kullanıcıya görünen metin ekran başına asgaridedir;
+  sayı ve ikon tercih edilir — metinsiz tasarım en ucuz yerelleştirmedir.
 - **B3 Matematik modeli:** zorluk eğrisi (seviye/dakika başarısızlık oranı hedefi),
   ilerleme temposu, hedef oturum uzunluğu + oturum/gün, ekonomi dengesi (kaynak
   giriş-çıkış tablosu), doğal reklam anı yoğunluğu (oturum başına). Hepsi SAYI;
@@ -51,8 +56,10 @@ Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil
 - **B6 Ses listesi + boyut bütçesi:** zorunlu set (çekirdek geri bildirim, kazan,
   kaybet, UI dokunuşları) + müzik; dosya biçimiyle; toplam MB tavanı. Sessizde-
   oynama notu: kritik geri bildirim yalnız sese bağlanamaz (F5).
-- **B7 Cihaz/çözünürlük matrisi:** hedef en-boy aralığı (16:9–21:9) + çentik/
-  güvenli alan varsayımı + asgari dokunma hedefi boyutu; her ekran matrisin tüm
+- **B7 Cihaz/çözünürlük matrisi:** matrisin SAYISAL içeriği Ek C'dedir (A3.7 —
+  Sözleşme-8): en-boy min/max aralığı, tablet ve katlanabilir kapsamı, çentik
+  varsayımı (`ekran_*`), asgari dokunma hedefi mm (`dokunma_hedef_min_mm`),
+  asgari test hücresi sayısı (`ekran_matris_min_hucre`); her ekran matrisin tüm
   hücrelerinde taşmadan çizilir. Kanıt red-flag R9'da verilir (G1). Hedef kare
   hızı beyanı da bu bölümdedir (Ek C `premium_kare_hizi_secenek` — P6'nın
   bütçesinin kaynağı; A2.3).

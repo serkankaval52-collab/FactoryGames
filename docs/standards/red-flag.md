@@ -16,7 +16,7 @@ kontrol listesinde yaşar — Aşama 7 otonomdur, içine insan işi konmaz.
 | R6 | Fabrika içi örtüşme | Diğer fabrika oyunlarıyla varlık-hash örtüşmesi ve palet/UI eşleşmesi Ek C `ortusme_esik_yuzde` altında mı | OTOMATİK (CI karşılaştırması — repo/defter ikilisinden) |
 | R7 | Görsel kaynağı | Mağaza/screenshot görselleri aynı koşunun GERÇEK build artefaktından otomatik mi (elle kompozisyon/render/mockup YASAK) | OTOMATİK (artefakt kökeni: aynı koşu çıktısı kaydı) |
 | R8 | Uygulama boyutu | APK/IPA boyutu Ek C `uygulama_boyut_tavan_mb` içinde mi | OTOMATİK (CI boyut kapısı) |
-| R9 | Ekran uyumu | B7 matrisinin her hücresinde hiçbir UI öğesi güvenli alan dışında veya üst üste mi — değil mi | OTOMATİK (bot ekran görüntüsü + RectTransform ∩ güvenli-alan asserti) |
+| R9 | Ekran uyumu | B7 matrisinin her hücresinde (hücreler Ek C `ekran_*` sayılarıdır — A3.7) hiçbir UI öğesi güvenli alan dışında veya üst üste mi — değil mi | OTOMATİK (bot ekran görüntüsü + RectTransform ∩ güvenli-alan asserti) |
 
 Notlar:
 - R2 iki parçadır: yapılandırma (R2a) otomatik, içerik-beyan uyumu (R2b) insan

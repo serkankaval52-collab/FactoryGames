@@ -53,6 +53,7 @@ Dil kuralı (kaynakla aynı yön; v1.0.7'de ters yazılmıştı, düzeltildi): t
 İngilizce + ASCII, yorum/doküman Türkçe serbest — kodun yarısı değiştirilemez
 İngilizce (Unity API/SDK); ı/ş/ğ/İ arama-refactor'ı kırar. Lint: ASCII dışı
 tanımlayıcı = kırmızı. Kullanıcıya görünen metin yerelleştirmededir, tanımlayıcı değil.
+Ters yön kapısı (A3.6): koda gömülü kullanıcı-görünür dize = lint kırmızı.
 
 ## 7. Klasör hiyerarşisi (kaynak §3.2)
 
