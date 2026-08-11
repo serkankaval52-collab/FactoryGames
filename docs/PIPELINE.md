@@ -1,8 +1,8 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.18 — 2026-08-11, freeze korunuyor (Alan 4: geçiş yeterlilik denetimi — tek kopuk
-bulundu, 5→6 bulgu listesiyle kapandı; A1.2 araç süzgeci kural 30 olarak CLAUDE.md'de; kural tavanı
-30/30 DOLDU). Sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.19 — 2026-08-11, freeze korunuyor (Alan 3+4 düzeltmeleri: kural 30 teste çevrildi —
+A4.1, `tools/arac_suzgec.py`; form hakemi "telemetri kazanır" — A3.8; huni kanal başına + temas —
+A3.9; geçiş denetimi ağaç dosyasında: `docs/gecis-denetimi.md`). Sıra kullanıcıda. Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -61,8 +61,10 @@ envanterleri Ek C'de izlenir.
    (idempotent Dump→Apply script'i kaynaktır; elle/kör YAML düzenleme yasak sürer).
    Zorlama: CI lint + PR kapısı.
 3. **Normatif yük:** CLAUDE.md ≤ 30 kural, her koşuda tam yüklenir, satır sayımı CI'da;
-   her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Bu ağacın disiplini
-   dosya sınırıdır: stage ve standart dosyaları ≤ 90 satır (`docs/stages/*.md`,
+   her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Kural tavanı DOLUYSA
+   (30/30) yeni aday ancak mevcut bir kural teste/lint'e çevrilerek girer (Sözleşme-5
+   sırası); çevrilemiyorsa aday GİRMEZ — ret, Aşama 10 raporuna düşer; sessiz taşma
+   ve sessiz zayıflatma yok (A4.1). Bu ağacın disiplini dosya sınırıdır: stage ve standart dosyaları ≤ 90 satır (`docs/stages/*.md`,
    `docs/standards/*.md` — CI'nin fiilen zorladığı budur), PIPELINE.md ≤ 140;
    aşım CI uyarır ve Sözleşme-5 yükseltme adayı açar. Okuma kapsamı yukarıda
    tanımlı; toptan okuma yok.
@@ -120,7 +122,8 @@ envanterleri Ek C'de izlenir.
 | `docs/stages/10.md` | 10 | Karar (raf/iyileştir/mağaza-öldür) + yatırım ofisi |
 
 Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
-(kapasite), `docs/appendix/C.md` (kaynak dosyası şeması).
+(kapasite), `docs/appendix/C.md` (kaynak dosyası şeması). Denetim: `docs/gecis-denetimi.md`
+(Alan 4 geçiş yeterlilik tablosu; tekrar koşulur, fark diff'ten okunur).
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
 K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
 insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
@@ -133,6 +136,5 @@ zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md
 `docs/standards/halka-standardi.md` (Aşama 5 halka metinleri: davet TR/EN, davranış formu,
 kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde).
 
-**Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
-G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik
-kitine taşındı. Eski 3→2, 4→3, 5→4, 6→5, 7→6, 8→7, 9→8, 10→9, 11→10.
+**Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü — G2 + C2: kapı
+ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'a taşındı. Eski 3→2, 4→3, 5→4, 6→5, 7→6, 8→7, 9→8, 10→9, 11→10.

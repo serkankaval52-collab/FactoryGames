@@ -68,8 +68,12 @@ jobs:
 
   arac-testleri:
     # v1.0.9 (I.3): karar aracının testi kalıcıdır; report.py değişikliği bu işle korunur.
+    # v1.0.19 (A4.1): A1.2 araç süzgeci CLAUDE.md kural 30'dan teste çevrildi — canlısı burada.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/probe/test_report.py
       - run: python3 tools/test_kura.py
+      - run: python3 tools/test_arac_suzgec.py
+      - name: A1.2 araç süzgeci (canlı koşu)
+        run: python3 tools/arac_suzgec.py

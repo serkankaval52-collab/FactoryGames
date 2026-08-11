@@ -1,4 +1,4 @@
-# HALKA STANDARDI — davet, form, huni, kanal, dış göz (v1.0.17 — Alan 3 düzeltmeleri)
+# HALKA STANDARDI — davet, form, huni, kanal, dış göz (v1.0.19 — A3.8/A3.9)
 
 Dış halka İNSANDIR: ajan, persona, sentetik panel, "model gözüyle playtest" YASAK (köprü kararı,
 Alan 3). Süreç kuralları (envanter, rotasyon, yorgunluk, nezaket, N/pencere) 5.md D1'dedir; bu dosya
@@ -22,8 +22,8 @@ install it on your own phone (an APK outside Google Play — a one-time "unknown
 much or as little as you like over 1–2 days, then fill in a 5-question, 3-minute form. No rating
 questions — I ask what you DID, not what you felt. The game logs anonymous usage stats (when opened,
 where you stopped); no personal data, no contacts or photos access; records stay anonymous and you can
-ask for yours to be deleted at any time. You can quit whenever you want; if you skip the form, just tell
-me — that is data too. Happy to playtest your project in return. Thanks!
+ask for yours to be deleted at any time. Quit anytime; if you skip the form, just tell me — that is
+data too. Happy to playtest your project in return. Thanks!
 
 ## 3. Davet kullanım kuralları
 
@@ -45,14 +45,16 @@ time, was there a moment you almost did — what tipped you? 3) If you had kept 
 have expected next? 4) In the first minute, how did you figure out what to do? Did you get stuck
 anywhere? 5) What did you do when an ad appeared?
 
-(Not: 1–3 = 5.md soruları — 2 kısaltıldı (A3.1); 4–5 Alan 3 eklentisi; 1 ve 5 logla çapraz okunur.)
+(Not: 1–3 = 5.md soruları — 2 kısaltıldı (A3.1); 4–5 eklenti; 1 ve 5 logla çapraz okunur. HAKEM
+(A3.8): çelişkide TELEMETRİ kazanır; yanıt "algı" kaydedilir, çelişki satırı A5 raporuna düşer —
+yanlış hatırlanan bırakış, o anın belirsizliğinin kanıtıdır; üçüncü bilgi türüdür.)
 
-## 5. Kurulum hunisi (A3.2 + A3.4) — Aşama 5 raporunun sabit bloğu
+## 5. Kurulum hunisi (A3.2 + A3.4 + A3.9) — Aşama 5 raporunun sabit bloğu
 
-- Beş sayı: davet / kuran / oynayan / form dolduran / iOS elemesi. Kaynaklar: çağrı kaydı → analitik
-  ilk-açılış (benzersiz cihaz) → oturum → gelen form. ÖRNEKLEM SAYISI KURANDIR: "N=10 davet" yazılmaz;
-  "N=3 kuran" yazılır.
-- Kurulum/davet oranı düşükse bu oyun hakkında değil ÖLÇÜM ARACI hakkında sinyaldir (yorgunluk
+- Basamaklar KANAL BAŞINA: temas / kuran / oynayan / form dolduran (+ iOS elemesi). TEMAS (A3.9):
+  doğrudan mesajda kişi sayısı; açık çağrıda gönderi + varsa görüntülenme. Kaynaklar: çağrı kaydı →
+  analitik ilk-açılış → oturum → form. Örneklem sayısı KURANDIR — "N=3 kuran" yazılır.
+- Kurulum/temas oranı düşükse bu oyun hakkında değil ÖLÇÜM ARACI hakkında sinyaldir (yorgunluk
   göstergesinin kardeşi — D1-2). Eşik konmaz; dağılım ilk 3 koşuda kalibre olur (şerhli, onaylı).
 - Yanlılık kabulü: Play-dışı kurulum sabır/güven eşiği yüksek kişileri seçer — ölçüm bu filtrelenmiş
   örneklemden gelir, A5 raporu başlıkta taşır. iOS kanıtı Aşama 8'dedir (kullanıcı cihazı + "pas"
@@ -66,25 +68,23 @@ anywhere? 5) What did you do when an ad appeared?
 - **Üniversite kulüpleri:** oyun tasarımı/geliştirme toplulukları (ODTÜ ATOM çevresi ve benzeri);
   **kişisel ağ:** oyuncu OLMAYAN üye bilinçle aranır — B1'in iddiası en sert oyun-dışı gözle sınanır.
 - **Kanal aritmetiği:** canlı kanal <3'e düşerse Aşama 10 raporu KANAL eskalasyonu açar — WIP=1 +
-  aylık koşu + 30-gün limitiyle her kanal tam sınırda çalışır, pay yoktur; 2 kanal görevi besleyemez.
-  Kanal isimleri zamanla ölür: çağrı öncesi son etkinlik teyit edilir; ölü kanal "ölü" işaretlenir,
-  listeden silinmez.
+  aylık koşu + 30-gün limitiyle pay yoktur; 2 kanal görevi besleyemez. **Ölü kanal mekaniği (A3.9):**
+  temas→kuran 2 koşu üst üste 0 ise kanal "ölü" işaretlenir, listeden silinmez (yeniden bakılır).
 
 ## 7. Metinsizlik doğrulaması — dış göz (A3.3; eski ad "coğrafya kuralı"ydı)
 
-- Her oyunda ≥1 dış göz ZORUNLU (TR dışı bağlam, İngilizce düşünen; kaynak bölüm 6'nın EN kanalları).
-  İki-dilli yapıyla (A3.6) test nettir: göz oyunu BİLMEDİĞİ dilde (TR sürüm) oynar, soru 4'ü yanıtlar;
-  çözemediyse B1'in metinsizlik iddiası o koşu düşer — kapı DEĞİL; A5 raporunda şerhli satır.
+- Her oyunda ≥1 dış göz ZORUNLU (TR dışı bağlam, EN düşünen; kaynak = bölüm 6). İki-dilli yapıyla
+  (A3.6): göz oyunu BİLMEDİĞİ dilde (TR sürüm) oynar, soru 4'ü yanıtlar; çözemediyse B1'in
+  metinsizlik iddiası o koşu düşer — kapı DEĞİL; A5 raporunda şerhli satır.
 - Ölçülen şey METİNSİZLİKTİR, kültürel bağlam DEĞİL: görsel metafor, jest, renk anlamı, mizah bu testte
   ölçülmez. Kültürel tarafın tek yolu dili BİLEN dış-kültür gözüdür; şu an ulaşılabilir değil — kayıt
   olarak durur, kapı olmaz (A3.3).
-- Örneklem şerhi: dış göz varken bile halka TR-ağırlıklıdır; A5 raporu dağılımı yazar (kim, hangi
-  bağlam); sonuç "global kanıt" okunMAZ.
+- Örneklem şerhi: dış göz varken bile halka TR-ağırlıklıdır; A5 raporu dağılımı yazar; sonuç "global kanıt" okunMAZ.
 
 ## 8. Kayıt disiplini (Sözleşme-4 + A3.5)
 
 Form yanıtları ve envanter İNSAN ÜRÜNÜDÜR: public repoya GİRMEZ. Birincil kayıt `FactoryGames-private`
 ikizindedir (0A adım 7; anonim kısım: tester_id + tarih + rol + yanıt metni — isim YOK): yerel kopya
-kaybolursa halkanın geçmişi/yorgunluğu ölür — kalıcı sermayedir. Yerel `halka/` dizini (gitignore'lu)
-çalışma kopyasıdır. Rapora yalnız metin özeti + sayım girer. `tester_id` takma addır; gerçek ad yalnız
-private ikizin eşleme dosyasındadır.
+kaybolursa halkanın geçmişi/yorgunluğu ölür — kalıcı sermayedir. Yerel `halka/` (gitignore'lu) çalışma
+kopyasıdır; rapora yalnız metin özeti + sayım girer. `tester_id` takma addır; gerçek ad yalnız private
+ikizin eşleme dosyasındadır.
