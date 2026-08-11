@@ -36,3 +36,5 @@ hesabına ve yıllık bakım takvimine girdi budur.
 **Havuz tükenmesi protokolü:** rotasyonu sağlayan konsept üretilemiyorsa Aşama 1
 kapısı açılmaz; otomatik "katalog genişletme" görevi açılır (FactoryGames backlog
 issue'su + insan onaylı T1/T3 kürasyonu); hat duraklar — kural sessizce esnetilmez.
+Aynı protokol, Aşama 1 kurasının filtrelenmiş uzayı boşaldığında da tetiklenir:
+kura yeniden çekilmez (aynı desen).

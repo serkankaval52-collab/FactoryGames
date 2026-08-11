@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.7 — 2026-08-11, freeze korunuyor (düzeltme turu: tanımlayıcı dili
-kaynak kuralına çevrildi — İngilizce+ASCII tanımlayıcı, Türkçe yorum; CLAUDE.md 8.
-maddenin kapsamı "sahne referansı"yla netleşti (prefab-içi fileID bağlantılar §10'da
-meşru); kod-standardi §5'te MonoBehaviour kurucusu "kullanılamaz" olarak düzeltildi).
-Sayılar hâlâ şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.8 — 2026-08-11, freeze korunuyor (Aşama 1 tamamlandı: kura mekanizması
+geri alındı — filtre-önce-kura, tükenmede Ek A protokolü; yasak liste kaynaklı +
+aylık arşiv `standards/yasak-liste/`; rakip doğrulaması — arama kanıtı, ilk-10
+seçimi, atlama gerekçesi, VEYA'lı "en yakın" tanımı). Sayılar şerhli; sıra
+kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -115,7 +115,8 @@ Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
 K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
 insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
-(saha doğrulamalı kod kuralları §1–§13; kök `CLAUDE.md` executor kuralları).
+(saha doğrulamalı kod kuralları §1–§13; kök `CLAUDE.md` executor kuralları),
+`docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik
