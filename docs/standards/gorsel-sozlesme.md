@@ -1,8 +1,7 @@
 # GÖRSEL SÖZLEŞME — görsel/ses uyumunun ölçülebilir tanımı (v1.0.13, Alan 1)
 
-**İlke (kullanıcı manifestosu):** GÜZELLİK ÖLÇÜLMEZ, UYUM ÖLÇÜLÜR. Model bir
-görselin insanı çekeceğini bilemez; insanların neye "iyi" dediğini bilir.
-Yargı yok; tat Aşama 8 rubriğinde kalır.
+**İlke (kullanıcı manifestosu):** GÜZELLİK ÖLÇÜLMEZ, UYUM ÖLÇÜLÜR. Model bir görselin
+insanı çekeceğini bilemez; insanların neye "iyi" dediğini bilir. Yargı yok (tat A8'de).
 
 **Kaynak-bağımsızlık (köprü pozisyonu — KABUL, iki keskinleştirme):** varlık
 CC0/sentez/satın-alma — aynı kapılar; kaynak kapıyı değil, kapıyı geçmenin
