@@ -14,8 +14,9 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 > düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
 > günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
 > `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*`, `min_spec_*`, `testlab_*`,
-> `ilk_surum_diller`, `ekran_*`, `dokunma_*`
-> politika sabitleridir, bu şerhin kapsamı dışındadır.
+> `ilk_surum_diller`, `ekran_*`, `dokunma_*` politika sabitleridir;
+> `insan_yanit_tavan_*`, `halka_davet_tavan_gun` kullanıcı taahhüdüdür (A6.1/A6.4);
+> bu şerhin kapsamı dışındadır.
 
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
@@ -25,6 +26,11 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `insan_saat_tavan` | Oyun başına azami insan-saat (yeni ana para birimi) |
 | `dis_halka_havuzu` | Dış göz havuz büyüklüğü (kişi) ve tur yapısı |
 | `halka_hakki` | Oyun başına azami dış-göz oturumu (tükenebilir kaynak) |
+| `halka_davet_tavan_gun` | A5 davet penceresi sert tavanı; dolarsa eldeki kuran sayısıyla devam (N rapora, küçük örneklem şerhli — A6.4); kullanıcı yazar |
+| `insan_yanit_tavan_rubrik_gun` | A8 kullanıcı rubrik turu azami dönüşü — kullanıcı taahhüdü (0A-6 formundan; ölçüm değildir; aşım kapıyı durdurmaz, A10 hat bakımına satır — A6.1) |
+| `insan_yanit_tavan_t3_gun` | A9 T3 veto azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
+| `insan_yanit_tavan_magaza_form_gun` | A9 mağaza formları + gönder azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
+| `insan_yanit_tavan_karar_gun` | A5 GEÇ/RAF onayı ve A10 karar oturumu azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
 | `sosyal_video_hakki` | Oyun başına azami organik video sayısı/insan-saati (örn. 3) |
 | `rubrik_esik` | Aşama 8 eksen bazında asgari puan |
 | `olcum_penceresi_gun` | Aşama 10 pencere (örn. 14) |

@@ -1,10 +1,9 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.22 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 6 — `insan-yuku.md`
-(insan dokunuşu envanteri: bekleme odaklı, kuyruk tutarlılığı). Geçmiş git'tedir.
-**Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
-metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
-yazmak yasaktır.
+**Sürüm:** v1.1 — 2026-08-11; altı alanlık derin gözden geçirme tamam (etiket mesajı v1.1'de;
+Alan 6 düzeltmeleri A6.1–A6.4 + iki hüküm işlendi). Geçmiş git'tedir.
+**Dosya düzeni:** bu dosya sözleşme + kilit kararlar + indeks içerir; aşama metinleri
+`docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/
 standardı (`docs/appendix/`, `docs/standards/`) yükler; başka dosya açmaz. Oyun repolarının
 CLAUDE.md'si bu dosyaya bağlantıyla başlar.
@@ -84,7 +83,9 @@ envanterleri Ek C'de izlenir.
 9. **WIP limiti:** eşzamanlı aktif oyun ≤ **1** (D1 — kapılar büyüdü; rubrik hattın
    tek kalite yargıcıdır, iki eşzamanlı kapı onu yüzeyselleştirir); insan kapısı
    kuyruğu ≤ 2; WIP doluyken Aşama 1 açılmaz. Değer telemetriden yalnız
-   **gevşetilerek** ayarlanır; sıkılaştırma yok.
+   **gevşetilerek** ayarlanır; sıkılaştırma yok. Aşama 10 ölçüm penceresindeki oyun
+   WIP'i işgal ETMEZ (A6.3): pencerede üretim işi ve insan kapısı yoktur — karar
+   oturumu pencere sonundadır, kuyruk sınırı korunur.
 10. **Metrik bağımsızlığı:** hattın kendini ölçtüğü hiçbir metrik executor beyanına
     dayanamaz; her metriğin tanımlı artefakt kaynağı vardır (dosya damgası, CI çıktısı,
     lint sayımları, transkript, mağaza konsolu). Kanıt üreten koşular mümkün olduğunca

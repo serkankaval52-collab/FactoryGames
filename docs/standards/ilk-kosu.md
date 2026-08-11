@@ -54,6 +54,7 @@ diye rapora düşer; çalışmak iki biçimde olur — toplam üç durum:
 | A8 rubrik (5 veya 3 eksen) | ŞERHLİ | `rubrik_esik` Ek C şerhli alanıdır; dış göz yoksa 3 eksene iniş kuralı zaten yazılı (8.md) |
 | A8 R2b / R4 / G5 beyanı | ÇALIŞTI | insan EVET/HAYIR kapısı; veri gerektirmez |
 | A8 insan-yargısı öldürmesi (A5.3) | ÇALIŞTI — kilide tabi değil | kullanıcı oyunu gerçekten oynar; açık "bu kötü" kararı her koşuda bağlayıcıdır; öldürülen oyunun rubrik puanları `rubrik_esik` yerleşiminin kalibrasyon verisidir |
+| İnsan taahhüt alanları (A6.1/A6.4) | ÇALIŞTI | `insan_yanit_tavan_rubrik_gun`, `insan_yanit_tavan_t3_gun`, `insan_yanit_tavan_magaza_form_gun`, `insan_yanit_tavan_karar_gun` kullanıcının 0A-6 taahhüdünden gelir (ölçüm değil); aşım kapıyı DURDURMAZ — A10 hat bakımına satır düşer. `halka_davet_tavan_gun` dolarsa A5 eldeki N ile devam eder (N rapora, şerhli) |
 | A9 mağaza gönderimi + organik kit | ÇALIŞTI | `sosyal_video_hakki` tavanı şerhlidir — aşım kararı "geçici tavan" damgasıyla alınır |
 | A10 ÖLÇEKLE tetikleri + pencere | ŞERHLİ | `organik_indirme_esik`/`organik_d1_esik`/`olcekle_arpu_esik`/`olcum_penceresi_gun` şerhli alanlar; tetik kararı zaten insanındır |
 | A10 Ek B karşılaştırması + tavanlar | VERİ-YOK | beklenti sütunu şerhli (eski ürün tanımı) → sapma hesaplanmaz (kanıt: Ek B şerh satırı); yalnız gerçekleşen kaydedilir — bu koşu Ek B'yi besler; `takvim_tavan_gun`/`insan_saat_tavan` uygulaması ŞERHLİ damgalı okunur |
@@ -61,9 +62,8 @@ diye rapora düşer; çalışmak iki biçimde olur — toplam üç durum:
 | Sözleşme-3 prose→test dönüşümü | ÇALIŞTI | koşu bağımsız; ilk koşu da ≥1 dönüşüm/silme üretir |
 | Geri kenar tur üst sınırları (tüm aşamalar) | ÇALIŞTI | sınırlar ilk koşuda aynen bağlayıcıdır; hepsi insana biter |
 
-Kurulum (-2), sonda (-1) ve 0A tablo dışındadır: tek seferlik aşamalar ilk-koşu davranışını
-kendi dosyalarında taşır (sonda "ilk sonda bu eşikleri de kalibre eder" der; kurulum kanıt
-kapısıdır; 0A hat kurulumudur).
+Kurulum (-2), sonda (-1), 0A tablo dışı: ilk-koşu davranışları kendi dosyalarındadır (sonda
+"ilk sonda eşikleri kalibre eder"; kurulum kanıt kapısı; 0A hat kurulumu).
 
 ## 3. Kalibrasyon penceresi kapanışı (3. koşunun Aşama 10'u)
 
