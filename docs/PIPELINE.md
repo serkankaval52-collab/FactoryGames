@@ -1,14 +1,13 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.21 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 5 saldırı düzeltmeleri —
-`ilk-kosu.md` (A5.1–A5.3) + `esik_kapsama.py` (Ek C kapsama testi). Geçmiş git'tedir.
+**Sürüm:** v1.0.22 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 6 — `insan-yuku.md`
+(insan dokunuşu envanteri: bekleme odaklı, kuyruk tutarlılığı). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
-**Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` +
-gerekli eki/standardı (`docs/appendix/`, `docs/standards/`) yükler. Başka dosya
-açmaz. Oyun repolarının CLAUDE.md'si bu dosyaya
-bağlantıyla başlar.
+**Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/
+standardı (`docs/appendix/`, `docs/standards/`) yükler; başka dosya açmaz. Oyun repolarının
+CLAUDE.md'si bu dosyaya bağlantıyla başlar.
 
 ## Çerçeve (G1/G2 sonrası)
 
@@ -134,7 +133,7 @@ zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md
 `docs/standards/halka-standardi.md` (Aşama 5 halka metinleri: davet TR/EN, davranış formu,
 kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde),
 `docs/standards/ilk-kosu.md` (kapıların ilk-koşu/kalibrasyon-penceresi davranışı — Alan 5:
-ÇALIŞTI/ŞERHLİ/VERİ-YOK; "veri yok" "kapı geçti" sayılmaz).
+ÇALIŞTI/ŞERHLİ/VERİ-YOK; "veri yok" "kapı geçti" sayılmaz), `docs/standards/insan-yuku.md`
+(insan dokunuşu envanteri — Alan 6: bekleme odaklı; kuyruk ≤2 tutarlılığı).
 
-**Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü — G2 + C2: kapı
-ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'a taşındı. Eski 3→2, 4→3, 5→4, 6→5, 7→6, 8→7, 9→8, 10→9, 11→10.
+**Numara kayması (v0.10 → v0.11):** eski 2 (paralı sinyal testi) düştü; sosyal kanal 9'a; eşleme git'tedir.
