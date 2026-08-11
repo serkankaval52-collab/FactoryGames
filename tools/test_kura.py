@@ -114,6 +114,17 @@ class T(unittest.TestCase):
         self.assertEqual(r.returncode, 2)
         self.assertIn("ayrıştırılamadı", r.stderr)
 
+    def test_10_zayif_satir_elemez_isaretler(self):  # şerh kuralı, v1.0.11
+        self.yaz(self.defter, ["# defter", "## Klişeler", "",
+                               "- beta — gözlem (dış gözlem, bizde doğrulanmadı)"])
+        r = self.calistir()
+        self.assertEqual(r.returncode, 0, r.stderr)
+        s = self.sonuc()
+        self.assertIn("beta", s["filtre_sonrasi"]["tur"])  # zayıf: eleme YOK
+        self.assertEqual(s["elenen"], [])
+        self.assertTrue(any(z["deger"] == "beta" for z in s["zayif_defter_eslesmeleri"]))
+        self.assertIn("zayıf", s["girdiler"]["defter"]["durum"])
+
     def test_09_iki_cekim_ikisi_de_gecerli(self):
         for _ in range(2):
             r = self.calistir()

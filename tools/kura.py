@@ -5,7 +5,10 @@ Zar bu script'te atılır; executor çıktı dosyasını okur ve ŞART kabul ede
 (docs/stages/1.md ön-adım 2). Havuz tek kaynaktır: docs/standards/havuz.json.
 Filtre script içindedir, sırayla:
   1) model-klişe defteri — "## Klişeler" altındaki "- <ad> — ..." satırları;
-     dosya yoksa/bölüm boşsa süzgeç boş geçer ve durum çıktıya kaydedilir,
+     dosya yoksa/bölüm boşsa süzgeç boş geçer ve durum çıktıya kaydedilir;
+     "bizde doğrulanmadı" etiketli satırlar ZAYIF AĞIRLIKTIR: elemez, yalnız
+     çıktıda işaretlenir (şerh, v1.0.11). Bant kontrolü script'in işi değildir —
+     yargıdır, karttaki zorunlu beyanda yaşar (model-klise-defteri.md).
   2) o ayın yasak listesi — "- **ad** — ..." satırları (aynı ayrıştırma),
   3) --dolu dosyası — Ek A tavanı dolmuş değerler; satır satır, executor defterden
      derler.
@@ -57,9 +60,11 @@ def liste_satirlari(yol):
 
 
 def defter_ekseni(defter_yolu):
-    """Defterde yalnız '## Klişeler' bölümü süzgece girer (başlık metni değil)."""
+    """Defterde yalnız '## Klişeler' bölümü süzgece girer (başlık metni değil).
+    Dönüş: (güçlü, zayıf, durum). 'bizde doğrulanmadı' etiketli satır ZAYIF
+    ağırlıktır: elemez, çıktıda işaretlenir (defter şerhi, v1.0.11)."""
     if not os.path.exists(defter_yolu):
-        return [], "yok (sıfırıncı sürüm bekleniyor)"
+        return [], [], "yok (sıfırıncı sürüm bekleniyor)"
     icerik = []
     bolum = False
     with open(defter_yolu, encoding="utf-8", errors="replace") as f:
@@ -70,9 +75,17 @@ def defter_ekseni(defter_yolu):
             if bolum:
                 icerik.append(ln)
     if not any(l.strip().startswith("- ") for l in icerik):
-        return [], "boş (sıfırıncı sürüm bekleniyor)"
-    tmp = "\n".join(icerik)
-    return liste_satirlari_from_text(tmp), None
+        return [], [], "boş (sıfırıncı sürüm bekleniyor)"
+    guclu, zayif = [], []
+    for ln in icerik:
+        ls = ln.strip()
+        if not ls.startswith("- "):
+            continue
+        ad = ls[2:].strip().replace("**", "").split("—")[0].strip()
+        if not ad:
+            continue
+        (zayif if "bizde doğrulanmadı" in norm(ls) else guclu).append(ad)
+    return guclu, zayif, f"{len(guclu)} güçlü + {len(zayif)} zayıf"
 
 
 def liste_satirlari_from_text(metin):
@@ -121,7 +134,7 @@ def main():
         print(f"yasak listesi ayrıştırılamadı/boş: {args.yasak} "
               "('- **ad** — kanıt' satırları beklenir)", file=sys.stderr)
         return 2
-    defter_adlar, defter_durum = defter_ekseni(args.defter)
+    defter_guclu, defter_zayif, defter_durum = defter_ekseni(args.defter)
     dolu = set()
     if args.dolu:
         if not os.path.exists(args.dolu):
@@ -134,7 +147,7 @@ def main():
     for eksen in eksenler:
         kalan = []
         for deger in havuz[eksen]:
-            if eslesme(deger, defter_adlar):
+            if eslesme(deger, defter_guclu):
                 elenen.append({"eksen": eksen, "deger": deger, "sebep": "defter"})
             elif eslesme(deger, yasak_adlar):
                 elenen.append({"eksen": eksen, "deger": deger, "sebep": "yasak"})
@@ -143,6 +156,13 @@ def main():
             else:
                 kalan.append(deger)
         filtre_sonrasi[eksen] = kalan
+
+    zayif_eslesme = []
+    for eksen in eksenler:
+        for deger in filtre_sonrasi[eksen]:
+            m = eslesme(deger, defter_zayif)
+            if m:
+                zayif_eslesme.append({"eksen": eksen, "deger": deger, "satir": m})
 
     uzay = 1
     for eksen in eksenler:
@@ -156,11 +176,12 @@ def main():
             "havuz": {"yol": args.havuz, "sha256": sha256(args.havuz)},
             "yasak": {"yol": args.yasak, "sha256": sha256(args.yasak),
                       "adet": len(yasak_adlar)},
-            "defter": {"yol": args.defter, "durum": defter_durum or f"{len(defter_adlar)} klişe"},
+            "defter": {"yol": args.defter, "durum": defter_durum},
             "dolu": {"yol": args.dolu, "adet": len(dolu)} if args.dolu else None,
         },
         "filtre_sonrasi": filtre_sonrasi,
         "elenen": elenen,
+        "zayif_defter_eslesmeleri": zayif_eslesme,
         "uzay_boyutu": 0 if bos else uzay,
     }
 

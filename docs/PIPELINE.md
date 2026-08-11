@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.10 — 2026-08-11, freeze korunuyor (kura zarı model dışında:
-`tools/kura.py` + `standards/havuz.json`; model-klişe defteri açıldı — sıfırıncı
-sürüm dış kaynak, düşük-güven etiketli; Ek C reklam sayıları tür kırılımlı —
-bulmaca/mantıkta ilk gün tam-ekran 0; Sözleşme-11 girdi yalıtımı). Sayılar
-şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.11 — 2026-08-11, freeze korunuyor (model-klişe defteri doldu:
+paralel-motor gözlemi 9 satır + şerh — dış model gözlemi, üç koşu sonra "bizde
+gözlendi/gözlenmedi" işaretlemesi, zayıf ağırlık usulü; bant kuralı — kelime
+yetmez, üçlü örüntü kartta zorunlu beyan, kapı değil; kura.py güçlü/zayıf
+ayrımı). Sayılar şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
