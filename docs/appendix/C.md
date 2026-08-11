@@ -13,7 +13,8 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 > halka/pencere ölçekli değerler eski ürün tanımına (hyper-casual) göre
 > düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
 > günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
-> `ortusme_esik_yuzde` politika sabitleridir, bu şerhin kapsamı dışındadır.
+> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*` politika sabitleridir, bu şerhin
+> kapsamı dışındadır.
 
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
@@ -35,6 +36,15 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `reklam_siklik_tavan` | R1: oturum başına azami tam-ekran reklam (varsayılan 3; tür kırılımı aşağıdaki satırda) |
 | `reklam_arasi_min_sn` | R1: iki tam-ekran reklam arası asgari saniye (varsayılan 90) |
 | `reklam_ilk_gun_sifir_turler` | R1 tür kırılımı: ilk gün (kurulum günü) tam-ekran reklam = 0 olan türler — varsayılan: bulmaca/mantık; kartın `tur` beyanıyla eşleşir, lint denetler (M3) |
+| `gorsel_palet_disi_piksel_yuzde` | G1: palet dışı piksel üst sınırı (varsayılan 5) |
+| `gorsel_alpha_sacak_yuzde` | G2: sprite kenarında yarı-saydam piksel üst sınırı (varsayılan 2) |
+| `gorsel_atlas_doluluk_yuzde` | G2: atlas doluluk alt sınırı (varsayılan 70) |
+| `gorsel_siluet_fark_orani` | G3: 32px silüet ikili fark alt sınırı, % (varsayılan 25; kalibrasyon adayı — ilk 3 koşu) |
+| `gorsel_kontrast_ana_ozne` | G4: ana özne ↔ arka plan WCAG oran alt sınırı (varsayılan 3.0) |
+| `gorsel_kontrast_ui_metin` | G4: UI metin ↔ zemin WCAG AA (varsayılan 4.5) |
+| `ses_lufs_band` | S1: bütünleşik yükseklik bandı (varsayılan -16 ± 1 LUFS) |
+| `ses_tepe_dbtp` | S1: tepe üst sınırı (varsayılan -1 dBTP) |
+| `ses_sfx_sure_tavan_sn` | S1: tekil SFX süre tavanı (varsayılan 2) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 

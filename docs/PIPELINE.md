@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.11 — 2026-08-11, freeze korunuyor (model-klişe defteri doldu:
-paralel-motor gözlemi 9 satır + şerh — dış model gözlemi, üç koşu sonra "bizde
-gözlendi/gözlenmedi" işaretlemesi, zayıf ağırlık usulü; bant kuralı — kelime
-yetmez, üçlü örüntü kartta zorunlu beyan, kapı değil; kura.py güçlü/zayıf
-ayrımı). Sayılar şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.12 — 2026-08-11, freeze korunuyor (Alan 1: görsel sözleşme —
+`standards/gorsel-sozlesme.md` G1–G5 + S1; uyum ölçülür, güzellik ölçülmez;
+kaynak-bağımsız kapılar; palet/silüet/kontrast/atlas/ses lint'i şablon CI'ında,
+tutarlılık beyan doğruluğu Aşama 8'de; eşikler Ek C'de politika sabiti). Sayılar
+şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -126,7 +126,8 @@ insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 (saha doğrulamalı kod kuralları §1–§10; kök `CLAUDE.md` executor kuralları),
 `docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi), `docs/standards/havuz.json`
 + `docs/standards/model-klise-defteri.md` (Aşama 1 kura havuzu + model klişeleri;
-zar `tools/kura.py`'dedir — model dışı).
+zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md`
+(görsel/ses uyum kapıları G1–G5 + S1; CI + tek insan beyanı; eşikler Ek C).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik
