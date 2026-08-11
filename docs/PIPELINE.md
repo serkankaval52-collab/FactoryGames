@@ -1,7 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.20 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 5 — `docs/standards/ilk-kosu.md`
-(kapıların ilk-koşu davranışı: ÇALIŞTI/ŞERHLİ/VERİ-YOK; sessiz geçiş yok). Geçmiş git'tedir.
+**Sürüm:** v1.0.21 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 5 saldırı düzeltmeleri —
+`ilk-kosu.md` (A5.1–A5.3) + `esik_kapsama.py` (Ek C kapsama testi). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.

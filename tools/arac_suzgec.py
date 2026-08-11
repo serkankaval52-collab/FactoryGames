@@ -28,7 +28,8 @@ ARACLAR = [
 # Tablo satiri gerektirmeyenler: isletim sistemi / CI-runner yerlesikleri ve repo-ici scriptler
 # (python satiri ustunden kosarlar). Bu liste genisletilirse GEREKCE commit mesajinda yazilir.
 YERLESIK = {"robocopy", "powershell", "xcodebuild", "marker.py", "kura.py", "report.py",
-            "arac_suzgec.py", "test_kura.py", "test_report.py", "test_arac_suzgec.py"}
+            "arac_suzgec.py", "test_kura.py", "test_report.py", "test_arac_suzgec.py",
+            "esik_kapsama.py", "test_esik_kapsama.py"}
 
 
 def tara(metinler, kurulum):
