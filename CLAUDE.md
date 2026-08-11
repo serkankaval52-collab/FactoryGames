@@ -1,4 +1,4 @@
-# CLAUDE.md — FactoryGames executor kuralları (v1.0.7)
+# CLAUDE.md — FactoryGames executor kuralları (v1.0.9)
 
 Norm üstünlüğü: bu dosya `docs/PIPELINE.md`'ye bağlıdır; çelişkide PIPELINE.md
 kazanır. Oyun repolarının CLAUDE.md'si PIPELINE.md'ye bağlantıyla başlar. Kaynak:
@@ -10,7 +10,7 @@ sıkıştırıldı) + Sözleşme kök kuralları. Kod detayı: `docs/standards/k
 2. Ürün tanımı: küçük ama gerçek oyun. Ucuz-deneme hacmi dönemi kapandı.
 3. Kanıt olmadan "düzeltildi/bitti/yeşil" denmez: her iddia koşmuş komut + çıktı
    taşır.
-4. Kök neden > yama: belirti kod-standardi §12'nin üç kategorisine indirilir;
+4. Kök neden > yama: belirti kod-standardi §9'un üç kategorisine indirilir;
    edilemiyorsa gözlem eklenir, yama yazılmaz.
 5. En küçük güvenli adım: tek seferde tek değişken; geri dönüşü zor iş fizibilite
    tablosu + onaydan önce uygulanmaz.
@@ -22,7 +22,7 @@ sıkıştırıldı) + Sözleşme kök kuralları. Kod detayı: `docs/standards/k
    sınıf) / fabrika metodu / kurulum anında açık atamayla yapılır; `GameObject.Find`
    / `FindFirstObjectByType` yasak. Prefab İÇİ bileşen bağlantıları (fileID)
    kod-standardi §10 disiplininde meşrudur — yasak olan sahnedir.
-9. ScriptableObject/`.asset` yok (gerekçe kod-standardi §6'da yazılı).
+9. ScriptableObject/`.asset` yok (gerekçe kod-standardi §4'te yazılı).
 10. Editor GUI'sinde elle işlem yok; MCP yalnız gözlemci. Play Mode değişikliği
     kaybolur — kalıcı iş Edit Mode/batchmode'da.
 11. Prefab yalnız kod-standardi §10 disipliniyle (Dump→Apply idempotent;
@@ -31,7 +31,7 @@ sıkıştırıldı) + Sözleşme kök kuralları. Kod detayı: `docs/standards/k
 13. Kural tek kaynaktan çağrılır; formül kopyalanmaz.
 14. Gevşek bağlılık C# `event`/`Action` ile; `UnityEvent` yasak.
 15. Ham Pos X/Y tek cihazdan yazılmaz; güvenli alan + en-boy matrisi formülü
-    (kod-standardi §4); "bende çalışıyor" kanıt değil.
+    (kod-standardi §3); "bende çalışıyor" kanıt değil.
 16. `Update`'te allokasyon yok; `GetComponent*` cache; pooling; runtime reflection
     yasak.
 17. `Debug.Log*` geliştirme-only (`#if UNITY_EDITOR || DEVELOPMENT_BUILD`).

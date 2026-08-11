@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.8 — 2026-08-11, freeze korunuyor (Aşama 1 tamamlandı: kura mekanizması
-geri alındı — filtre-önce-kura, tükenmede Ek A protokolü; yasak liste kaynaklı +
-aylık arşiv `standards/yasak-liste/`; rakip doğrulaması — arama kanıtı, ilk-10
-seçimi, atlama gerekçesi, VEYA'lı "en yakın" tanımı). Sayılar şerhli; sıra
-kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.9 — 2026-08-11, freeze korunuyor (bağımsız denetim turu: ölü §
+referansları düzeltildi; sonda beyaz listesi `.prefab` ile eşitlendi; marker
+ham kayıtları rapora bağlandı; report.py karar testleri kalıcı + CI; ilk sürüm
+tek dil — kapsam satırı; ortam kusuru taraması sonda teyitlerinde). Sayılar
+şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -64,8 +64,10 @@ envanterleri Ek C'de izlenir.
    Zorlama: CI lint + PR kapısı.
 3. **Normatif yük:** CLAUDE.md ≤ 30 kural, her koşuda tam yüklenir, satır sayımı CI'da;
    her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Bu ağacın disiplini
-   dosya sınırıdır: stage dosyası ≤ 90 satır, PIPELINE.md ≤ 140; aşım CI uyarır ve
-   Sözleşme-5 yükseltme adayı açar. Okuma kapsamı yukarıda tanımlı; toptan okuma yok.
+   dosya sınırıdır: stage ve standart dosyaları ≤ 90 satır (`docs/stages/*.md`,
+   `docs/standards/*.md` — CI'nin fiilen zorladığı budur), PIPELINE.md ≤ 140;
+   aşım CI uyarır ve Sözleşme-5 yükseltme adayı açar. Okuma kapsamı yukarıda
+   tanımlı; toptan okuma yok.
 4. **Sır ve ham artefakt:** repoya sır girmez; public repoya insan ürünü ham
    artefakt (görüntü, log dökümü, dışa aktarım) da girmez — doğrulama kanıtı
    metin özetidir, ham dosya cihazda kalır (L2). Zorlama: CI secret-scan +
@@ -115,7 +117,7 @@ Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
 K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
 insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
-(saha doğrulamalı kod kuralları §1–§13; kök `CLAUDE.md` executor kuralları),
+(saha doğrulamalı kod kuralları §1–§10; kök `CLAUDE.md` executor kuralları),
 `docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —

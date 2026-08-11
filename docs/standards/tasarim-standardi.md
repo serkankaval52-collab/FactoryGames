@@ -5,6 +5,8 @@ Bu dosya "küçük ama gerçek oyun" tanımının ölçülebilir karşılığıd
 yargısı bu standardın konusu değildir — Aşama 8 rubriğinindir; burada yargı
 isteyen madde YOKTUR. Kısaltma: K = konsept kartı alanı, B = GDD bölümü.
 Sayısal sınırların kaynağı Ek C'dir (Sözleşme-8); bu dosya yapıyı tanımlar.
+Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil Aşama
+10'un parasal olmayan ölçekleme kalemidir (kapı değil).
 
 ## Bölüm A — Konsept kartı ek alanları (Aşama 1 çıktısına eklenir; 3 alan)
 

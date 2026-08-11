@@ -24,9 +24,10 @@ Tek ekran, tek input (tap/hold), skor + fail + restart, 60–90 sn döngü; sahn
 **Proje topolojisi (değişmez):** proje repo DIŞINDA (`../probe-project`,
 `-createProject` ile); sahneye elle DOKUNMAZ. URP dahil motor ayarları sürümlü
 setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler:
-`docs/probe/` altında rapor, `.markers/`, `unity-pin.txt`, `kaynak/`,
-`scene-baseline.json`. Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
-docs/probe/kaynak *.cs *.json *.unity *.asset *.meta /S`.
+`docs/probe/` altında rapor, `unity-pin.txt`, `kaynak/`, `scene-baseline.json`.
+`.markers/` YERELDİR, repoya girmez — ham içerikleri raporun "Marker ham kayıtları"
+tablosundadır (Sözleşme-10). Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
+docs/probe/kaynak *.cs *.json *.unity *.asset *.meta *.prefab /S`.
 
 **Preset çıkarma (ilk koşu):** set, Unity'nin KENDİ şablon paketinden mekanik
 çıkarılır (kurulumdaki ProjectTemplates arşivi; yoksa resmî kaynak) — tek kaynak,
@@ -81,10 +82,9 @@ Rapor içeriği: üç kronometre, müdahale iki sayıyla, MCP satırı (veya
   minyatürü); düzeltme executor'a: "uygulanabilir kıl, sonra uygula"; rapora işlenir.
 - **Deneme-2:** değişen tek şey ortam/destek; brief'i değiştiren executor'dır,
   kaydedilir. Otomatik üçüncü deneme YOK.
-- **İlk koşu teyitleri (bulgu olabilir):** RuntimeInitializeOnLoadMethod 6000.3'te
-  beklenen sırada; baseline yazıldı; şablon paketi konumu bulundu — aksi bulgudur.
+- **İlk koşu teyitleri (bulgu olabilir):** RuntimeInitializeOnLoadMethod sırası; baseline yazıldı;
+  şablon paketi konumu; + raporla ortam kusuru sınıfı taraması (yerel ayar, kodlama, yol ayıracı, satır sonu) — aksi bulgudur.
 
-**Yürüten:** otonom — insan yalnız deklare kapılarda (sayılır) ve nihai BAŞARISIZ
-kararında; rapor script ürünüdür, beyan yok.
+**Yürüten:** otonom — insan yalnız deklare kapılarda (sayılır) ve nihai BAŞARISIZ kararında; rapor script ürünüdür, beyan yok.
 **Geçiş kriteri:** BAŞARILI veya SARI + rapor script ürünü + Ek B Aşama-4 satırı ölçümle.
 **Geri kenarı:** BAŞARISIZ → 0A kilitli; max 2 deneme.

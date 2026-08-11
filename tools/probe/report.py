@@ -20,6 +20,8 @@ kurulum oyuna etki etmez; kör nokta beyanı var. T_build tabloya girmez — ara
 zinciri sorusunu üretim sorusundan ayırır.
 
 Output: <probe-root>/rapor.md (overwrites). Exit: 0 = BAŞARILI, 1 = SARI, 2 = BAŞARISIZ.
+Rapor ayrıca `.markers/` ham dökümünü taşır — dizin yereldir (repoya girmez),
+kanıt tablodur (v1.0.9, Sözleşme-10).
 """
 import argparse
 import glob
@@ -279,6 +281,22 @@ def main() -> int:
             A(f"| P1 nesne sayımı: {p} | {n} GameObject | `kaynak/{p}` | {lim_txt} | {st} |")
     else:
         A(f"| P1 nesne sayımı | kopya/sahne yok | `{kaynak_dir}` | baseline'a göre | — |")
+    A("\n## Marker ham kayıtları (v1.0.9)\n")
+    A("`.markers/` yereldir, repoya girmez; denetlenebilirlik için ham içerikler buradadır:\n")
+    mdir = os.path.join(args.probe_root, ".markers")
+    dumped = False
+    if os.path.isdir(mdir):
+        for fn in sorted(os.listdir(mdir)):
+            if not fn.endswith(".ts"):
+                continue
+            ham = open(os.path.join(mdir, fn), encoding="utf-8",
+                       errors="replace").read().strip()
+            ham = ham[:80].replace("`", "'").replace("\n", " | ")
+            A(f"- `{fn}`: `{ham}`")
+            dumped = True
+    if not dumped:
+        A("- marker dosyası yok — 'ölçülemeyen kaynak' satırları geçerlidir")
+
     A("\n## Kör nokta beyanı (H2)\n")
     A("Editor GUI'sindeki elle dokunuş **ölçülmez** — hiçbir artefakt onu güvenilir "
       "saymıyor; üstelik sahne varsayılandan sapamadığı için elle kurulum oyuna "

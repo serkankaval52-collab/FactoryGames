@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           if [ -d docs/probe/kaynak ]; then
-            bad=$(find docs/probe/kaynak -type f ! -name '*.cs' ! -name '*.json' ! -name '*.unity' ! -name '*.asset' ! -name '*.meta')
+            bad=$(find docs/probe/kaynak -type f ! -name '*.cs' ! -name '*.json' ! -name '*.unity' ! -name '*.asset' ! -name '*.meta' ! -name '*.prefab')
             [ -n "$bad" ] && { echo "beyaz liste ihlali:"; echo "$bad"; exit 1; }
           fi
           echo "kaynak beyaz liste yeşil"
@@ -65,3 +65,10 @@ jobs:
           bad=$(git ls-files | grep -iE '\.(png|jpe?g|gif|webp|bmp|tiff?|psd|mp4|mov)$' || true)
           [ -n "$bad" ] && { echo "ham artefakt (metin-kanıt kuralı ihlali):"; echo "$bad"; exit 1; }
           echo "ham artefakt kapısı yeşil"
+
+  arac-testleri:
+    # v1.0.9 (I.3): karar aracının testi kalıcıdır; report.py değişikliği bu işle korunur.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/probe/test_report.py
