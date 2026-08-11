@@ -1,10 +1,9 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.15 — 2026-08-11, freeze korunuyor (Alan 2 saldırı düzeltmeleri:
-min-spec tanımlandı, ölçüm Test Lab cihaz koşusuna bağlandı (A2.1/A2.2 — batchmode
-render üretmez), P6 beyan+oran çıtası, P4 sayılabilir durum listesi, P5
-sessiz-toparlanma telemetrisi, P9 ses gecikmesi; kurulum satır 11 = gcloud).
-Sayılar şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.16 — 2026-08-11, freeze korunuyor (Alan 3: `standards/halka-standardi.md`
+— davet/form/kanal/coğrafya; dış-kültür gözü zorunlu. v1.0.15: Alan 2 saldırı
+düzeltmeleri — min-spec + Test Lab, P1–P9). Sayılar şerhli; sıra kullanıcıda
+(kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -131,7 +130,9 @@ insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 + `docs/standards/model-klise-defteri.md` (Aşama 1 kura havuzu + model klişeleri;
 zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md`
 (görsel/ses uyum kapıları G1–G7 + S1; eşikler Ek C) + `docs/standards/premium-sozlesme.md`
-(davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı).
+(davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı),
+`docs/standards/halka-standardi.md` (Aşama 5 dış-halka metinleri: davet TR/EN,
+5 soruluk davranış formu, büyütme kanalları, coğrafya kuralı; halka İNSANDIR).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik
