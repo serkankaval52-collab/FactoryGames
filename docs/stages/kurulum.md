@@ -26,11 +26,10 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
   çıktı + gerçekleşen çıktı ile düşer. Doğrulama ÇALIŞIR HALİ ölçer: dosya/liste
   çıktısı tek başına kanıt değildir, araç gerçekten koşturulur (Unity'de gate =
   batchmode çıkış kodu 0; listeleme yalnız ara kanıttır).
-- **Yarım kurulum kalamaz:** doğrulama çalışır hali ölçer; yarım kurulum "kurulu"
-  sayılamaz. BAŞARISIZ'da rapora **"makinede bırakılan durum"** bölümü eklenir:
-  ne kuruldu, ne yarım kaldı, temizlik komutu.
+- **Yarım kurulum kalamaz:** BAŞARISIZ'da rapora **"makinede bırakılan durum"**
+  bölümü eklenir: ne kuruldu, ne yarım kaldı, temizlik komutu.
 - **Kapı ön-bildirimi:** koşunun ilk işi, beklenen TÜM insan kapılarını tek mesajda
-  saymak (kesin: ≥2 UAC; koşullu: hesaplar, satır 8'in ağ+AI kapıları). Sürpriz YOK.
+  saymak (kesin: ≥2 UAC + satır 11 tarayıcı; koşullu: hesaplar, satır 8 ağ/AI). Sürpriz YOK.
 - **Bekleme disiplini:** ≥2 dk sürebilecek iş tek bloklayıcı komutla koşulmaz
   (terminal zaman aşımı): desen = başlat → 60 sn'de bir durumu yokla → azami süre
   aşımında İNSAN KAPISI. Unity Hub'ın headless install'ı ASENKRON döner; "kurulu"
@@ -46,7 +45,7 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 
 - **Fabrika dizini = bu reponun klonlandığı kök dizin;** mutlak yolu koşunun
   başında rapora yazılır (sınır iddia değil kayıttır). **İZİN VERİLEN:** tablodaki
-  10 satırın kurulumu ve doğrulanması; pin dosyası ve geçici doğrulama projeleri
+  11 satırın kurulumu ve doğrulanması; pin dosyası ve geçici doğrulama projeleri
   dahil yalnız fabrika dizini altında dosya/klasör oluşturmak.
 - **YASAK (insan onayı olmadan, her koşulda):** tabloda olmayan yazılım kurmak;
   herhangi bir yazılımı kaldırmak veya sürüm düşürmek; sistem ortam değişkenlerini
@@ -74,6 +73,7 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 | 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, her komutu rapora yazar); sahne-düzenleme araçları KAPALI yapılandırılır; **Editor'ü executor başlatır** — satır 7'nin geçici projesinde deklare edilmiş EDITOR OTURUMU (insan kapısı DEĞİL, komut) | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki yöntem); sonra Editor kapatılır, `Temp/UnityLockfile`'ın kaybolduğu doğrulanır, geçici proje silinir | handshake + **araç listesinde sahne-düzenleme araçları kapalı/yok** (liste çıktısı rapora) + kilit-kayboldu kanıtı | (a) dokümanı okumak için web/ağ erişimi — oturumda izin/onay istenebilir; (b) MCP köprüsü Unity hesabında AI özelliklerinin etkin olmasını gerektirebilir (hesap seviyesi onay/uygunluk; BİLİNMİYOR, koşuda doğrulanır); hesap/kabul ekranı varsa |
 | 9 | VS Code + Claude Code | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
 | 10 | FFmpeg | `winget install --id Gyan.FFmpeg -e --silent` | `ffmpeg -version` | `ffmpeg version *` | PATH yeni terminalde akar; akmazsa insan (yeniden oturum) |
+| 11 | Google Cloud SDK + Test Lab hazırlığı (A2.1 — premium ölçüm cihazı) | `winget install --id Google.CloudSDK -e --silent`; sonra executor: `gcloud auth login` (insan kapısı) → proje yoksa `gcloud projects create fg-probe-<rastgele>` (Spark — fatura hesabı KURULMAZ) → `gcloud config set project <id>` → `gcloud services enable testing.googleapis.com toolresults.googleapis.com`; gcloud yetkisi yalnız Test Lab kapsamında kullanılır (Yetki sınırı) | `gcloud auth list` + `gcloud config get-value project` + `gcloud firebase test android models list` | "Credentialed" hesap satırı + `fg-probe-*` kimliği + model tablosu (yetkisiz/API-kapalıysa tablo GELMEZ — kanıt budur) | Tarayıcı onayı KESİN; proje adı çakışırsa yeni ad seçilir |
 
 ## Alanlar
 
@@ -83,7 +83,7 @@ komutu + UAC onayları için makine başında durması (kesin kapılar ön-bildi
 durum. Başlıkta makine kimliği = hostname + Windows sürümü + mimari
 (`PROCESSOR_ARCHITECTURE`). BAŞARISIZ satır yok; varsa "makinede bırakılan durum".
 **Yürüten:** otonom (işaretli insan kapıları hariç).
-**Geçiş kriteri:** tablodaki 10 satırın tamamı "doğrulandı" (satır 7'nin gate'i
+**Geçiş kriteri:** tablodaki 11 satırın tamamı "doğrulandı" (satır 7'nin gate'i
 batchmode çıkış kodu 0); rapor dosyada.
 **Geri kenarı:** üç durum yukarıda; kapı beklemesinin limiti yok ama her açık kapı
 raporda "bekleyen iş" olarak durur — sessizce unutulamaz; BAŞARISIZ'da hat durur,

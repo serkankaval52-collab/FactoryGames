@@ -13,8 +13,8 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 > halka/pencere ölçekli değerler eski ürün tanımına (hyper-casual) göre
 > düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
 > günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
-> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*` politika sabitleridir, bu
-> şerhin kapsamı dışındadır.
+> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*`, `min_spec_*`, `testlab_*`
+> politika sabitleridir, bu şerhin kapsamı dışındadır.
 
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
@@ -52,8 +52,13 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `gorsel_anim_dongu_ortusme` | G7: döngü başlangıç↔bitiş karesi örtüşme alt sınırı, % (varsayılan 90) |
 | `premium_tepki_kare_tavan` | P1: dokunuş→ilk görsel karşılık kare tavanı, min-spec (varsayılan 3) |
 | `premium_gecis_sure_band` | P3: ekran geçişi süre bandı, ms (varsayılan 150–400) |
-| `premium_kare_p95_ms` | P6: kare süresi p95 tavanı, min-spec, ms (varsayılan 33) |
+| `premium_kare_hizi_secenek` | P6: GDD'nin (B7) beyan ettiği hedef kare hızı — izinli değerler 30 veya 60; kapı bütçesi = 1000/hz ms (60 beyanı 16,7 ms bütçeye tabidir) (A2.3) |
+| `premium_kare_tutarlilik_payi` | P6: p99−p50 fark tavanı, hedef bütçenin katı (varsayılan 1; aşım = takılma) (A2.3) |
+| `premium_ses_esik_ms` | P9: dokunuş→ses gecikme tavanı, min-spec cihaz koşusu, ms (varsayılan 100; kalibrasyon adayı — ilk 3 koşu) (A2.4) |
 | `premium_soguk_acilis_sn` | P8: soğuk açılış→ilk anlamlı kare tavanı, sn (varsayılan 3; kalibrasyon adayı — ilk 3 koşu) |
+| `min_spec_cihaz` | P1/P3/P6/P8/P9 ölçüm cihazının TANIMI — referans model: Samsung Galaxy A14 (4 GB RAM, Android 13 / API 33); "düşük seviye" sıfatı değil bu satır ölçüdür (A2.1) |
+| `min_spec_testlab_pin` | Test Lab'de koşulacak FİZİKSEL model kimliği: ilk koşuda `gcloud firebase test android models list` çıktısından referansa eş/alt özellikteki model seçilir; kullanıcı onayıyla pinlenir — tek seferlik kilit (kurulum satır 6 disiplininin kardeşi) |
+| `testlab_gunluk_kota_fiziksel` | Test Lab fiziksel cihaz koşu kotası, koşu/gün, proje bazlı (Spark planı varsayılan 5; plan değişirse kullanıcı günceller — "şimdilik tahmin" etiketi gerekmez, politika sabitidir) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 

@@ -31,17 +31,20 @@ Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil
   gerekçelendirilir (E2).
 - **B2 Ekran listesi + wireframe:** zorunlu ekranlar — ana menü, ayarlar
   (ses/müzik anahtarları), duraklat, gizlilik politikası bağlantısı, oyun-sonu
-  (kazan/kaybet). Her ekran tek-kutu wireframe + geçiş okları. Son satır: kayıt
-  dayanıklılığı beyanı ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7)
-  + renk-yalnız-bilgi beyanı (G6): tehlike/vurgu ayrımının biçim/ikon desteği —
-  ikili satır.
+  (kazan/kaybet). Her ekran tek-kutu wireframe + geçiş okları. **Durum sütunu
+  (P4 kapısı — A2.6):** yükleme, izin isteme (ATT/GDPR), ağ hatası, boş içerik,
+  hata — her durumda ekranda ne gösterileceği yazılır; sistem izin penceresi
+  açıkken arkadaki içerik de tanımlıdır. Son satır: kayıt dayanıklılığı beyanı
+  ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7) + renk-yalnız-bilgi
+  beyanı (G6): tehlike/vurgu ayrımının biçim/ikon desteği — ikili satır.
 - **B3 Matematik modeli:** zorluk eğrisi (seviye/dakika başarısızlık oranı hedefi),
   ilerleme temposu, hedef oturum uzunluğu + oturum/gün, ekonomi dengesi (kaynak
   giriş-çıkış tablosu), doğal reklam anı yoğunluğu (oturum başına). Hepsi SAYI;
   "dengeli olur" türü cümle TBD sayılır (E5).
 - **B4 Analitik olay haritası:** B3'ün her sayısal iddiası ↔ isimlendirilmiş olay
   (snake_case, tek kaynak). CI kapısı: GDD olay listesi ile koddaki event
-  gönderimleri grep-paritesinde (F6).
+  gönderimleri grep-paritesinde (F6). Zorunlu sabit satır: `sessiz_toparlanma`
+  (P5) — her GDD'de bulunur ve koddaki gönderimi pariteye dahildir (A2.5).
 - **B5 Reklam planı:** her yerleşim için satır: tür, tetikleyici, sıklık sınırı.
   Sınırlar Ek C `reklam_siklik_tavan` / `reklam_arasi_min_sn` sınırlarını aşamaz;
   aşan satır kapıdan döner (E3).
@@ -50,7 +53,9 @@ Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil
   oynama notu: kritik geri bildirim yalnız sese bağlanamaz (F5).
 - **B7 Cihaz/çözünürlük matrisi:** hedef en-boy aralığı (16:9–21:9) + çentik/
   güvenli alan varsayımı + asgari dokunma hedefi boyutu; her ekran matrisin tüm
-  hücrelerinde taşmadan çizilir. Kanıt red-flag R9'da verilir (G1).
+  hücrelerinde taşmadan çizilir. Kanıt red-flag R9'da verilir (G1). Hedef kare
+  hızı beyanı da bu bölümdedir (Ek C `premium_kare_hizi_secenek` — P6'nın
+  bütçesinin kaynağı; A2.3).
 
 ## Kapı disiplini
 
