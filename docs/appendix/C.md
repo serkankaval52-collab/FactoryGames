@@ -13,8 +13,8 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 > halka/pencere ölçekli değerler eski ürün tanımına (hyper-casual) göre
 > düşünülmüştür; tasarım standardı + sonda sonrasında kullanıcı tek formda
 > günceller (D2 — şimdi yeni sayı yazılmaz). `reklam_*`, `uygulama_boyut_tavan_mb`,
-> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*` politika sabitleridir, bu şerhin
-> kapsamı dışındadır.
+> `ortusme_esik_yuzde`, `gorsel_*`, `ses_*`, `premium_*` politika sabitleridir, bu
+> şerhin kapsamı dışındadır.
 
 ## Bölüm 1 — Standart tavanlar ve eşikler (her koşuda geçerli)
 
@@ -50,6 +50,10 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `gorsel_siluet_ceper_min` | G3: dış çeper/alan karmaşıklık alt sınırı (varsayılan 0.15) |
 | `gorsel_anim_kare_band` | G7: animasyon kare sayısı bandı (varsayılan 4–12) |
 | `gorsel_anim_dongu_ortusme` | G7: döngü başlangıç↔bitiş karesi örtüşme alt sınırı, % (varsayılan 90) |
+| `premium_tepki_kare_tavan` | P1: dokunuş→ilk görsel karşılık kare tavanı, min-spec (varsayılan 3) |
+| `premium_gecis_sure_band` | P3: ekran geçişi süre bandı, ms (varsayılan 150–400) |
+| `premium_kare_p95_ms` | P6: kare süresi p95 tavanı, min-spec, ms (varsayılan 33) |
+| `premium_soguk_acilis_sn` | P8: soğuk açılış→ilk anlamlı kare tavanı, sn (varsayılan 3; kalibrasyon adayı — ilk 3 koşu) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 

@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.13 — 2026-08-11, freeze korunuyor (Alan 1 saldırı düzeltmeleri:
-G1 artık renk rampası + alfa hariç; S1'in aracı FFmpeg kurulum satır 10'a girdi;
-G6 renk körlüğü simülasyonu + B2 renk-yalnız-bilgi beyanı; G4'e kaba-vekil
-şerhi; G3'e okunabilirlik üçlüsü, ikon mutlak testte; G7 animasyon varlığı).
-Sayılar şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.14 — 2026-08-11, freeze korunuyor (Alan 2: premium tanımı —
+`standards/premium-sozlesme.md` P1–P8: tepki kare sayısı, geri bildirim
+doygunluğu, geçiş kalitesi, boş-kare/ham-hata yok + p95 akıcılık, hareket imzası,
+açılış bütçesi; davranış burada, varlık G7'de; eşikler Ek C'de). Sayılar şerhli;
+sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -127,7 +127,8 @@ insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 `docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi), `docs/standards/havuz.json`
 + `docs/standards/model-klise-defteri.md` (Aşama 1 kura havuzu + model klişeleri;
 zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md`
-(görsel/ses uyum kapıları G1–G5 + S1; CI + tek insan beyanı; eşikler Ek C).
+(görsel/ses uyum kapıları G1–G7 + S1; eşikler Ek C) + `docs/standards/premium-sozlesme.md`
+(davranış bileşenleri P1–P8; ikisi bağlı).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik
