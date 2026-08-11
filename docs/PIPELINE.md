@@ -1,11 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.5 — 2026-08-06, freeze korunuyor (yetkili istisna: ürün tanımı
-standartlara indi — `docs/standards/`: tasarım standardı K1–K3/B1–B7 + red-flag
-R1–R9; kapı bağları Aşama 1/2/7 + 8'in insan bloğu; WIP 2→1 (D1); Ek A'ya
-target-API bakım borcu (F4); Ek C'ye 4 politika eşiği + eski-tanım şerhi (D2)).
-Takvim/insan-saat sayıları hâlâ eski-tanım şerhli; yeni sayı sonda + bu
-standartlar sonrası. Sürüm geçmişi git'tedir (v1.0→v1.0.5).
+**Sürüm:** v1.0.6 — 2026-08-06, freeze korunuyor (yetkili istisna: DayamaOkey saha
+çerçevesi entegrasyonu — `docs/standards/kod-standardi.md` + kök `CLAUDE.md`;
+prefab varlık izni §13 fiyatının tamamıyla; P1 kuralı yol-kapsamlı hale geldi;
+ScriptableObject reddi açık yazılı). Takvim/insan-saat şerhleri sürüyor; yeni
+sayı sonda + standartlar sonrası. Geçmiş git'tedir (v1.0→v1.0.6).
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -59,7 +58,10 @@ envanterleri Ek C'de izlenir.
    (BeforeSceneLoad) ile koddan; veri JSON; motor ayarları (URP, grafik/kalite,
    manifest) `presets/unity-<pin>/` altındaki sürümlü setin kopyasıyla gelir (Unity
    sürümü README'de kayıtlı, CI'da sapma testi). MCP ile sahne/ayar düzenlemek yasak
-   (MCP: konsol, play-mode, doğrulama, build tetikleme). Zorlama: CI lint + PR kapısı.
+   (MCP: konsol, play-mode, doğrulama, build tetikleme). **Prefab istisnası (v1.0.6):**
+   varlık prefabı yalnız `docs/standards/kod-standardi.md` §10 disipliniyle üretilir
+   (idempotent Dump→Apply script'i kaynaktır; elle/kör YAML düzenleme yasak sürer).
+   Zorlama: CI lint + PR kapısı.
 3. **Normatif yük:** CLAUDE.md ≤ 30 kural, her koşuda tam yüklenir, satır sayımı CI'da;
    her koşu kapanışında ≥1 prose maddesi teste döner ya silinir. Bu ağacın disiplini
    dosya sınırıdır: stage dosyası ≤ 90 satır, PIPELINE.md ≤ 140; aşım CI uyarır ve
@@ -112,7 +114,8 @@ Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
 (kapasite), `docs/appendix/C.md` (kaynak dosyası şeması).
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
 K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
-insan maddeleri R2b/R4 Aşama 8'de yaşar).
+insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
+(saha doğrulamalı kod kuralları §1–§13; kök `CLAUDE.md` executor kuralları).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü —
 G2 + C2: kapı ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'un organik

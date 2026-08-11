@@ -59,8 +59,8 @@ Raporu executor YAZMAZ; `tools/probe/report.py` artefaktlardan ÜRETİR.
   kurulum oyuna etki etmez; sayım yok, kör nokta beyanı var.
 - **İnsan müdahalesi:** birincil = `insan-kapisi-N` damgaları; çapraz kontrol =
   transkript mesaj sayısı. Uyuşmazlık SARI — uyuşmazlık kendisi bilgidir.
-- **P1 ikilisi:** kaynak kopyasındaki her sahnenin nesne sayısı ≤ baseline
-  sayısı; prefab'da >0 nesne = ihlal. + CI lint.
+- **P1 ikilisi:** kaynak kopyasındaki her sahnenin nesne sayısı ≤ baseline sayısı;
+  prefab'da >0 nesne = ihlal (izinli kök `Assets/Prefabs/` hariç, v1.0.6). + CI lint.
 - **Test/bot:** NUnit XML (batchmode `-runTests`; editmode + playmode takımları).
 
 Rapor içeriği: üç kronometre, müdahale iki sayıyla, MCP satırı (veya

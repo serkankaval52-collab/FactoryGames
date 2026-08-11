@@ -171,7 +171,9 @@ def main() -> int:
         lim = baseline["nesne_sayisi"]
         for p, n in scenes:
             if p.endswith(".prefab"):
-                if n > 0:
+                # v1.0.6: varlık prefabı serbest (kod-standardi §10) ama yalnız
+                # izinli kökte; sahne kuralı .unity satırında değişmeden sürer.
+                if n > 0 and not p.replace("\\", "/").startswith("Assets/Prefabs/"):
                     p1_violations.append((p, n))
             elif n > lim:
                 p1_violations.append((p, n))
@@ -268,10 +270,12 @@ def main() -> int:
             if baseline is None:
                 st = "—"
             elif p.endswith(".prefab"):
-                st = "yeşil" if n <= 0 else "kırmızı"
+                izinli = p.replace("\\", "/").startswith("Assets/Prefabs/")
+                st = "yeşil" if (izinli or n <= 0) else "kırmızı"
             else:
                 st = "yeşil" if 0 <= n <= baseline["nesne_sayisi"] else "kırmızı"
-            lim_txt = "(prefab: 0)" if p.endswith(".prefab") else f"≤{baseline['nesne_sayisi'] if baseline else '?'}"
+            lim_txt = ("(izinli kök dışında: 0)" if p.endswith(".prefab")
+                       else f"≤{baseline['nesne_sayisi'] if baseline else '?'}")
             A(f"| P1 nesne sayımı: {p} | {n} GameObject | `kaynak/{p}` | {lim_txt} | {st} |")
     else:
         A(f"| P1 nesne sayımı | kopya/sahne yok | `{kaynak_dir}` | baseline'a göre | — |")
