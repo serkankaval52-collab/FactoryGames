@@ -1,4 +1,4 @@
-# CLAUDE.md — FactoryGames executor kuralları (v1.0.6)
+# CLAUDE.md — FactoryGames executor kuralları (v1.0.7)
 
 Norm üstünlüğü: bu dosya `docs/PIPELINE.md`'ye bağlıdır; çelişkide PIPELINE.md
 kazanır. Oyun repolarının CLAUDE.md'si PIPELINE.md'ye bağlantıyla başlar. Kaynak:
@@ -18,8 +18,10 @@ sıkıştırıldı) + Sözleşme kök kuralları. Kod detayı: `docs/standards/k
    diye kod yazılmaz.
 7. Sahne dosyası şablon varsayılanından sapamaz; hiyerarşi kodda kurulur
    (`[RuntimeInitializeOnLoadMethod]`, veri `StreamingAssets` JSON).
-8. Inspector referansı YOK: bağlantı kurucudan veya fabrika metodundan;
-   `GameObject.Find` / `FindFirstObjectByType` yasak.
+8. SAHNE nesnelerine Inspector'dan referans bağlamak YOK: bağlantı kurucu (saf
+   sınıf) / fabrika metodu / kurulum anında açık atamayla yapılır; `GameObject.Find`
+   / `FindFirstObjectByType` yasak. Prefab İÇİ bileşen bağlantıları (fileID)
+   kod-standardi §10 disiplininde meşrudur — yasak olan sahnedir.
 9. ScriptableObject/`.asset` yok (gerekçe kod-standardi §6'da yazılı).
 10. Editor GUI'sinde elle işlem yok; MCP yalnız gözlemci. Play Mode değişikliği
     kaybolur — kalıcı iş Edit Mode/batchmode'da.

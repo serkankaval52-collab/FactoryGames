@@ -1,17 +1,15 @@
-# KOD STANDARDI — saha doğrulamalı kod kuralları (v1.0.6)
+# KOD STANDARDI — saha doğrulamalı kod kuralları (v1.0.7)
 
-Kaynak: yayınlanmış Unity projesinden (DayamaOkey) damıtılmış saha çerçevesi; her
-madde orada gerçek bir hatayı önlerken doğdu. Mimari çatışanlar açık gerekçeyle
-değiştirildi/reddedildi (sessiz atlama yok). Dağıtım iki dosya: bu + kök `CLAUDE.md`.
+Kaynak: yayınlanmış Unity projesinden (DayamaOkey) saha çerçevesi — her madde orada
+gerçek bir hatayı önlerken doğdu; çatışanlar açık gerekçeli. Kaynaklar: bu + kök `CLAUDE.md`.
 
 ## 1. Saf mantık ↔ runtime ayrımı + tek kaynak (kaynak §2.1)
 
-Hesap/kural Unity API'sine dokunmaz; sahne tarafı iş kuralı içermez — EditMode
-testi ancak böyle koşar. Formül kopyalanmaz (Sözleşme-2'nin kod karşılığı):
-türetilen değer kaynağı çağırır; ikinci yazım bug stokudur. Desen:
+Hesap/kural Unity API'sine dokunmaz; sahne tarafı iş kuralı içermez (EditMode ancak
+böyle koşar). Formül kopyalanmaz: türetilen değer kaynağı çağırır (Sözleşme-2). Desen:
 
-    public static class SkorKurallari { public static int HamlePuani(int k,int s)=>k*10+s; } // Hesaplayıcı: Unity'siz, saf; EditMode bunu vurur
-    public class SkorYazici:MonoBehaviour { public void Goster(int p)=>_metin.text=p.ToString(); } // Uygulayıcı: içinde İŞ KURALI YOK
+    public static class ScoreRules { public static int MovePoints(int c,int s)=>c*10+s; } // Hesaplayıcı: Unity'siz, saf; EditMode bunu vurur
+    public class ScorePresenter : MonoBehaviour { public void Show(int p)=>_label.text=p.ToString(); } // Uygulayıcı: İŞ KURALI YOK
 
 ## 2. Gevşek bağlılık: C# `event`/`Action` (kaynak §2.1)
 
@@ -35,23 +33,26 @@ kalır (tek kaynak, diff okunur).
 
 ## 5. Bağımlılık çözümü — bizim sıramız daha katı (değiştirilerek alındı)
 
-Tek geçerli yol: **kodda açık bağlama** (kurucu veya fabrika metodu — hiyerarşi
-kodda kurulur, referans kurulum anında verilir). `GameObject.Find` ve
-`FindFirstObjectByType` ikisi de YASAK: sıra bağımlı, deterministik değil, bot
-testini kırar. Kaynağın `[Header]`/`[Tooltip]`/`[RequireComponent]` maddeleri
-ALINMADI: Inspector'da okuyan insan varsayar; bu hatta okuyucu yok.
+Tek geçerli yol: **kodda açık bağlama** — saf sınıfta kurucu (MonoBehaviour'ı Unity
+yaratır: kurucu YOK); MonoBehaviour'da fabrika metodu veya kurulum anında açık atama.
+`GameObject.Find` ve `FindFirstObjectByType` ikisi de YASAK: sıra bağımlı,
+deterministik değil, bot testini kırar. Kaynağın `[Header]`/`[Tooltip]`/
+`[RequireComponent]` maddeleri ALINMADI (Inspector'da okuyan insan yok).
 
 ## 6. İsimlendirme + tek dil (kaynak §3.1)
 
 | Tür | Kural | Örnek |
 |---|---|---|
-| sınıf/struct/enum/metot/property/event | PascalCase | `OyunDongusu.HamleYap()` |
-| parametre/yerel değişken | camelCase | `kalanSure` |
-| private alan | `_camelCase` | `_skor` |
-| const / static readonly | UPPER_SNAKE | `MAX_CAN` |
-| dosya adı | içerdiği ana türle aynı | `OyunDongusu.cs` |
+| sınıf/struct/enum/metot/property/event | PascalCase | `GameLoop`, `MovePoints()` |
+| parametre/yerel değişken | camelCase | `remainingTime` |
+| private alan | `_camelCase` | `_score` |
+| const / static readonly | UPPER_SNAKE | `MAX_LIVES` |
+| dosya adı | içerdiği ana türle aynı | `GameLoop.cs` |
 
-Tanımlayıcılar tek dilde (hat dili Türkçe; API/SDK adları hariç); karışık isim lint'e düşer.
+Dil kuralı (kaynakla aynı yön; v1.0.7'de ters yazılmıştı, düzeltildi): tanımlayıcılar
+İngilizce + ASCII, yorum/doküman Türkçe serbest — kodun yarısı değiştirilemez
+İngilizce (Unity API/SDK); ı/ş/ğ/İ arama-refactor'ı kırar. Lint: ASCII dışı
+tanımlayıcı = kırmızı. Kullanıcıya görünen metin yerelleştirmededir, tanımlayıcı değil.
 
 ## 7. Klasör hiyerarşisi (kaynak §3.2)
 
@@ -60,8 +61,7 @@ Core Unity bağımlılığı taşımaz, UI iş kuralı içermez, kökte dosya b�
 
 ## 8. Performans + loglama (kaynak §3.4+§3.5)
 
-- `Update`'te allokasyon yok (string birleştirme, LINQ, closure dahil);
-  `GetComponent*` Awake/OnEnable'da cache'lenir.
+- `Update`'te allokasyon yok (string, LINQ, closure dahil); `GetComponent*` Awake/OnEnable'da cache.
 - Sık üretilen nesne pooling'den gelir; Instantiate/Destroy döngüsü yok.
 - Runtime'da reflection YASAK (IL2CPP stripping geri dönülmez kırar).
 - `Debug.Log*` yalnız geliştirmede (`#if UNITY_EDITOR || DEVELOPMENT_BUILD`);
@@ -77,10 +77,9 @@ Core Unity bağımlılığı taşımaz, UI iş kuralı içermez, kökte dosya b�
 
 ## 10. Prefab disiplini (kaynak §4'ün TAMAMI — varlık prefabına iznin fiyatı)
 
-İzin: prefab yalnız varlık olarak (efekt, tema, UI yaprağı), yalnız `Assets/Prefabs/`
-altında; sahne yine şablon varsayılanıdır, örnekleme koddan. Yarısını almak YOK —
-otonom executor'da kopan referansı fark edecek göz olmadığından maliyet insanlı
-projedekinden YÜKSEK:
+İzin: prefab yalnız varlık olarak, yalnız `Assets/Prefabs/` altında; sahne yine
+şablon varsayılanı, örnekleme koddan. Yarısını almak YOK — otonom executor'da kopan
+referansı fark edecek göz yok; maliyet insanlı projedekinden YÜKSEK:
 - Yeniden adlandırmada `[FormerlySerializedAs]` ZORUNLU.
 - Prefab düzenleyen her Editor script'i iki geçişli: salt-okunur Dump → idempotent
   Apply (iki koşu = aynı sonuç).

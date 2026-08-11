@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.6 — 2026-08-06, freeze korunuyor (yetkili istisna: DayamaOkey saha
-çerçevesi entegrasyonu — `docs/standards/kod-standardi.md` + kök `CLAUDE.md`;
-prefab varlık izni §13 fiyatının tamamıyla; P1 kuralı yol-kapsamlı hale geldi;
-ScriptableObject reddi açık yazılı). Takvim/insan-saat şerhleri sürüyor; yeni
-sayı sonda + standartlar sonrası. Geçmiş git'tedir (v1.0→v1.0.6).
+**Sürüm:** v1.0.7 — 2026-08-11, freeze korunuyor (düzeltme turu: tanımlayıcı dili
+kaynak kuralına çevrildi — İngilizce+ASCII tanımlayıcı, Türkçe yorum; CLAUDE.md 8.
+maddenin kapsamı "sahne referansı"yla netleşti (prefab-içi fileID bağlantılar §10'da
+meşru); kod-standardi §5'te MonoBehaviour kurucusu "kullanılamaz" olarak düzeltildi).
+Sayılar hâlâ şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
