@@ -26,10 +26,9 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
   çıktı + gerçekleşen çıktı ile düşer. Doğrulama ÇALIŞIR HALİ ölçer: dosya/liste
   çıktısı tek başına kanıt değildir, araç gerçekten koşturulur (Unity'de gate =
   batchmode çıkış kodu 0; listeleme yalnız ara kanıttır).
-- **Yarım kurulum kalamaz:** doğrulama çalışır hali ölçtüğü için yarım kurulum
-  bir sonraki koşuda "kurulu" sayılamaz. BAŞARISIZ'da rapora **"makinede bırakılan
-  durum"** bölümü eklenir: ne kuruldu, ne yarım kaldı, temizlik gerekiyorsa hangi
-  komutla.
+- **Yarım kurulum kalamaz:** doğrulama çalışır hali ölçer; yarım kurulum "kurulu"
+  sayılamaz. BAŞARISIZ'da rapora **"makinede bırakılan durum"** bölümü eklenir:
+  ne kuruldu, ne yarım kaldı, temizlik komutu.
 - **Kapı ön-bildirimi:** koşunun ilk işi, beklenen TÜM insan kapılarını tek mesajda
   saymak (kesin: ≥2 UAC; koşullu: hesaplar, satır 8'in ağ+AI kapıları). Sürpriz YOK.
 - **Bekleme disiplini:** ≥2 dk sürebilecek iş tek bloklayıcı komutla koşulmaz
@@ -47,7 +46,7 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 
 - **Fabrika dizini = bu reponun klonlandığı kök dizin;** mutlak yolu koşunun
   başında rapora yazılır (sınır iddia değil kayıttır). **İZİN VERİLEN:** tablodaki
-  9 satırın kurulumu ve doğrulanması; pin dosyası ve geçici doğrulama projeleri
+  10 satırın kurulumu ve doğrulanması; pin dosyası ve geçici doğrulama projeleri
   dahil yalnız fabrika dizini altında dosya/klasör oluşturmak.
 - **YASAK (insan onayı olmadan, her koşulda):** tabloda olmayan yazılım kurmak;
   herhangi bir yazılımı kaldırmak veya sürüm düşürmek; sistem ortam değişkenlerini
@@ -74,6 +73,7 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 | 7 | Unity 6000.3 LTS + Android modülü + Personal lisans | Hub headless: `--headless install --version <pin> --changeset <cs> --module android` (pin satır 6'dan) — **asenkron döner**: 60 sn'de bir yokla, azami 90 dk (10–15 GB iner); lisans genelde Hub oturumundan akar, akmazsa Hub GUI | ARA KANIT: `--headless editors --installed` çıktısında pinli sürüm + android modülü. GATE: fabrika dizini altında geçici boş projede `Unity.exe -batchmode -quit -logFile -` (proje silinmez — satır 8 de kullanır) | gate çıkış kodu **0** + lisans satırı (log) | Hub oturumu/UAC; Unity hesap oturumu (ilk sefer) |
 | 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, her komutu rapora yazar); sahne-düzenleme araçları KAPALI yapılandırılır; **Editor'ü executor başlatır** — satır 7'nin geçici projesinde deklare edilmiş EDITOR OTURUMU (insan kapısı DEĞİL, komut) | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki yöntem); sonra Editor kapatılır, `Temp/UnityLockfile`'ın kaybolduğu doğrulanır, geçici proje silinir | handshake + **araç listesinde sahne-düzenleme araçları kapalı/yok** (liste çıktısı rapora) + kilit-kayboldu kanıtı | (a) dokümanı okumak için web/ağ erişimi — oturumda izin/onay istenebilir; (b) MCP köprüsü Unity hesabında AI özelliklerinin etkin olmasını gerektirebilir (hesap seviyesi onay/uygunluk; BİLİNMİYOR, koşuda doğrulanır); hesap/kabul ekranı varsa |
 | 9 | VS Code + Claude Code | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
+| 10 | FFmpeg | `winget install --id Gyan.FFmpeg -e --silent` | `ffmpeg -version` | `ffmpeg version *` | PATH yeni terminalde akar; akmazsa insan (yeniden oturum) |
 
 ## Alanlar
 
@@ -83,7 +83,7 @@ komutu + UAC onayları için makine başında durması (kesin kapılar ön-bildi
 durum. Başlıkta makine kimliği = hostname + Windows sürümü + mimari
 (`PROCESSOR_ARCHITECTURE`). BAŞARISIZ satır yok; varsa "makinede bırakılan durum".
 **Yürüten:** otonom (işaretli insan kapıları hariç).
-**Geçiş kriteri:** tablodaki 9 satırın tamamı "doğrulandı" (satır 7'nin gate'i
+**Geçiş kriteri:** tablodaki 10 satırın tamamı "doğrulandı" (satır 7'nin gate'i
 batchmode çıkış kodu 0); rapor dosyada.
 **Geri kenarı:** üç durum yukarıda; kapı beklemesinin limiti yok ama her açık kapı
 raporda "bekleyen iş" olarak durur — sessizce unutulamaz; BAŞARISIZ'da hat durur,

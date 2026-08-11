@@ -45,6 +45,11 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `ses_lufs_band` | S1: bütünleşik yükseklik bandı (varsayılan -16 ± 1 LUFS) |
 | `ses_tepe_dbtp` | S1: tepe üst sınırı (varsayılan -1 dBTP) |
 | `ses_sfx_sure_tavan_sn` | S1: tekil SFX süre tavanı (varsayılan 2) |
+| `gorsel_palet_kademe` | G1: rol başına rampa kademe sayısı (varsayılan 5) |
+| `gorsel_siluet_doluluk_band` | G3: 32px silüet doluluk bandı (varsayılan %15–70) |
+| `gorsel_siluet_ceper_min` | G3: dış çeper/alan karmaşıklık alt sınırı (varsayılan 0.15) |
+| `gorsel_anim_kare_band` | G7: animasyon kare sayısı bandı (varsayılan 4–12) |
+| `gorsel_anim_dongu_ortusme` | G7: döngü başlangıç↔bitiş karesi örtüşme alt sınırı, % (varsayılan 90) |
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 

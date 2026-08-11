@@ -32,7 +32,9 @@ Kapsam: ilk sürüm tek dilde çıkar; dil, konsept kartında seçilir; çok dil
 - **B2 Ekran listesi + wireframe:** zorunlu ekranlar — ana menü, ayarlar
   (ses/müzik anahtarları), duraklat, gizlilik politikası bağlantısı, oyun-sonu
   (kazan/kaybet). Her ekran tek-kutu wireframe + geçiş okları. Son satır: kayıt
-  dayanıklılığı beyanı ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7).
+  dayanıklılığı beyanı ("ilerleme yalnız yerel, bulut yok" veya bulut şeması)(E7)
+  + renk-yalnız-bilgi beyanı (G6): tehlike/vurgu ayrımının biçim/ikon desteği —
+  ikili satır.
 - **B3 Matematik modeli:** zorluk eğrisi (seviye/dakika başarısızlık oranı hedefi),
   ilerleme temposu, hedef oturum uzunluğu + oturum/gün, ekonomi dengesi (kaynak
   giriş-çıkış tablosu), doğal reklam anı yoğunluğu (oturum başına). Hepsi SAYI;

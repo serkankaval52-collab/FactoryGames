@@ -1,10 +1,10 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.12 — 2026-08-11, freeze korunuyor (Alan 1: görsel sözleşme —
-`standards/gorsel-sozlesme.md` G1–G5 + S1; uyum ölçülür, güzellik ölçülmez;
-kaynak-bağımsız kapılar; palet/silüet/kontrast/atlas/ses lint'i şablon CI'ında,
-tutarlılık beyan doğruluğu Aşama 8'de; eşikler Ek C'de politika sabiti). Sayılar
-şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
+**Sürüm:** v1.0.13 — 2026-08-11, freeze korunuyor (Alan 1 saldırı düzeltmeleri:
+G1 artık renk rampası + alfa hariç; S1'in aracı FFmpeg kurulum satır 10'a girdi;
+G6 renk körlüğü simülasyonu + B2 renk-yalnız-bilgi beyanı; G4'e kaba-vekil
+şerhi; G3'e okunabilirlik üçlüsü, ikon mutlak testte; G7 animasyon varlığı).
+Sayılar şerhli; sıra kullanıcıda (kurulum → sonda). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
