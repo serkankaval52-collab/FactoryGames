@@ -1,8 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.0.19 — 2026-08-11, freeze korunuyor (Alan 3+4 düzeltmeleri: kural 30 teste çevrildi —
-A4.1, `tools/arac_suzgec.py`; form hakemi "telemetri kazanır" — A3.8; huni kanal başına + temas —
-A3.9; geçiş denetimi ağaç dosyasında: `docs/gecis-denetimi.md`). Sıra kullanıcıda. Geçmiş git'tedir.
+**Sürüm:** v1.0.20 — 2026-08-11; freeze korunuyor. Son değişiklik: Alan 5 — `docs/standards/ilk-kosu.md`
+(kapıların ilk-koşu davranışı: ÇALIŞTI/ŞERHLİ/VERİ-YOK; sessiz geçiş yok). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya yalnız sözleşme + kilit kararlar + indeks içerir. Aşama
 metinleri `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni
 yazmak yasaktır.
@@ -121,9 +120,8 @@ envanterleri Ek C'de izlenir.
 | `docs/stages/9.md` | 9 | Mağaza paketi, standart organik kit, gönderim |
 | `docs/stages/10.md` | 10 | Karar (raf/iyileştir/mağaza-öldür) + yatırım ofisi |
 
-Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md`
-(kapasite), `docs/appendix/C.md` (kaynak dosyası şeması). Denetim: `docs/gecis-denetimi.md`
-(Alan 4 geçiş yeterlilik tablosu; tekrar koşulur, fark diff'ten okunur).
+Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md` (kapasite), `docs/appendix/C.md`
+(kaynak dosyası şeması). Denetim: `docs/gecis-denetimi.md` (Alan 4 tablosu; tekrar koşulur, fark diff'ten).
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
 K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
 insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
@@ -134,7 +132,9 @@ zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md
 (görsel/ses uyum kapıları G1–G7 + S1; eşikler Ek C) + `docs/standards/premium-sozlesme.md`
 (davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı),
 `docs/standards/halka-standardi.md` (Aşama 5 halka metinleri: davet TR/EN, davranış formu,
-kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde).
+kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde),
+`docs/standards/ilk-kosu.md` (kapıların ilk-koşu/kalibrasyon-penceresi davranışı — Alan 5:
+ÇALIŞTI/ŞERHLİ/VERİ-YOK; "veri yok" "kapı geçti" sayılmaz).
 
 **Numara kayması notu (v0.10 → v0.11):** eski Aşama 2 (paralı sinyal testi) düştü — G2 + C2: kapı
 ucuz artefaktın önünde duruyordu; sosyal kanal Aşama 9'a taşındı. Eski 3→2, 4→3, 5→4, 6→5, 7→6, 8→7, 9→8, 10→9, 11→10.
