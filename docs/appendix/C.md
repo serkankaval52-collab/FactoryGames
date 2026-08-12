@@ -31,6 +31,7 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `insan_yanit_tavan_t3_gun` | A9 T3 veto azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
 | `insan_yanit_tavan_magaza_form_gun` | A9 mağaza formları + gönder azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
 | `insan_yanit_tavan_karar_gun` | A5 GEÇ/RAF onayı ve A10 karar oturumu azami dönüşü — kullanıcı taahhüdü (aynı disiplin) |
+| `insan_yanit_tavan_sanat_gun` | A2 öncesi sanat yönü turu azami dönüşü (tur başına; koşullu — aile başına; Belge 2/v1.2) — kullanıcı taahhüdü (aynı disiplin) |
 | `sosyal_video_hakki` | Oyun başına azami organik video sayısı/insan-saati (örn. 3) |
 | `rubrik_esik` | Aşama 8 eksen bazında asgari puan |
 | `olcum_penceresi_gun` | Aşama 10 pencere (örn. 14) |

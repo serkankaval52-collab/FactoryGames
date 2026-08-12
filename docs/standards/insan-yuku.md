@@ -16,6 +16,7 @@ bakım raporuna satır olarak düşer; kullanıcı kendi darboğazını görür 
 |---|---|---|---|
 | A1 veto | konsept kartını inceleme; itiraz isteğe bağlı | 24 sa (yazılı; sessizlik = onay) | zaman-aşımlı |
 | A1 yorum hasadı | metni executor hazırlar, gönderen KULLANICIDIR — kendi hesapları, kendi itibarı (A6 hükmü) | veto penceresiyle paralel, ≤48 sa (yazılı) | zaman-aşımlı |
+| A2 öncesi sanat yönü (koşullu) | aile paketi yoksa/eskiyse: 3-4 yön üretimi + 1-2 hibrit turu + 1 final — Claude Design'da kullanıcı koşar, metni executor hazırlar; paket aile başına, ikinci oyun yeniden kullanır (Belge 2, v1.2) | `insan_yanit_tavan_sanat_gun` × tur (taahhüt) | evet |
 | A3 lisans/hesap | lisans/şifre/hesap anı (koşullu; secrets pinliyse yok) | BİLİNMİYOR (koşullu) | koşullu |
 | A5 davet | kanal çağrısı/mesajı (hesaplar kullanıcının; metin halka-std) | `halka_davet_tavan_gun` (Ek C, taahhüt) — dolarsa eldeki N ile devam, N rapora yazılır, küçük örneklem şerhli (A6.4) | evet |
 | A5 toplama | pencere beklemesi; toplama/tablolama otonom | 48–72 sa (yazılı; halka-std §5) | hayır (duvar saati) |
@@ -48,19 +49,22 @@ bakım raporuna satır olarak düşer; kullanıcı kendi darboğazını görür 
 - **Taahhüt (A6.1):** kullanıcı-kaynaklı BİLİNMİYOR'lar bilinmez değil SORULMAMIŞ'tı — beş
   kalem 0A-6 TEK formunun insan-yanıt bölümünden Ek C `insan_yanit_tavan_*` alanlarına
   yazılır. Dış bilinmezler kalır: mağaza review (üçüncü taraf), halka/dış-göz yanıt hızı
-  (gönüllüler — ama artık tavanlı, A6.4).
+  (gönüllüler — ama artık tavanlı, A6.4). Sanat yönü alanı (Belge 2, v1.2) dönüşüm değil
+  yeni kapıdır; aynı form bölümünden yazılır, koşulludur (aile başına).
 - **Birleştirme:** A10 tek oturum (karar + Ek C formu + halka raporu + PR'lar); A9 tek
   oturum (T3 + formlar + gönder); A1 veto ↔ hasat örtüklüğü yazılı; kurulum ön-bildirimi
   tek mesaj. Ek birleşme adayı bulunamadı.
 
 ## 4. Kritik bekleme zinciri, ağırlık dağılımı ve kuyruk
 
-- **Zincir (koşu başına, sıralı):** A1 veto 24 sa → A5 pencere 48–72 sa → A8 turu (taahhüt)
-  → A9 review (Apple %90 ≤48 sa / Play ≤7 gün aralığı) → A10 pencere (örn. 14 gün, şerhli).
+- **Zincir (koşu başına, sıralı):** A1 veto 24 sa → A2 öncesi sanat yönü (koşullu, aile başına;
+  taahhüt × tur — Belge 2) → A5 pencere 48–72 sa → A8 turu (taahhüt) → A9 review (Apple %90
+  ≤48 sa / Play ≤7 gün aralığı) → A10 pencere (örn. 14 gün, şerhli).
 - **Ağırlık dağılımı (A6.2):** kaba alt sınır ≈20 gün ve bunun ≈14'ü TEK kalemde: ölçüm
   penceresi. Takvimin yaklaşık üçte ikisi oyun bittikten sonra beklemektir — uydurma değil,
   yazılı pencerelerin toplamıdır. BİLİNMİYOR kalan satırlar 0B darboğaz PR'ının doldurma
-  listesidir.
+  listesidir. Sanat yönü kalemi (Belge 2) bu alt sınıra KOŞULLU eklenir — yalnız ailenin
+  ilk oyununda (taahhüt × 2-3 tur); ikinci oyunda sıfırdır.
 - **Pencere WIP dışıdır (A6.3):** A10 ölçüm penceresindeki oyun WIP'i işgal ETMEZ — Sözleşme-9
   cümlesi orada. Pencerede üretim işi ve insan kapısı yoktur (karar oturumu pencere
   sonundadır); hat bu beklemede boş durmaz. Kuyruk ≤2 buna göre de tutar: eski oyunun A10

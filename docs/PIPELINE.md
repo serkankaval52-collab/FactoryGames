@@ -1,7 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.1.2 — 2026-08-12; yazım kazası düzeltmesi: doğruluk ölçümü simülasyonda, tat yargısı
-Aşama 8 rubriğinde kalır (tek satır; köprü talimatı). Geçmiş git'tedir.
+**Sürüm:** v1.2 — 2026-08-12; dış girdi yaması (Belge 1-2): sanat yönü standardı (aile başına
+paket, Aşama 2 kapı bağı), G8 yeniden üretilebilirlik, üretim yetkisi + eşik sağlaması. Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya sözleşme + kilit kararlar + indeks içerir; aşama metinleri
 `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/
@@ -129,12 +129,12 @@ insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 `docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi), `docs/standards/havuz.json`
 + `docs/standards/model-klise-defteri.md` (Aşama 1 kura havuzu + model klişeleri;
 zar `tools/kura.py`'dedir — model dışı), `docs/standards/gorsel-sozlesme.md`
-(görsel/ses uyum kapıları G1–G7 + S1; eşikler Ek C) + `docs/standards/premium-sozlesme.md`
+(görsel/ses uyum kapıları G1–G8 + S1; eşikler Ek C), `docs/standards/sanat-yonu.md` +
+`sanat-yonu/<aile>.md` (paletin kaynağı: aile başına onaylı sanat yönü paketi — beş aşamalı
+insan-kapısı süreci, Belge 2; Aşama 2 kapı bağı) + `docs/standards/premium-sozlesme.md`
 (davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı),
-`docs/standards/halka-standardi.md` (Aşama 5 halka metinleri: davet TR/EN, davranış formu,
-kurulum hunisi, kanallar (asgari 3 canlı), dış-göz metinsizlik testi; kayıtlar private ikizde),
-`docs/standards/ilk-kosu.md` (kapıların ilk-koşu/kalibrasyon-penceresi davranışı — Alan 5:
-ÇALIŞTI/ŞERHLİ/VERİ-YOK; "veri yok" "kapı geçti" sayılmaz), `docs/standards/insan-yuku.md`
-(insan dokunuşu envanteri — Alan 6: bekleme odaklı; kuyruk ≤2 tutarlılığı).
+`docs/standards/halka-standardi.md` (Aşama 5 halka metinleri + kanallar; kayıtlar private ikizde),
+`docs/standards/ilk-kosu.md` (Alan 5: ÇALIŞTI/ŞERHLİ/VERİ-YOK — "veri yok" "kapı geçti" sayılmaz),
+`docs/standards/insan-yuku.md` (Alan 6: insan dokunuşu envanteri; bekleme odaklı, kuyruk ≤2).
 
 **Numara kayması (v0.10 → v0.11):** eski 2 (paralı sinyal testi) düştü; sosyal kanal 9'a; eşleme git'tedir.
