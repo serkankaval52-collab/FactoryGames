@@ -33,3 +33,25 @@ Kapıların kullandığı tüm araçlar kurulum tablosunda: python → satır 4;
 MCP → 8; git/gh → 2–3; winget → 1; FFmpeg → 10; gcloud → 11. robocopy/PowerShell Windows yerleşik;
 xcodebuild macOS runner yerleşik; repo-içi scriptler (kura/marker/report) python üzerinden koşar.
 Eksik YOK — bir sonraki taramada bu bölüm `arac_suzgec.py` çıktısıyla güncellenir.
+
+## v1.3 — 2026-08-12 (kör-nokta turu; GG1–GG10 ilk tam geçiş)
+
+Üçlü düzenin dağılışı (kullanıcı kararı) sonrası kalıcı saldırı sistemi kuruldu:
+`docs/kor-nokta-analizi.md` (KN1–KN10, kanıt etiketli) + `docs/standards/gozden-gecirme.md`
+(GG1–GG10). İlk tam tur bulguları:
+
+| Mercek | Bulgu | Aksiyon |
+|---|---|---|
+| GG1 | Uyumlu: Ek C etiketleri tam; açık borç tek kalem (ses_* — kayıtlı) | izleme sürer |
+| GG2 | SANAT TETİKLEYİCİ EKSİK: paket kapısı 2.md'de ama sürecin ne zaman AÇILDIĞI yazılı değildi | v1.3.1: sanat-yonu'na tetikleyici cümlesi |
+| GG3–GG4 | Uyumlu: G8 (parametreli manifest + örneklem) ve 6.md yetki kapanışı v1.2'de işlendi | — |
+| GG5 | Uyumlu: V3 sağlaması 0A'ya girdi (kullanıcı onayı koşuluyla) | — |
+| GG6 | Uyumlu: sanat yönü satırı insan-yuku §1'de (v1.2) | — |
+| GG7 | Erteleme taraması temiz: bekleyen her kalem şerhli (Ek B/C sonda kalibrasyonu; ÖLÇEK borçları) | — |
+| GG8 | Sanat kapısı üç-durum kapsamı dışı: paket önkoşuldur, ölçüm kapısı değil (gerekçe: paket yoksa üretim başlamaz) | kayıt |
+| GG9 | Uyumlu: canlı süpürmeler yeşil (arac_suzgec 33 dosya; esik kapsama 55/55) | — |
+| GG10 | Bu turun kendisi; yürütücü değişikliği PIPELINE/kurulum/sonda/BRIEF'e işlendi | — |
+
+1 → 2 geçişi güncellendi (v1.2 sonrası): Aşama 2 kapısı artık ailenin ONAYLI sanat yönü
+paketini ister (koşullu insan kapısı; sanat-yonu.md) — tablodaki "1 → 2 EVET" satırı
+buna göre okunur (paket yoksa kapı kırmızı; bu bir eksik değil, tasarımdır).

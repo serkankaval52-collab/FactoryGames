@@ -5,8 +5,8 @@ onaylı paket (10 bölüm: hex paleti + oranlar, kontur, gölgeleme, silüet/geo
 doku, ışıklandırma, obje/ekran tablosu, hibrit köprüsü, URP 2D yol haritası,
 referans eserler).
 
-Üreten: kullanıcı (Claude Design turları; executor metni hazırlar, süremez — insan
-kapısı, insan-yuku §1). Tüketen: Aşama 2 — palette.json + manifest üçlüsü buradan
+Üreten: kullanıcı onayı + görsel-model oturumu (v1.3'ten itibaren Arena turları; araç adı
+sabit değil — insan kapısı, insan-yuku §1). Tüketen: Aşama 2 — palette.json + manifest üçlüsü buradan
 alınır; dosya yoksa veya aile için eskiyse kapı KIRMIZI (sanat-yonu.md "Kurallar").
 
 Ek A aile başına ≤2 canlı oyun aynı paketi kullanır; ikinci oyun yeni tur koşmaz.

@@ -11,10 +11,11 @@ palet de sanat yönü kararından gelir.
 verir; paket iki oyuna hizmet eder, insan maliyeti yarıya iner. Paket dosyası
 `docs/standards/sanat-yonu/<aile>.md` — ikinci oyun onu yeniden kullanır, yeni tur koşmaz.
 
-**Yürüten (c): İNSAN KAPISIDIR.** Claude Design ayrı arayüzdür — executor süremez,
-kullanıcı koşar; talep metinlerini executor hazırlar, gönderen kullanıcıdır (1.md hasat
-hükmüyle aynı disiplin). Muhasebe: insan-yuku.md §1 satırı; turlar 1-2 hibrit + 1 final;
-bekleme tavanı Ek C `insan_yanit_tavan_sanat_gun` (tur başına, kullanıcı taahhüdü).
+**Yürüten (c): İNSAN KAPISIDIR.** Süreç görsel üretebilen bir model oturumunda koşulur;
+araç adı sabit değildir (Belge 2'deki "Claude Design" örnekti — v1.3'ten itibaren kullanıcı
+↔ Arena oturumu): yönleri model üretir, seçim/hibrit/final onayı KULLANICININDIR (1.md
+hasat hükmüyle aynı sahiplik disiplini). Muhasebe: insan-yuku.md §1 satırı; turlar 1-2
+hibrit + 1 final; bekleme tavanı Ek C `insan_yanit_tavan_sanat_gun` (tur başına, taahhüt).
 
 ## Beş aşama — her aşama AYRI mesaj (ucuz turlar tekrarlanır; paket bir kez istenir)
 

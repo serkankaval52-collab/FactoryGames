@@ -1,7 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.2 — 2026-08-12; dış girdi yaması (Belge 1-2): sanat yönü standardı (aile başına
-paket, Aşama 2 kapı bağı), G8 yeniden üretilebilirlik, üretim yetkisi + eşik sağlaması. Geçmiş git'tedir.
+**Sürüm:** v1.3 — 2026-08-12; yeni düzen: tek yürütücü (kullanıcı kararı) + kalıcı saldırı sistemi
+(GG1–GG10 mercekleri, `standards/gozden-gecirme.md`; dersler `kor-nokta-analizi.md`). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya sözleşme + kilit kararlar + indeks içerir; aşama metinleri
 `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/
@@ -33,7 +33,7 @@ envanterleri Ek C'de izlenir.
 | Repo | Fabrika ≠ kitaplık ≠ oyun: FactoryGames = fabrika (doküman/araç), `factory.core` = ayrı public repo (UPM), oyunlar ayrı repo | UPM tam-repo klonu şişmesin; ÖLÇEKLE private kararı bağımlılığı kırmasın (L4) |
 | CI | Public dönemde hosted runner ücretsiz; ÖLÇEKLE'de private | Bedel: kaynak açık → reskin/klon riski public dönemin fiyatı |
 | Varlık | T1 çok-kaynaklı CC0 + zorunlu transform; T2 sentez SFX; T3 mağaza yüzeyi (insan vetolu) | Otonomluk + "asset flip" deseninden kaçış |
-| Executor | VS Code Claude Code (Opus); Unity MCP yalnız gözlemci | Kod-öncelikli kural |
+| Executor | VS Code'da kod ajanı (model pin'i kurulum aşamasında kullanıcıyla sabitlenir); Unity MCP yalnız gözlemci | Kod-öncelikli kural |
 | İki durum | Proje ya EDITOR OTURUMU'nda (MCP canlı; batchmode YASAK) ya BAŞSIZ'da (Editor kapalı; test/bot batchmode'da, MCP yok) | Aynı proje aynı anda tek süreçle açılır (UnityLockfile); bekçi = lockfile, geçişler damgalanır |
 | iOS | GH Actions macOS runner + xcodebuild + ASC API key | Test: TestFlight internal (iPhone 15) |
 | Hesaplar | Mevcut bireysel Play + Apple hesapları (ikisinde de yayında oyun); org dönüşümü = ÖLÇEK borcu | Kişisel→org Console içinde tek yönlü mümkün; aciliyet yok. 0A doğrulaması: yeni uygulamada üretim sekmesi açık mı |
@@ -72,8 +72,7 @@ envanterleri Ek C'de izlenir.
 5. **Hata→test yükseltmesi:** her kapı reddi ve post-mortem bulgusu: (a) lint/test
    (önce-kırmızı kanıtlı PR), (b) kontrol listesine tek satır, (c) CLAUDE.md kuralı
    (son çare, tavana tabi). Kayıt kaynak PR no taşır.
-6. **MCP kopması:** zorunlu adım MCP'ye bağımlı olamaz; `FALLBACK.md` CLI eşdeğerleri
-   geçerlidir.
+6. **MCP kopması:** zorunlu adım MCP'ye bağımlı olamaz; `FALLBACK.md` CLI eşdeğerleri geçerlidir.
 7. **Öğrenme akışı:** post-mortem/öğrenme PR'ı FactoryGames'e; `factory.core` sürümü
    ve telemetri özeti içerir. Oyun reposu arşivlenince ders ölmez.
 8. **Para:** hat standart akışta **para harcamaz**; para yalnız Aşama 10 yatırım
@@ -135,6 +134,6 @@ insan-kapısı süreci, Belge 2; Aşama 2 kapı bağı) + `docs/standards/premiu
 (davranış bileşenleri P1–P9 + başsız↔cihaz ölçüm ayrımı; ikisi bağlı),
 `docs/standards/halka-standardi.md` (Aşama 5 halka metinleri + kanallar; kayıtlar private ikizde),
 `docs/standards/ilk-kosu.md` (Alan 5: ÇALIŞTI/ŞERHLİ/VERİ-YOK — "veri yok" "kapı geçti" sayılmaz),
-`docs/standards/insan-yuku.md` (Alan 6: insan dokunuşu envanteri; bekleme odaklı, kuyruk ≤2).
-
-**Numara kayması (v0.10 → v0.11):** eski 2 (paralı sinyal testi) düştü; sosyal kanal 9'a; eşleme git'tedir.
+`docs/standards/insan-yuku.md` (Alan 6: insan dokunuşu envanteri; bekleme odaklı, kuyruk ≤2),
+`docs/standards/gozden-gecirme.md` (v1.3: kalıcı saldırı geçişleri GG1–GG10; köprü sonrası
+dış-denetim boşluğunu sistemleştirir; kayıtlar `gecis-denetimi.md` + `kor-nokta-analizi.md`).

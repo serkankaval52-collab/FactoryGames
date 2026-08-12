@@ -1,6 +1,6 @@
 # AŞAMA -1 — SONDA (tek seferlik; 0A'dan ÖNCE)
 
-**Amaç:** Claude Code, Sözleşme-2 kurallarıyla (tek kaynak; sahne değiştirilmez;
+**Amaç:** Executor (kod ajanı), Sözleşme-2 kurallarıyla (tek kaynak; sahne değiştirilmez;
 JSON veri; MCP gözlemci) gri kutu döngü üretebiliyor mu — ÖLÇMEK. Ölçmeden 0A'ya girilmez.
 
 ## Önkoşullar (raporda her biri tik işaretlenir)

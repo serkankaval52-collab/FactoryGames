@@ -1,12 +1,12 @@
 # AŞAMA -2 — ORTAM KURULUMU (tek seferlik; makine başına; sondadan ÖNCE)
 
-Kullanıcı VS Code'daki Claude Code'a "başla" dediğinde fabrikanın İLK ADIMI budur:
+Kullanıcı VS Code'daki kod ajanı (executor) oturumuna "başla" dediğinde — İLK ADIM budur:
 kendi ortamını denetle, eksikse kur, kurduğunu iddia etme — KANITLA. Makine
 değişirse yalnız bu dosya tekrar koşulur; 0A değil.
 
 **Ön-durum (giriş noktası):** fabrika reposu klonlanmış; VS Code klonun kökünde
-açık; Claude Code oturumu bu projede. Satır 2 (Git) ve 9 (VS Code + Claude
-Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyidi.
+açık; kod ajanı oturumu bu projede. Satır 2 (Git) ve 9 (VS Code + executor) bu
+ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyidi.
 
 ## Çalışma kuralları
 
@@ -71,7 +71,7 @@ Code) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyid
 | 6 | Unity LTS pini | İLK İŞ `--headless editors --installed`: kurulu bir 6000.3 varsa **PİN ODUR** — arşive hiç gidilmez; sürüm listeden, changeset editör dizinindeki `modules.json` URL'sinden (yedek: satır 7 gate log'undaki `Initialize engine version` satırı) okunur. Hiç 6000.3 yoksa resmî sürüm arşivinden güncel 6000.3 yaması + changeset okunur. `docs/probe/unity-pin.txt`'e `6000.3.xfN — <changeset>` yazılır; **dosya varsa tekrar okunmaz/değiştirilmez** (tek seferlik kilit) | pin dosyası okunur; kuruluysa mevcut kurulumla eşleştiği teyit edilir | dosya mevcut + format doğru | Ağ erişimi yoksa pini insan girer |
 | 7 | Unity 6000.3 LTS + Android modülü + Personal lisans | Hub headless: `--headless install --version <pin> --changeset <cs> --module android` (pin satır 6'dan) — **asenkron döner**: 60 sn'de bir yokla, azami 90 dk (10–15 GB iner); lisans genelde Hub oturumundan akar, akmazsa Hub GUI | ARA KANIT: `--headless editors --installed` çıktısında pinli sürüm + android modülü. GATE: fabrika dizini altında geçici boş projede `Unity.exe -batchmode -quit -logFile -` (proje silinmez — satır 8 de kullanır) | gate çıkış kodu **0** + lisans satırı (log) | Hub oturumu/UAC; Unity hesap oturumu (ilk sefer) |
 | 8 | Resmî Unity MCP köprüsü | Unity'nin **güncel resmî dokümanındaki** adımlar (executor dokümanı okur, her komutu rapora yazar); sahne-düzenleme araçları KAPALI yapılandırılır; **Editor'ü executor başlatır** — satır 7'nin geçici projesinde deklare edilmiş EDITOR OTURUMU (insan kapısı DEĞİL, komut) | Editor açıkken köprü uç noktası canlı + araç listesi sorgusu (dokümandaki yöntem); sonra Editor kapatılır, `Temp/UnityLockfile`'ın kaybolduğu doğrulanır, geçici proje silinir | handshake + **araç listesinde sahne-düzenleme araçları kapalı/yok** (liste çıktısı rapora) + kilit-kayboldu kanıtı | (a) dokümanı okumak için web/ağ erişimi — oturumda izin/onay istenebilir; (b) MCP köprüsü Unity hesabında AI özelliklerinin etkin olmasını gerektirebilir (hesap seviyesi onay/uygunluk; BİLİNMİYOR, koşuda doğrulanır); hesap/kabul ekranı varsa |
-| 9 | VS Code + Claude Code | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
+| 9 | VS Code + executor (kod ajanı) | Kurulu varsayılır (bu oturum orada koşuyor) | `code --version` | sürüm satırı | — |
 | 10 | FFmpeg | `winget install --id Gyan.FFmpeg -e --silent` | `ffmpeg -version` | `ffmpeg version *` | PATH yeni terminalde akar; akmazsa insan (yeniden oturum) |
 | 11 | Google Cloud SDK + Test Lab hazırlığı (A2.1 — premium ölçüm cihazı) | `winget install --id Google.CloudSDK -e --silent`; sonra executor: `gcloud auth login` (insan kapısı) → proje yoksa `gcloud projects create fg-probe-<rastgele>` (Spark — fatura hesabı KURULMAZ) → `gcloud config set project <id>` → `gcloud services enable testing.googleapis.com toolresults.googleapis.com`; gcloud yetkisi yalnız Test Lab kapsamında kullanılır (Yetki sınırı) | `gcloud auth list` + `gcloud config get-value project` + `gcloud firebase test android models list` | "Credentialed" hesap satırı + `fg-probe-*` kimliği + model tablosu (yetkisiz/API-kapalıysa tablo GELMEZ — kanıt budur) | Tarayıcı onayı KESİN; proje adı çakışırsa yeni ad seçilir |
 
