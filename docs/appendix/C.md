@@ -77,6 +77,37 @@ düşer ve eski tahminle ölçüm yan yana not edilir.
 | `uygulama_boyut_tavan_mb` | R8: APK/IPA boyut bütçesi |
 | `ortusme_esik_yuzde` | R6: fabrika içi varlık/palet örtüşme üst sınırı (%) |
 
+### Politika sabitleri — kaynak etiketleri (devir yaması)
+
+Her sabit şu kümelerden tam birine girer; etiketsiz sabit yoktur. `insan_yanit_tavan_*` +
+`halka_davet_tavan_gun` ayrı kümedir: kullanıcı taahhüdü (A6.1/A6.4 — ölçülecek değil, vaat
+edilecek). Bugünkü dağılım:
+
+- **muhakeme (hat kararı):** `reklam_siklik_tavan`, `reklam_arasi_min_sn`,
+  `reklam_ilk_gun_sifir_turler`, `uygulama_boyut_tavan_mb`, `ortusme_esik_yuzde`,
+  `gorsel_palet_disi_piksel_yuzde`, `gorsel_alpha_sacak_yuzde`, `gorsel_atlas_doluluk_yuzde`,
+  `gorsel_palet_kademe`, `gorsel_siluet_doluluk_band`, `gorsel_siluet_ceper_min`,
+  `gorsel_anim_kare_band`, `gorsel_anim_dongu_ortusme`, `ses_sfx_sure_tavan_sn`,
+  `premium_tepki_kare_tavan`, `premium_gecis_sure_band`, `premium_kare_hizi_secenek`,
+  `premium_kare_tutarlilik_payi`, `min_spec_cihaz` (muhakemeli referans seçim), `ekran_tablet_dahil`,
+  `ekran_katlanabilir_dahil`, `ilk_surum_diller` (kullanıcı kararı — A3.6), `ses_lufs_band`,
+  `ses_tepe_dbtp` (sektör kalıbı ama ağaçta TARİHLİ KAYNAK YOK — açık borç; kaynak atanınca
+  "dış kaynak" kümesine taşınır).
+- **dış kaynak + tarih:** `gorsel_kontrast_ana_ozne`, `gorsel_kontrast_ui_metin` (WCAG — hücrede
+  adlı), `ekran_enboy_min`, `ekran_enboy_max`, `ekran_matris_min_hucre`, `dokunma_hedef_min_mm`
+  (StatCounter 2026-08 taraması + Material erişilebilirlik — hücrelerde adlı), `ekran_centik_varsayimi`
+  (platform gerçeği: safeArea), `testlab_gunluk_kota_fiziksel` (Firebase kota dokümanı, 2026-08),
+  `min_spec_testlab_pin` (ilk koşu `gcloud` çıktısı → kullanıcı onaylı pin).
+- **ölçüm bekliyor (kalibrasyon adayı):** `gorsel_siluet_fark_orani`, `premium_ses_esik_ms`,
+  `premium_soguk_acilis_sn` — ilk 3 koşu; kapanış ilk-kosu.md §3 disipliniyle.
+- **simülasyon:** Bölüm-1 sabiti henüz bu kümede değil (B8 oyun seviyesinde koşar).
+
+**Simülasyona çevrilebilir aday listesi (şimdi yazılmıyor — kayıt):** `reklam_*` tempo üçlüsü
+(oturum uzunluğu ↔ sıklık/aralık tutarlılığı; örn. kısa oturumda min-90-sn aralığı tavan-3 ile
+kendi içinde sınanabilir), `gorsel_siluet_doluluk_band` + `gorsel_siluet_ceper_min` (üretilebilir
+silüet uzayı sayılabilir), `gorsel_anim_kare_band` (kare × hedef fps → algılanan süre modeli).
+Dönüştürme kararı kullanıcıdadır; Ek C yazım disiplini korunur.
+
 ## Bölüm 2 — İstisna girdileri (varsayılan KAPALI; yalnız yatırım ofisi açar)
 
 | Alan | Anlam |

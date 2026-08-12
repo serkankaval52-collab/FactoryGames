@@ -27,7 +27,12 @@ metni bulunamaz (lint kapısı — kod-standardi §6). Çok dil genişlemesi Aş
   B3'te sayılandırılır; takası olmayan konsept geçemez — reklam döngünün
   parçası olarak tasarlanır, sonradan yapıştırılmaz (E4).
 
-## Bölüm B — GDD zorunlu bölümleri (Aşama 2 plan belgesi; 7 bölüm)
+## Bölüm B — GDD zorunlu bölümleri (Aşama 2 plan belgesi; 8 bölüm + açılış kuralı)
+
+- **B0 Kanıtla başlama (devir yaması):** GDD konseptle değil KANITLA açılır — ilk
+  bölüm B8'in simülasyon çıktı tablosudur (ne ölçüldü / sonuç / tasarıma etkisi /
+  hangi kilitli karar geri alındı); B3 sayıları bu tablodan alıntılanır. Sabitle
+  oynamaya kalkan uygulayıcı ilk okuduğu şeyde neden değiştiremeyeceğini görür.
 
 - **B1 FTUE:** ilk 60 saniyenin adım adım akışı; her adım "metin okumadan
   anlaşılır mı" işaretli. Okuma gerektiren adım ya metinsizleştirilir ya açıkça
@@ -63,11 +68,22 @@ metni bulunamaz (lint kapısı — kod-standardi §6). Çok dil genişlemesi Aş
   hücrelerinde taşmadan çizilir. Kanıt red-flag R9'da verilir (G1). Hedef kare
   hızı beyanı da bu bölümdedir (Ek C `premium_kare_hizi_secenek` — P6'nın
   bütçesinin kaynağı; A2.3).
+- **B8 Denge doğrulayıcısı (devir yaması):** "iki modelin mutabakatı tek
+  simülasyondan zayıf kanıttır" — B3'ün her SAYISI `tools/denge_sim.py` çıktısından
+  gelir (oyun reposunda taşınır; içerik domain'e göre değişir, yapı sabittir:
+  (i) ürünü etkileyen sabitler dosyanın en üstünde, tek yerde; (ii) çekirdek
+  kuralı modelleyen minimal fonksiyon; (iii) ≥3 alternatif değerin yan-yana
+  karşılaştırması; (iv) açık eşikli PASS/FAIL + GDD'den bu dosyaya atıf). Simüle
+  edilemeyen sayı "simüle edilemez, gerekçe: …" satırı taşır; gerekçesiz tahmin
+  sayı = kırmızı. Değişim kontrolü: sabit değişirse sim yeniden koşar; sayının
+  hangi bantta kalması gerektiği GDD'ye yazılır; kapı A7 CI listesinde ve A9
+  gönderim öncesinde tekrar koşar (tek seferlik değildir).
 
 ## Kapı disiplini
 
 Eksik alan, TBD veya çapraz tutarsızlık (ör. B5 sınırının Ek C'yi aşması, K1
-beyanıyla stil ailesinin çelişmesi) = kapıdan dönme. Bu standart doğruluk/tat
-ÖLÇMEZ; varlık + tutarlılık ölçer. "Çevrilemeyen" maddeler (gerçekten oyun mu,
+beyanıyla stil ailesinin çelişmesi) = kapıdan dönme. B3 sayısı için kaynak denetimi (B8):
+`denge_sim.py` çıktısı veya gerekçeli "simüle edilemez" satırı — ikisi de yoktur. Doğruluk/tat
+ölçümü artık simülasyondadır (devir yaması); bu standart varlık + tutarlılık + kaynak ölçer. "Çevrilemeyen" maddeler (gerçekten oyun mu,
 profesyonel mi, zanaat iyi mi) bilinçli yoktur: vekilleri Bölüm A/B'de, yargıları
 Aşama 8'dedir.

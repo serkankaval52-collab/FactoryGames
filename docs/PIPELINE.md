@@ -1,7 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.1 — 2026-08-11; altı alanlık derin gözden geçirme tamam (etiket mesajı v1.1'de;
-Alan 6 düzeltmeleri A6.1–A6.4 + iki hüküm işlendi). Geçmiş git'tedir.
+**Sürüm:** v1.1.1 — 2026-08-12; devir yaması (3. hat belgesi): B8 denge doğrulayıcı + GDD
+kanıtla açılır (B0) + değişim kontrol kapısı (A7/A9) + Ek C kaynak etiketleri. Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya sözleşme + kilit kararlar + indeks içerir; aşama metinleri
 `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/
@@ -123,7 +123,7 @@ envanterleri Ek C'de izlenir.
 Ekler: `docs/appendix/A.md` (4.3 rotasyon aritmetiği), `docs/appendix/B.md` (kapasite), `docs/appendix/C.md`
 (kaynak dosyası şeması). Denetim: `docs/gecis-denetimi.md` (Alan 4 tablosu; tekrar koşulur, fark diff'ten).
 Standartlar: `docs/standards/tasarim-standardi.md` (Aşama 1–2 kapı alanları
-K1–K3 / B1–B7), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
+K1–K3 / B1–B8), `docs/standards/red-flag.md` (Aşama 7 politika listesi R1–R9;
 insan maddeleri R2b/R4 Aşama 8'de yaşar), `docs/standards/kod-standardi.md`
 (saha doğrulamalı kod kuralları §1–§10; kök `CLAUDE.md` executor kuralları),
 `docs/standards/yasak-liste/` (Aşama 1 aylık klişe arşivi), `docs/standards/havuz.json`
