@@ -17,6 +17,11 @@ araç adı sabit değildir (Belge 2'deki "Claude Design" örnekti — v1.3'ten i
 hasat hükmüyle aynı sahiplik disiplini). Muhasebe: insan-yuku.md §1 satırı; turlar 1-2
 hibrit + 1 final; bekleme tavanı Ek C `insan_yanit_tavan_sanat_gun` (tur başına, taahhüt).
 
+**Tetikleyici (GG2 bulgusu, v1.3.1):** yeni stil ailesinin kartı Aşama 1'den çıktığında
+(veto + hasat kapandığında) Aşama 2 ÖNCESİ bu süreç açılır; onaylı paketi olan ailede
+tur koşulmaz. Kapının kendisi `docs/stages/2.md` geçiş kriterindedir — burası başlangıç
+anıdır; ikisi birlikte okunur (süreç-kapı çifti, GG4 disiplini).
+
 ## Beş aşama — her aşama AYRI mesaj (ucuz turlar tekrarlanır; paket bir kez istenir)
 
 1. **İhtiyaç tanımı:** konsept brifi Aşama 1 kartından türer — tür + temel mekanik
