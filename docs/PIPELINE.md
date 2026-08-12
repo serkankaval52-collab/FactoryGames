@@ -1,7 +1,7 @@
 # FactoryGames — Üretim Hattı (PIPELINE)
 
-**Sürüm:** v1.1.1 — 2026-08-12; devir yaması (3. hat belgesi): B8 denge doğrulayıcı + GDD
-kanıtla açılır (B0) + değişim kontrol kapısı (A7/A9) + Ek C kaynak etiketleri. Geçmiş git'tedir.
+**Sürüm:** v1.1.2 — 2026-08-12; yazım kazası düzeltmesi: doğruluk ölçümü simülasyonda, tat yargısı
+Aşama 8 rubriğinde kalır (tek satır; köprü talimatı). Geçmiş git'tedir.
 **Dosya düzeni:** bu dosya sözleşme + kilit kararlar + indeks içerir; aşama metinleri
 `docs/stages/`, ekler `docs/appendix/` altındadır. Bu dosyaya aşama metni yazmak yasaktır.
 **Okuma kapsamı:** executor her koşuda bu dosyayı + `docs/stages/<aktif>.md` + gerekli eki/

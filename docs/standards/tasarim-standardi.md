@@ -83,7 +83,7 @@ metni bulunamaz (lint kapısı — kod-standardi §6). Çok dil genişlemesi Aş
 
 Eksik alan, TBD veya çapraz tutarsızlık (ör. B5 sınırının Ek C'yi aşması, K1
 beyanıyla stil ailesinin çelişmesi) = kapıdan dönme. B3 sayısı için kaynak denetimi (B8):
-`denge_sim.py` çıktısı veya gerekçeli "simüle edilemez" satırı — ikisi de yoktur. Doğruluk/tat
-ölçümü artık simülasyondadır (devir yaması); bu standart varlık + tutarlılık + kaynak ölçer. "Çevrilemeyen" maddeler (gerçekten oyun mu,
-profesyonel mi, zanaat iyi mi) bilinçli yoktur: vekilleri Bölüm A/B'de, yargıları
-Aşama 8'dedir.
+`denge_sim.py` çıktısı veya gerekçeli "simüle edilemez" satırı — ikisi de yoktur. Doğruluk ölçümü
+artık simülasyondadır (devir yaması); tat yargısı Aşama 8 rubriğinde kalır. Bu standart varlık +
+tutarlılık + kaynak ölçer. "Çevrilemeyen" maddeler (gerçekten oyun mu, profesyonel mi, zanaat iyi mi)
+bilinçli yoktur: vekilleri Bölüm A/B'de, yargıları Aşama 8'dedir.
