@@ -145,4 +145,6 @@ halka-envanteri v0) için yetki: **`docs/factory/standartlar/*.md` (TASLAK damga
 önek `0a:`)**. Kurallar: mevcut standartlar yeniden YAZILMAZ, atıf yapılır
 (TEK-KAYNAK — defter 8 ekseni Ek A'dan, rubrik gozden-gecirme'den, halka
 halka-standardi'dan türer); kullanıcı-formu alanları `FORM-BEKLIYOR` placeholder'ı +
-L8 etiketiyle durur; mimar incelemesi geçmeden dosya "standart" sayılmaz.
+L8 etiketiyle durur; mimar incelemesi geçmeden dosya "standart" sayılmaz. Teamül
+(v1.4.5): `docs/factory/standartlar/*.md` için de ≤90 satır ruhu aynen geçerli — CI
+bu ağacı zorlamaz, disiplin zorlanır; aşan dosya bilgi kaybettirmeden budanır.
