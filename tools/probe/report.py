@@ -281,7 +281,7 @@ def main() -> int:
     dk = "yeşil" if kapi <= KAPI_OK else ("kırmızı" if kapi > KAPI_FAIL else "sarı")
     A(f"| İnsan müdahalesi (birincil) | {kapi} | `.markers/insan-kapisi-N.ts` | ≤{KAPI_OK} / >{KAPI_FAIL} | {dk} |")
     cc = "ölçülemedi (isteğe bağlı)" if transcript_n is None else str(transcript_n)
-    A(f"| İnsan metin mesajı (çapraz kontrol) | {cc} | koşu penceresi; beklenen ≈ 1+kapı | transkript: `{args.transcript}` | {'sarı' if capraz_uyusmaz else 'yeşil'} |")
+    A(f"| İnsan metin mesajı (çapraz kontrol) | {cc} | transkript: `{args.transcript}` | koşu penceresi; beklenen ≈ 1+kapı | {'sarı' if capraz_uyusmaz else 'yeşil'} |")
     mcp_val = f"{len(sessions)} oturum, toplam {fmt_dur(sum(sessions) if sessions else 0.0)}"
     if not sessions:
         mcp_val = "tetiklenmedi (bulgu)"

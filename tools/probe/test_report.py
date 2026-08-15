@@ -224,6 +224,20 @@ class TestKararSinirlari(unittest.TestCase):
         self.assertNotIn("sayım tutarsız", m)
         self.assertEqual(r.returncode, 0)
 
+    def test_17_sutun_sirasi(self):  # v1.3.9 / executor bulgusu: sütun kayması
+        tj = os.path.join(self.probe, "transcript.jsonl")
+        yaz_transkript(tj, [
+            {"type": "user", "timestamp": "2099-01-01T00:00:00Z",
+             "message": {"content": [{"type": "text", "text": "sonda baslasin"}]}},
+        ])
+        r = run_report_t(self.probe, self.proj, self.xml, tj)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        satir = next(s for s in rapor(self.probe).splitlines() if "çapraz kontrol" in s)
+        alanlar = [a.strip() for a in satir.split("|")]
+        # tablo: | Metrik | Değer | Kaynak artefakt | Sınır | Durum |
+        self.assertTrue(alanlar[3].startswith("transkript:"), satir)  # Kaynak artefakt
+        self.assertIn("beklenen", alanlar[4])                         # Sınır
+
 
 def yaz_transkript(yol, kayitlar):
     with open(yol, "w", encoding="utf-8") as f:
