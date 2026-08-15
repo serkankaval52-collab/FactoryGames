@@ -23,8 +23,8 @@ Tek ekran, tek input (tap/hold), skor + fail + restart, 60–90 sn döngü; sahn
 
 **Proje topolojisi (değişmez):** proje repo DIŞINDA (`../probe-project`,
 `-createProject` ile); sahneye elle DOKUNMAZ. URP dahil motor ayarları sürümlü
-setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler:
-`docs/probe/` altında rapor, `unity-pin.txt`, `kaynak/`, `scene-baseline.json`.
+setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler: `unity-pin.txt`, `kaynak/`, `scene-baseline.json`;
+raporun maskeli kopyası `raporlar/` kanalından (v1.3.5) — ham `rapor.md` kimlik izlidir (lockfile yolu), YEREL.
 `.markers/` YERELDİR, repoya girmez — ham içerikleri raporun "Marker ham kayıtları"
 tablosundadır (Sözleşme-10). Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
 docs/probe/kaynak *.cs *.json *.unity *.asset *.meta *.prefab /S`.

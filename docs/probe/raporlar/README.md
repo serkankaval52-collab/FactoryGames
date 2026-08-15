@@ -78,3 +78,15 @@ Araç sürümleri, komutlar, çıkış kodları, süreler, dal/HEAD maskelenMEZ 
 Uzun koşularda append-only günlük: `docs/probe/runlog/<asama>.log` (yerel, gitignore'lu).
 Her adım tek satır: `damga | komut | beklenen | gerçekleşen`. Bağlam özetlenirse hat bu
 dosyadan sürer; özet mimar kopyasına taşınır, ham günlük makinede kalır.
+
+## Aşama yetki genişlemesi — SONDA (2026-08-15 genelgesi)
+
+Sonda koşusu boyunca executor'ün push kapsamı şunlarla genişler (dal/etiket/8-adım
+protokolü aynen; maske taraması commit'lenen TÜM metinlerde 0 eşleşme şartıyla):
+- `presets/unity-<pin>/` (ilk koşu preset çıkarımı + README), `docs/probe/kaynak/`,
+  `docs/probe/scene-baseline.json`, `docs/probe/unity-pin.txt`
+- Bu dizin (`docs/probe/raporlar/*.md`) sonda maskeli kopyasıyla: `YYYY-AA-GG-sonda.md`
+- Önekler: rapor commit'i `rapor:`; artefakt commit'leri `sonda:` (mantıksal adım başına
+  tek commit). Bunların DIŞINDA repo'ya yazmak YOK.
+- `docs/probe/rapor.md` (report.py ürünü HAM rapor) repoya GİRMEZ — kimlik izlidir
+  (lockfile yolunu içerir); gitignore'ludur, kopyası maskelenerek bu dizine girer.
