@@ -4,9 +4,9 @@ Kullanıcı VS Code'daki kod ajanı (executor) oturumuna "başla" dediğinde —
 kendi ortamını denetle, eksikse kur, kurduğunu iddia etme — KANITLA. Makine
 değişirse yalnız bu dosya tekrar koşulur; 0A değil.
 
-**Ön-durum (giriş noktası):** fabrika reposu klonlanmış; VS Code klonun kökünde
-açık; kod ajanı oturumu bu projede. Satır 2 (Git) ve 9 (VS Code + executor) bu
-ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyidi.
+**Ön-durum (giriş noktası):** fabrika reposu klonlanmış — `arena/019fcd97-factorygames` dalı
+(main boştur); VS Code klonun kökünde açık; kod ajanı oturumu bu projede. Satır 2 (Git)
+ve 9 (VS Code + executor) bu ön-durumun sonucudur — kurulum değil, yalnız sürüm/varlık teyidi.
 
 ## Çalışma kuralları
 
