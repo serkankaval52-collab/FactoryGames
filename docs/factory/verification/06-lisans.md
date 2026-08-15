@@ -10,10 +10,12 @@ yerelde koşar, kanıtı metin olarak repoya girer (0A.md "Makine ilkesi", v1.4.
 Kararın iki dayanağı:
 1. **Bu belgede ölçülen:** Personal'ın ekransız (headless) aktivasyon yolu kapalı —
    üç resmî sayfanın birbirini doğrulayan ifadeleri (aşağıda alıntılı).
-2. **Mimarın eklediği kanıt:** Xcode projesi Windows'tan üretilebiliyor; yani iOS ayağı
-   Unity'yi runner'a sokmadan kurulabilir. *Bu ikinci dayanak bu koşuda executor
-   tarafından yerinde doğrulanacaktır (0A adım 2 — `verification/02-ios-uretim.md`);
-   doğrulanana kadar mimar beyanı olarak etiketlidir.*
+2. **Mimarın eklediği kanıt — YERİNDE DOĞRULANDI (2026-08-15, executor):** Xcode projesi
+   Windows'tan üretilebiliyor; yani iOS ayağı Unity'yi runner'a sokmadan kurulabilir.
+   Ölçüm: geçici boş projede `BuildPipeline.BuildPlayer(target: iOS)` → `Succeeded`,
+   0 hata / 0 uyarı, çıkış kodu 0, ve dosya sisteminde **`Unity-iPhone.xcodeproj`**
+   bulundu (2 670 dosya / 465.9 MB proje ağacı). Ayrıntı ve ham çıktı:
+   `verification/02-ios-uretim.md`. Bu satır artık **beyan değil ölçümdür**.
 
 Hat **durmuyor**; 0A adım 2 yeni tanımıyla (iOS ayağı yerel kanıtı) sürüyor. Bu belge
 kararın gerekçe kaydı olarak kalır.
