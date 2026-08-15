@@ -8,7 +8,7 @@ JSON veri; MCP gözlemci) gri kutu döngü üretebiliyor mu — ÖLÇMEK. Ölçm
 0. `docs/stages/kurulum.md` KAPALI — tüm araçlar kanıtlı kurulu; kurulum
    durakları bu aşamaya taşmaz.
 1–4. Hub+lisans, Unity+Android modülü, git+gh, VS Code: önkoşul 0'ın içinde.
-   (iOS modülü Windows'ta yok — iOS derlemesi CI'ın işi.)
+   (iOS: Xcode projesi Windows'tan da üretilir — v1.4.0/C+; derleme macos runner'ın işi.)
 5. Resmî Unity MCP köprüsü kurulum satır 8'de KANITLI. Koşuda MCP **koşullu
    ZORUNLU**: log/stack trace'in açıklamadığı ilk runtime hatada oturum AÇAR
    (`editor-acik/kapali` damgalı; gözlem + süre rapora — Sözleşme-2'nin dayanağı

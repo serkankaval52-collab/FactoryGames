@@ -90,3 +90,17 @@ protokolü aynen; maske taraması commit'lenen TÜM metinlerde 0 eşleşme şart
   tek commit). Bunların DIŞINDA repo'ya yazmak YOK.
 - `docs/probe/rapor.md` (report.py ürünü HAM rapor) repoya GİRMEZ — kimlik izlidir
   (lockfile yolunu içerir); gitignore'ludur, kopyası maskelenerek bu dizine girer.
+
+## Aşama yetki genişlemesi — 0A (2026-08-15 genelgesi; C+ ile güncellendi, v1.4.0)
+
+0A boyunca executor push kapsamı (8 adımlı protokol + maske taraması her metinde aynen):
+- Fabrika reposu: `docs/factory/verification/*.md`, `docs/appendix/C.md` (form dönüşü),
+  bu dizin — önek `0a:` (raporlar yine `rapor:`).
+- Yeni repolar: `factory.core` (public; UPM paketi kökte + `templates/`; etiket v0.x
+  SERBEST — UPM `#tag` bağı) ve `factorygames-hello` (public; etiket YOK). İkisinde de
+  ilk iş repo-içi kimlik kurulur.
+- `gh release` ile GEÇİCİ asset yükleme (iOS xcodeproj zip'i; git tarihine girmez)
+  serbest — yalnız hello/oyun repolarında.
+- `FactoryGames-private` İNSAN açar; içeriğine public repodan bağ kurulmaz.
+- Secret İÇERİĞİ asla repoya/loga girmez; kanıt "secret VAR" satırıdır. C+ notu:
+  Unity hesap secret'ı YOKTUR (runner'da Unity yok); imza sertifikaları 0B'de.
