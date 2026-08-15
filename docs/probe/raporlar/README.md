@@ -104,3 +104,38 @@ protokolü aynen; maske taraması commit'lenen TÜM metinlerde 0 eşleşme şart
 - `FactoryGames-private` İNSAN açar; içeriğine public repodan bağ kurulmaz.
 - Secret İÇERİĞİ asla repoya/loga girmez; kanıt "secret VAR" satırıdır. C+ notu:
   Unity hesap secret'ı YOKTUR (runner'da Unity yok); imza sertifikaları 0B'de.
+
+## Genelge eki — PII-1: merge-commit kimliği (2026-08-15, v1.4.3)
+
+**Ders:** `gh pr merge` / web "Merge" düğmesi commit'i **sunucuda** üretir ve yazarını
+GitHub hesabının varsayılan e-postası yapar — repo-içi kimlik kurulmuş olsa bile
+**baypas eder** (kanıt: factorygames-hello `403e68b`, gerçek gmail; mimar denetimi
+yakaladı). 8 adımın 5. maddesi yalnız YEREL commit'leri denetler.
+
+**Kalıcı kurallar:**
+1. Pull Request **sunucuda birleştirilmez**. Birleştirme yerelde: `git merge` (veya
+   squash/rebase) → repo-içi kimlikle commit → push; PR, push sonrası kendiliğinden
+   "merged" sayılır (squash'ta sayılmazsa elle kapat + "yerelde squash'landı" notu).
+2. Her push sonrasında ek denetim: `git log --format='%h %ae' origin/<dal> -3` —
+   üst üç commit'te noreply şartı; değilse DUR, bu SOP işler.
+3. **PII-1 SOP (sızıntı düzeltme):** gerçek e-posta/yol/hesap tarihe karışırsa aynı
+   turda: (a) mimara anında rapor; (b) mimar onayıyla **tek seferlik** force-push
+   yetkisi yalnız o repoya ve yalnız yeni istisna repolarına; tarih yazımı sonrası
+   maske taraması tekrar 0 kanıtı + verification/ dosyasına kayıt + ls-remote önce/
+   sonra satırları. **FactoryGames denetim dalında tarih ASLA yeniden yazılmaz**
+   (denetim zinciri bütünlüğü denetlenen veriden önce gelir); orada ihlal, maskeli
+   düzeltme commit'i + ifşa kaydıyla yaşanır.
+4. İnsan kapısı (kalıcı onarım, hesap düzeyi): GitHub → Settings → Emails →
+   "Keep my email addresses private" **+** "Block command line pushes that expose
+   my email". Bu açıkken sunucu-taraflı commit'ler de noreply kullanır; yine de
+   birincil savunma kural 1'dir.
+
+## 0A kapsam eki — adım 6 dosya tarafı (2026-08-15, v1.4.3)
+
+Executor'ün adım 6 standart DOSYALARI (fikir standardı, çeşitlilik defteri iskeleti,
+rubrik şablonu, pre-mortem taksonomisi, PR şablonu, FALLBACK.md, telemetry şeması,
+halka-envanteri v0) için yetki: **`docs/factory/standartlar/*.md` (TASLAK damgalı,
+önek `0a:`)**. Kurallar: mevcut standartlar yeniden YAZILMAZ, atıf yapılır
+(TEK-KAYNAK — defter 8 ekseni Ek A'dan, rubrik gozden-gecirme'den, halka
+halka-standardi'dan türer); kullanıcı-formu alanları `FORM-BEKLIYOR` placeholder'ı +
+L8 etiketiyle durur; mimar incelemesi geçmeden dosya "standart" sayılmaz.
