@@ -53,8 +53,9 @@ dış standart/politika sabiti, kalibrasyon şerhliler işaretli.
 ## G6 Renk körlüğü ayrımı (CI — saf matematik)
 
 - palette.json TABAN rol renkleri üç simülasyondan geçer (protanopi, döteranopi, tritanopi
-  — lint içi sabit matrisler); kritik çiftler (tehlike↔vurgu, tehlike↔arka plan, ana
-  özne↔arka plan) her simülasyonda Ek C `gorsel_kontrast_ana_ozne` üstünde kalır (A1.3).
+  — lint içi sabit matrisler); tehlike↔arka plan + ana özne↔arka plan her simülasyonda Ek C
+  `gorsel_kontrast_ana_ozne` üstünde (A1.3). Tehlike↔vurgu (sinyal çifti) CIEDE2000 ile ölçülür:
+  ΔE00 ≥ 2,0 — normal + 3 simülasyonda da (Şerh (0A-3): CIE literatürü, bakışta-ayrım ≈2; kalibrasyon adayı).
 - Ek kural (beyan): renk TEK BAŞINA bilgi taşıyamaz — tehlike/vurgu ayrımı biçim/ikonla
   da desteklenir; ikili satır GDD B2'de yaşar (tasarim-standardi).
 
