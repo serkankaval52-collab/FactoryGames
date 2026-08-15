@@ -148,3 +148,15 @@ halka-standardi'dan türer); kullanıcı-formu alanları `FORM-BEKLIYOR` placeho
 L8 etiketiyle durur; mimar incelemesi geçmeden dosya "standart" sayılmaz. Teamül
 (v1.4.5): `docs/factory/standartlar/*.md` için de ≤90 satır ruhu aynen geçerli — CI
 bu ağacı zorlamaz, disiplin zorlanır; aşan dosya bilgi kaybettirmeden budanır.
+
+## 0B kapsam eki — sanat yönü turu (2026-08-15, v1.4.8)
+
+0B sanat yönü Aşama-3 (çoklu-yön) koşusu için executor push yetkisi:
+**`docs/factory/kavram/2026-08/sanat/**` altı**, dal `konveyor/2026-08-sanat-yonleri`,
+önek `0b:`. Kapsam bu turun yön dosyalarıyla sınırlıydı (PR #1: 6 dosya, 362 ekleme,
+0 silme); başka dosyaya dokunulmadı. Biçem notu: yön tuvalleri **SVG'dir** — metin
+kaynağı olduğundan HAM-ARTEFAKT kapsamında sayılmaz; maske taraması SVG dahil tüm
+dosyalarda 0 eşleşme zorunludur (kanıt: PR #1 mimar denetimi; SVG'lerde tek URL
+`http://www.w3.org/2000/svg` ad alanı). Gömülü yazı tipi, dış kaynak, `<script>` ve
+gömülü raster yasaktır. Birleştirme mimardadır (PII-1 kural 1: sunucu birleştirmesi
+yok); yön **SEÇİMİ insan kapısıdır** — Aşama 4 paketi seçim gelmeden açılmaz.
