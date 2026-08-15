@@ -68,3 +68,57 @@ Adım 4'te **canlı** bir PRESET-SAPMA kırmızısı da yaşanmıştı (`3188500
 düzeltilince yeşile dönmüştü (`31885312281`, 12:43). O, kasıtlı değil gerçek bir
 kusurdu; bu adımın kasıtlı beşlisinden ayrı tutulur — ama kapının sahada da iş gördüğünü
 gösteren bağımsız bir tanıktır.
+
+---
+
+## PII-1 düzeltmesi (2026-08-15, v1.4.3 genelgesi)
+
+**Bulgu (mimar denetimi):** temiz-PR **sunucuda** (GitHub squash merge) birleştirildiği
+için oluşan merge commit'i hesabın **gerçek e-postasını** public git tarihine yazdı.
+Kural ihlali executor'da değil, protokol boşluğundaydı: 8 adımlı protokol commit'i
+yerelde üretmeyi ve yazar denetimini kapsıyordu, ancak **sunucu tarafı birleştirmeyi**
+kapsamıyordu. Kalıcı yamalar `raporlar/README` "PII-1 genelgesi" ile yürürlüktedir
+(sunucuda birleştirme yasak; yerelde merge + repo-içi kimlik; push sonrası üst-3 commit
+`author/committer` denetimi).
+
+### Ölçüm — önce
+
+```
+PII 403e68b  author=<hesap>  committer=noreply@github.com   temiz-pr: README eklendi...
+OK  203d9f4  author=…users.noreply.github.com  committer=…users.noreply.github.com
+OK  e144fea  author=…users.noreply.github.com  committer=…users.noreply.github.com
+-> PII tasiyan commit: 1
+```
+
+### Uygulanan SOP (tek seferlik force-push yetkisi, yalnız `factorygames-hello`)
+
+| # | adım | sonuç |
+|---|---|---|
+| 1 | `git fetch origin && git reset --hard origin/main` | `HEAD=403e68b` |
+| 2 | `git config --local user.email` doğrulaması | `…users.noreply.github.com` → **noreply şartı sağlandı**, amend'e devam |
+| 3 | `git commit --amend --reset-author --no-edit` | yeni `HEAD=520f29e`; author **ve** committer `FactoryGames Executor <…noreply…>` |
+| 4 | `git push --force-with-lease origin main` | `+ 403e68b...520f29e main -> main (forced update)` |
+
+### Teyit üçlüsü — sonra
+
+1. **`ls-remote`:** önce `403e68b285a60447d2ca12d703216b6fab5fcf3a` →
+   sonra `520f29e50ec4174fd478c1266dc5448a2f12b809`.
+2. **Üst-3 commit denetimi:** `PII tasiyan commit: 0` — üçünde de hem `author` hem
+   `committer` noreply.
+3. **Maske taraması:** izlenen 88 dosyada **0 eşleşme**; çalışma ağacı temiz; force-push
+   sonrası `main` üzerinde lint yeniden koşuldu → **kırmızı 0**.
+
+### Kapatılan PR #1–#5 head commit'leri — temiz
+
+```
+PR#1 OK 1f0f6d4   PR#2 OK d614bad   PR#3 OK 4f6de4d
+PR#4 OK 55f89c3   PR#5 OK fb45da2      -> PII: 0
+```
+
+Beş ihlal dalının head commit'lerinin tamamı noreply kimliğiyle üretilmişti; dallar
+silindiği için bu nesneler zaten yetimdir ve **hiçbirinde PII yoktur** — dolayısıyla o
+tarafta tarih yazımı gerekmedi.
+
+**Kalan tek iz:** kapatılan PR'ların GitHub arayüzündeki kayıtları (yetim nesnelere
+referans). İçlerinde PII bulunmadığı ölçüldüğü için ek işlem yapılmadı; risk
+değerlendirmesi mimardadır.
