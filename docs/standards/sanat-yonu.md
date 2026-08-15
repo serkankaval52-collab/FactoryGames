@@ -61,6 +61,10 @@ anıdır; ikisi birlikte okunur (süreç-kapı çifti, GG4 disiplini).
 
 - **Ölçülebilirlik şart:** pakette "güzel görünsün" yasak — hex, oran, basamak sayısı
   (gorsel-sozlesme ilkesinin aynısı: güzellik ölçülmez, uyum ölçülür).
+- **G6 ölçüm kümesi TAM koşulur (v1.4.10, Aşama 2 saha bulgusu):** yön onayından ÖNCE lint
+  G6'nın iki ayağının tüm çiftleri ölçülür — ΔE00 sinyal çifti (tehlike↔vurgu) + ORAN
+  çiftlerinin ikisi de (ana_ozne↔arka_plan VE tehlike↔arka_plan). Eksik küme "geçti"
+  sayılmaz; bulgu lint değil kontrol-listesi maddesiyle kapatıldı (Sözleşme-5 sırası).
 - **Kapı bağı:** Aşama 2 kapanamaz — palette.json ve manifest üçlüsü onaylı paketten
   alıntı; aile için paket YOKSA veya ESKİYSE (yön kararı yenilendiyse) kapı KIRMIZI.
 - **Paket ömrü:** aileye yeni yön kararı = paket yenileme turu (yalnız o zaman);

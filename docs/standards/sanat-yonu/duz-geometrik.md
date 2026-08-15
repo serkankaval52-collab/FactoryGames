@@ -3,6 +3,10 @@
 **Yön:** NET-SOKAK (saf; 0 hibrit turu) · **Pilot:** Tezgâh (0B, kart A) · **Kaynak tuval:**
 `docs/factory/kavram/2026-08/sanat/yonler/net-sokak/yon.svg` — Aşama 3 PR #1, `v1.4.8`
 (`74f8157`). Paket kendi kaynağıdır, Ek C'ye girmez. Sayılar tuvalden ölçüldü; sıfat yok.
+**Güncelleme (v1.4.10):** `tehlike` `#B4341F` → `#A82E1A` — Aşama 2 saha bulgusu: G6 döteranopi
+oranı 2,88 < 3,0 (oradaki ölçüm kümesi eksikti); ölçülüp mimarca doğrulanmış en küçük güvenli
+adım (4 sim: 5,39 / 4,03 / 3,29 / 5,71; ΔE00min 46,61). Başka rol değişmedi; Aşama 3 tuvalleri
+tarihî belgedir, oradaki eski hex kayda böyle kalır.
 
 ## 1. Renk paleti
 | rol | hex | sahne oranı | kullanım |
@@ -14,7 +18,7 @@
 | vurgu | `#0F7A5A` | %2,5 | tente, etkin durum, ayraç |
 | stok | `#D9A521` | %0,9 | sayılabilir stok küpleri |
 | ui_metin | `#16202A` | %0,5 | metin; sahnedeki pay koyu türevlerdir |
-| tehlike | `#B4341F` | %0,02 | uyarı üçgeni — tek işaret |
+| tehlike | `#A82E1A` | %0,02 | uyarı üçgeni — tek işaret |
 
 Ölçüm: 1160×536 sahne, 621 760 piksel; %82,4 hex'e tam eşleşir, %17,6 kenar yumuşatması en yakın role katıldı. Zemin/özne dengesi %82,2 / %17,8.
 
