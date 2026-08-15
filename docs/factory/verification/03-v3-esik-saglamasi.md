@@ -153,26 +153,65 @@ yakın değer; kalibrasyon penceresinde izlenmeli.)
 CIEDE2000 uygulaması harici bağımlılık olmadan yazıldı ve **Sharma-Wu-Dalal (2005)**
 yayınlanmış test çiftleriyle doğrulandı (Pair 1/6/8/12/15 — beşi de birebir).
 
-### ⚠ Kapının bilinen sınırı (yeni bulgu, kalıcı testle belgelendi)
+### CVD kapısının ölçülmüş haritası (düzeltildi — v1.4.1 mimar denetimi)
 
-Görev, "kırmızı↔yeşil çifti döteranopi simülasyonunda ΔE00 < 2,0 ise kapı kırmızı verir"
-testini istiyordu. **Ölçüm bunu çürüttü:**
+> **Yerinde düzeltme (2026-08-15):** bu bölümün ilk hâli "kapı klasik kırmızı-yeşil
+> karışıklığını yakalamaz" diyerek bulguyu **olduğundan geniş** yazmıştı. Mimar denetimi
+> ölçümle düzeltti; aşağısı düzeltilmiş haritadır. Sapmanın kaynağı: tek bir renk
+> ailesinden genel bir "kapı kör" sonucu çıkarılmıştı.
+
+**(a) Zıt doygun çiftler — kapı GEÇİRİR ve bu algısal olarak DOĞRUDUR.**
 
 ```
 kirmizi #D40000 / yesil #00A000 — dE00
   normal 73.70 · protanopi 21.20 · doteranopi 44.91 · tritanopi 47.32
 ```
 
-Hiçbiri 2,0'ın altına inmiyor. Sebep: lint içindeki CVD matrisleri (Brettel/Viénot
-yaklaşımı) iki rengi **tam birleştirmiyor**, parlaklık/kroma farkını koruyor.
+Eş-parlaklık (`L*`) kontrolleri de çöküş üretmiyor — mimar `#D40000↔#007A00` ve üç
+orta-doygunluk çiftini koştu (protanopi 16–27, döteranopi 25–47); executor kendi
+seçtiği çiftlerle tekrarladı (protanopi 7.55–26.55, döteranopi 16.61–46.98). Yani
+klasik kırmızı-yeşil ailesi **hiçbir parlaklıkta** dikromat için tek renge inmiyor;
+parlaklık/kroma farkıyla gerçekten ayırt ediliyor. Kapının bunları geçirmesi **hata
+değil, doğruluktur**.
 
-**Sonuç:** ΔE00 kapısı klasik kırmızı-yeşil karışıklığını **yakalamaz**. Aynı çifti eski
-WCAG-oran kapısı yakalıyordu (normal 1,59 < 3,0) — yani yeni ölçü bu özel durumda daha
-**gevşektir**. Bu, kararın bilinçli maliyetidir ve G6'nın ek kuralını (biçim/ikon
-desteği) mekanik olarak **vazgeçilmez** kılar.
+**(b) Karışım metamerleri — kapı YAKALAR. CVD dişleri mevcut ve doğru yerde.**
 
-Eşik sessizce değiştirilmedi (görev talimatı). Bunun yerine: (1) önce-kırmızı amacını
-koruyan gerçek bir test yazıldı — çok yakın sinyal çifti `#E74C3C`/`#E85142`
-(ΔE00 = 1,20) kapıdan **KIRMIZI** alıyor; (2) sınır, kalıcı bir testle belgelendi ki
-sessizce unutulmasın. Mimar kararı beklenen madde: bu sınır kabul mü, yoksa CVD
-modelinin güçlendirilmesi (ör. Machado ve ark. 2009 matrisleri) gündeme mi alınsın?
+```
+tehlike #C64040 / vurgu #33FF00 — dE00
+  normal 83.13  →  protanopi 1.26  (< 2,0 → KIRMIZI)
+  doteranopi 19.57 · tritanopi 47.46
+```
+
+Kapı fonksiyonundan geçirildi, karar kaydedildi:
+
+```
+YESIL     normal: tehlike/vurgu dE00 83.13 >= 2.0
+KIRMIZI   protanopi: tehlike/vurgu dE00 1.26 < 2.0
+YESIL     doteranopi: tehlike/vurgu dE00 19.57 >= 2.0
+YESIL     tritanopi: tehlike/vurgu dE00 47.46 >= 2.0
+```
+
+Kapının işi tam olarak budur: **normal görüşün apayrı gördüğü ama dikromatın
+ayıramadığı** çiftleri yakalamak. Ölçüm, dişlerin çalıştığını gösteriyor.
+
+*Ölçüm sapması (kayda geçirildi):* mimar aynı çift için normal **83,2** / protanopi
+**1,15**, executor **83.13** / **1.26** ölçtü. Karar her iki değerde de aynı
+(protanopi < 2,0 → kırmızı); sapma muhtemelen CVD uygulamasındaki kırpma (clamp)
+sırasından geliyor ve bu koşuda çözülmedi — kalibrasyon penceresinde izlenecek.
+
+**(c) İzlenecek ara bölge.** Şablon paletinin `tehlike/vurgu` değeri **tritanopide
+2,55** ile eşiğe en yakın noktadır. Kalibrasyon penceresinde (ilk 3 koşu) bu değer ve
+`gorsel_sinyal_deltae_min = 2,0` birlikte izlenir.
+
+**Machado ve ark. (2009) matrislerine geçiş önerisi mimarca REDDEDİLDİ** — gerekçe:
+mevcut model için ölçülmüş yeterlilik kanıtı var (b maddesi); motor değişimi
+doğrulanmamış karmaşıklık getirir. Kapı aynen kalıyor.
+
+G6'nın ek kuralı (renk tek başına bilgi taşıyamaz; tehlike/vurgu ayrımı biçim/ikonla da
+desteklenir) **bağımsız gerekçelerle zorunlu kalır** — kapının yeterliliği bu kuralı
+gereksiz kılmaz.
+
+**Kalıcı kilitler (test_lint.py, 17 test):** `test_CVD_KILIDI_karisim_metameri_protanopide_KIRMIZI`
+(asıl CVD dişi), `test_NORMAL_TABAN_ayirt_edilemeyen_cift_KIRMIZI` (normal görüş tabanı,
+`#E74C3C`/`#E85142` ΔE00 = 1,20), `test_zit_doygun_cift_simde_de_ayrik_kalir_GECER` ve
+`test_es_L_kirmizi_yesil_de_cokusmuyor` (a maddesinin regresyon kilidi).
