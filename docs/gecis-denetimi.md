@@ -55,3 +55,33 @@ Eksik YOK — bir sonraki taramada bu bölüm `arac_suzgec.py` çıktısıyla g�
 1 → 2 geçişi güncellendi (v1.2 sonrası): Aşama 2 kapısı artık ailenin ONAYLI sanat yönü
 paketini ister (koşullu insan kapısı; sanat-yonu.md) — tablodaki "1 → 2 EVET" satırı
 buna göre okunur (paket yoksa kapı kırmızı; bu bir eksik değil, tasarımdır).
+
+## SONDA → 0A GEÇİŞ NOTU (v1.3.8, 2026-08-15)
+
+**Sonda Deneme-1 (soğuk) BAŞARILI kapandı** — karar report.py ürünü; Deneme-2 gerekmedi.
+Ölçümler: T_uretim 1247,8 sn (0,35 sa; eşik ≤6 sa) · insan kapısı 0 · EditMode 10/10 ·
+PlayMode bot 3/3 döngü (tur 76,98–77,00 sn; brief bandı 60–90 sn) · P1 temiz (2=2) ·
+T_build 382,3 sn (0A CI takvim girdisi). Kanıt: `raporlar/2026-08-15-sonda.md`;
+artefaktlar: `presets/unity-6000.3.16f1/` (Revizyon 1), `unity-pin.txt`,
+`scene-baseline.json`, `kaynak/`. Ek B Aşama-4 satırı ölçümle yazıldı; sonda KAPALI.
+
+**Sonda sonrası uygulanan düzeltmeler:** v1.3.7 — unity-pin.txt repoya geri (mimarın
+v1.3.4 hatasının düzeltmesi) + ham `rapor.md` yerel (lockfile yolu kimlik izli).
+v1.3.8 — report.py çapraz-kontrol sayacı diriltildi (sonda §7.1: content her zaman
+liste; text-blok sayımı + uretim-start penceresi; beklenen ≈ 1 başlangıç + kapı kadar;
+test 14–16 önce-kırmızı kanıtlı); sonda.md — kaynak beyaz listesine `*.asmdef *.asmref`
+(§7.4); lockfile kalıntı ayrımı (§7.5: süreç YOK + exclusive-açılabilir ⇒ kalıntı).
+
+**0A'ya devredilenler:** P1 per-dosya kapsam (§7.6 — mevcut davranış fail-safe:
+yanlış kırmızı üretebilir, yanlış yeşil üretemez; per-dosya baseline 0A'da tasarlanır);
+Input System sürüm pini (§7.2 borcu — kayıt defteri sorgusu ister; legacy kararı sonda
+kapsamlıdır); şablon applicationIdentifier kuralı (§7.3 — rakamla başlayan productName
+geçersiz; kimlik build script'inde `com.factorygames.<slug>`); InvariantCulture
+ayrıştırma kuralı (§7.5 — süre alanı okuyan her yeni araçta).
+
+**0B'ye devredilen:** Sözleşme-2 MCP gözlemci dayanağı sınanamadı (koşullu tetik hiç
+oluşmadı — geçerli bulgu; 0B'de bilinçli sınanacak).
+
+**Şerh kabulü:** §7.7 hazırlık okumaları damga öncesinde (asimetri bilinerek kabul);
+§7.8 BRIEF'in ilk 30 satırı kurulum turunda görülmüştü (soğukluk şerhi kayıtlı; 0B'de
+brief yeni ve görülmemiş olacak).

@@ -30,6 +30,7 @@ import os
 import sys
 import time
 import xml.etree.ElementTree as ET
+from datetime import datetime
 
 # Thresholds — sonda v0.17+ (ilk sonda bunları da kalibre eder)
 T_OK = 6 * 3600          # T_uretim ≤ 6 sa
@@ -93,7 +94,23 @@ def fmt_dur(seconds):
     return f"{h:.2f} sa ({int(seconds)} sn)"
 
 
-def count_human_messages(transcript_path):
+def _insan_metni_mi(content):
+    """content insan METNİ taşıyor mu: str doğrudan; liste ise içinde type='text' bloğu
+    aranır — tool_result blokları insan yazısı DEĞİLDİR (sonda §7.1: bu formatta content
+    her zaman liste; str-only sayaç ölüydü, v1.3.8)."""
+    if isinstance(content, str):
+        return bool(content.strip())
+    if isinstance(content, list):
+        return any(isinstance(b, dict) and b.get("type") == "text"
+                   and str(b.get("text", "")).strip() for b in content)
+    return False
+
+
+def count_human_messages(transcript_path, start_s=None):
+    """Koşu penceresindeki insan METİN mesajı sayısı. start_s (uretim-start, SANİYE)
+    verilirse damgalı ve öncesinde kalan satırlar düşülür (kapsam farkı düzeltmesi:
+    transkript tüm oturumu kapsar, insan-kapisi yalnız koşuyu — sonda §7.1, v1.3.8);
+    damgasız/bozuk damgalı satırlar ihtiyaten dahil edilir."""
     if not transcript_path or not os.path.exists(transcript_path):
         return None
     n = 0
@@ -108,8 +125,16 @@ def count_human_messages(transcript_path):
                 continue
             if obj.get("type") != "user":
                 continue
-            content = obj.get("message", {}).get("content")
-            if isinstance(content, str) and content.strip():
+            if start_s is not None:
+                ts = obj.get("timestamp")
+                if ts:
+                    try:
+                        t = datetime.fromisoformat(str(ts).replace("Z", "+00:00")).timestamp()
+                    except (ValueError, AttributeError):
+                        t = None
+                    if t is not None and t < start_s:
+                        continue
+            if _insan_metni_mi(obj.get("message", {}).get("content")):
                 n += 1
     return n
 
@@ -160,7 +185,11 @@ def main() -> int:
     b1 = read_marker(args.probe_root, "build-end")
 
     kapi = len(read_numbered(args.probe_root, "insan-kapisi"))
-    transcript_n = count_human_messages(args.transcript)
+    uretim_start_s = read_marker(args.probe_root, "uretim-start")
+    transcript_n = count_human_messages(args.transcript, start_s=uretim_start_s)
+    # Beklenen yapı (koşu penceresinde): 1 başlangıç komutu + kapı başına ≥1 insan cevabı.
+    # Fazlası = deklare edilmemiş müdahale adayı; azı = damgasız insan yazısı. (v1.3.8)
+    capraz_uyusmaz = transcript_n is not None and (transcript_n > kapi + 1 or transcript_n < kapi)
     sessions, unpaired = read_editor_sessions(args.probe_root)
     lockfile = os.path.join(args.project, "Temp", "UnityLockfile")
     lockfile_present = os.path.exists(lockfile)
@@ -205,8 +234,9 @@ def main() -> int:
         warns.append("lockfile rapor anında mevcut — iki-durum ihlali olası (Editor açık kalmış?)")
     if unpaired:
         warns.append(f"eşsiz Editor damgası: {unpaired} (açık oturum kapanmadı?)")
-    if transcript_n is not None and transcript_n != kapi:
-        warns.append(f"sayım tutarsız: insan-kapisi={kapi}, transkript={transcript_n}")
+    if capraz_uyusmaz:
+        warns.append(f"sayım tutarsız: insan-kapisi={kapi}, transkript={transcript_n}"
+                     f" (beklenen ≈ 1 başlangıç komutu + kapı kadar cevap; koşu penceresi)")
 
     missing = []
     if t_ure is None:
@@ -251,7 +281,7 @@ def main() -> int:
     dk = "yeşil" if kapi <= KAPI_OK else ("kırmızı" if kapi > KAPI_FAIL else "sarı")
     A(f"| İnsan müdahalesi (birincil) | {kapi} | `.markers/insan-kapisi-N.ts` | ≤{KAPI_OK} / >{KAPI_FAIL} | {dk} |")
     cc = "ölçülemedi (isteğe bağlı)" if transcript_n is None else str(transcript_n)
-    A(f"| İnsan mesajı (çapraz kontrol) | {cc} | transkript: `{args.transcript}` | birincille uyuşmalı | {'sarı' if (transcript_n is not None and transcript_n != kapi) else 'bilgi'} |")
+    A(f"| İnsan metin mesajı (çapraz kontrol) | {cc} | koşu penceresi; beklenen ≈ 1+kapı | transkript: `{args.transcript}` | {'sarı' if capraz_uyusmaz else 'yeşil'} |")
     mcp_val = f"{len(sessions)} oturum, toplam {fmt_dur(sum(sessions) if sessions else 0.0)}"
     if not sessions:
         mcp_val = "tetiklenmedi (bulgu)"

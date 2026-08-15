@@ -17,7 +17,7 @@
 | 1 Fikir + seçim | 1 gün (veto + paralel hasat penceresi dahil) |
 | 2 Plan + pre-mortem | 1 gün |
 | 3 Envanter | 0,5 gün |
-| 4 Gri kutu | **SONDA ÖLÇÜMÜNDEN** (tahmin değil; sonda raporu burayı yazar) |
+| 4 Gri kutu | **ÖLÇÜLDÜ (sonda Deneme-1, 2026-08-15):** T_uretim **0,35 sa** (insan kapısı 0) + T_build 0,11 sa yerel Android — ASGARİ kutu ölçümü; gerçek oyun kutusu bunun üstündedir, 0B + ilk koşularda kalibre edilir |
 | 5 Halka kapısı | 2–3 gün (48–72 sa pencere) |
 | 6 İnce üretim | 2–4 gün |
 | 7 QA | 1 gün |
@@ -25,8 +25,8 @@
 | 9 Mağaza + organik kit | 2–3 gün |
 | 10 Ölçüm penceresi | 14 gün (Ek C) |
 
-**Toplam: yayına ~11–19 gün (Aşama 4 hariç), karara ~25–33 gün.**
-Aşama 4 gerçekleşeni sonda sonrası buraya eklenir ve toplam güncellenir.
+**Toplam: yayına ~11–19 gün, karara ~25–33 gün** (Aşama 4 ölçümü +0,35 sa — günlük taksitte eriyor).
+Aşama 4 gerçekleşeni 2026-08-15'te eklendi (kanıt: `raporlar/2026-08-15-sonda.md`). Baştaki şerh sürüyor: tablonun BAŞTAN yazımı tasarım standardının (0A/0B) yerleşmesini bekler.
 
 **İnsan-saat/oyun ≈ 4–7 sa** (veto 0,1 + onaylar 0,5 + form/listeleme 1,5 +
 oynama/rubrik 2–3 + yayınla/karar 0,5 + sosyal kit gözden geçirme 0,5).

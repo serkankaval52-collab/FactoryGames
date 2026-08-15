@@ -27,7 +27,7 @@ setten KOPYALANIR (`presets/unity-6000.3/`); elle ayar YOK. Repoya girenler: `un
 raporun maskeli kopyası `raporlar/` kanalından (v1.3.5) — ham `rapor.md` kimlik izlidir (lockfile yolu), YEREL.
 `.markers/` YERELDİR, repoya girmez — ham içerikleri raporun "Marker ham kayıtları"
 tablosundadır (Sözleşme-10). Kopya BEYAZ LİSTELİ: `robocopy ../probe-project/Assets
-docs/probe/kaynak *.cs *.json *.unity *.asset *.meta *.prefab /S`.
+docs/probe/kaynak *.cs *.json *.unity *.asset *.meta *.prefab *.asmdef *.asmref /S`.
 
 **Preset çıkarma (ilk koşu):** set, Unity'nin KENDİ şablon paketinden mekanik
 çıkarılır (kurulumdaki ProjectTemplates arşivi; yoksa resmî kaynak) — tek kaynak,
@@ -55,7 +55,7 @@ Raporu executor YAZMAZ; `tools/probe/report.py` artefaktlardan ÜRETİR.
   build'i ayrı ölçülür (soğuk Gradle + URP shader dakikalar sürer); tabloya
   girmez, 0A CI takvimini besler. Kırılma = "araç zinciri", üretim kusuru değil.
 - **Editor/MCP oturumları:** koşullu tetikle açılır; damgalar `editor-acik/kapali-N`;
-  her batchmode öncesi `Temp/UnityLockfile` YOK kanıtı.
+  her batchmode öncesi `Temp/UnityLockfile` YOK kanıtı — varsa kalıntı ayrımı: Unity süreci YOK + dosya exclusive açılabiliyorsa hatalı-çıkış kalıntısıdır, silinir (canlı Editor DEĞİLDİR; sonda §7.5).
 - **Editor dokunuşu ÖLÇÜLMEZ (H2):** sahne varsayılandan sapmadığı için elle
   kurulum oyuna etki etmez; sayım yok, kör nokta beyanı var.
 - **İnsan müdahalesi:** birincil = `insan-kapisi-N` damgaları; çapraz kontrol =

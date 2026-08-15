@@ -179,6 +179,64 @@ class TestKararSinirlari(unittest.TestCase):
         with open(os.path.join(self.probe, ".markers", "uretim-start.ts")) as f:
             self.assertIn(f.read().strip(), m)
 
+    def test_14_liste_content_ve_pencere(self):  # v1.3.8 / sonda §7.1: ölü sayaç dirildi
+        tj = os.path.join(self.probe, "transcript.jsonl")
+        yaz_transkript(tj, [
+            {"type": "user", "timestamp": "2020-01-01T00:00:00Z",   # pencere ÖNCESİ str
+             "message": {"content": "kurulum turunda insan yazisi"}},
+            {"type": "user", "timestamp": "2099-01-01T00:00:00Z",   # pencere İÇİ liste+text
+             "message": {"content": [{"type": "text", "text": "sonda baslasin"}]}},
+            {"type": "user", "timestamp": "2099-01-01T00:00:01Z",   # tool_result → insan DEĞİL
+             "message": {"content": [{"type": "tool_result", "content": "ok"}]}},
+            {"type": "user",                                        # damgasız → içerde (ihtiyat)
+             "message": {"content": [{"type": "text", "text": "not"}]}},
+            {"type": "assistant",                                   # sayılmaz
+             "message": {"content": [{"type": "text", "text": "ajan"}]}},
+        ])
+        r = run_report_t(self.probe, self.proj, self.xml, tj)
+        m = rapor(self.probe)
+        self.assertIn("çapraz kontrol", m)
+        self.assertIn("| 2 |", m)           # 2 insan metni: text-liste + damgasız
+        self.assertIn("sayım tutarsız", m)  # 2 > kapi(0)+1 → SARI bilgisi
+        self.assertEqual(r.returncode, 1)   # SARI
+
+    def test_15_beklenen_yapi_sari_degil(self):  # 1 başlangıç + kapı kadar cevap
+        tj = os.path.join(self.probe, "transcript.jsonl")
+        yaz_transkript(tj, [
+            {"type": "user", "timestamp": "2099-01-01T00:00:00Z",
+             "message": {"content": [{"type": "text", "text": "sonda baslasin"}]}},
+        ])
+        r = run_report_t(self.probe, self.proj, self.xml, tj)
+        m = rapor(self.probe)
+        self.assertIn("| 1 |", m)
+        self.assertNotIn("sayım tutarsız", m)
+        self.assertEqual(r.returncode, 0)
+
+    def test_16_pencere_oncesi_dusulur(self):  # kapsam farkı: kurulum turu sızmasın
+        tj = os.path.join(self.probe, "transcript.jsonl")
+        yaz_transkript(tj, [
+            {"type": "user", "timestamp": "2020-01-01T00:00:00Z",
+             "message": {"content": "pencere oncesi"}},
+        ])
+        r = run_report_t(self.probe, self.proj, self.xml, tj)
+        m = rapor(self.probe)
+        self.assertIn("| 0 |", m)
+        self.assertNotIn("sayım tutarsız", m)
+        self.assertEqual(r.returncode, 0)
+
+
+def yaz_transkript(yol, kayitlar):
+    with open(yol, "w", encoding="utf-8") as f:
+        for k in kayitlar:
+            f.write(json.dumps(k, ensure_ascii=False) + "\n")
+
+
+def run_report_t(probe, proj, xml, transcript):
+    return subprocess.run([sys.executable, REPORT, "--probe-root", probe,
+                           "--project", proj, "--test-xml", xml,
+                           "--transcript", transcript],
+                          capture_output=True, text=True, encoding="utf-8")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
