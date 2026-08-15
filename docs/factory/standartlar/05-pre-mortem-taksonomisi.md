@@ -15,6 +15,10 @@ senaryosu + erken uyarı sinyali + hangi kapının yakalayacağı**. Kapısı ol
 senaryo, ya kapı önerisine (Sözleşme-5) ya kabul edilmiş riske dönüşür — sessiz
 kalamaz.
 
+> **"Yakalayan kapı" sütunu mimar onaylıdır (v1.4.5):** biçim kararıdır, yeni norm
+> değildir; kapısız senaryonun Sözleşme-5'e ya da "kabul edilmiş risk" satırına dönüşme
+> zorunluluğu mevcut mekanizmalarla işler.
+
 ## Kök listesi
 
 | # | kök | tipik senaryo | yakalayan kapı (tek kaynağı) |
