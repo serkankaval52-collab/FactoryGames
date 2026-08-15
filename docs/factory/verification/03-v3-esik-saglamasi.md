@@ -100,6 +100,79 @@ zaten** eşiğin altındadır) ve gerekçe koda yazıldı — aynı yanılgı te
 
 | ne | nerede |
 |---|---|
-| lint öz-testleri | `factory.core/templates/tools/lint/test_lint.py` (v0.1.1) |
-| düzeltilmiş şablon paleti | aynı dosya, `IYI_PALET` |
+| lint öz-testleri | `factory.core/templates~/tools/lint/test_lint.py` |
+| şablon paleti | aynı dosya, `IYI_PALET` |
 | koşum | `python tools/lint/test_lint.py` → `Ran 10 tests ... OK` (exit 0) |
+
+> **Yol notu (v0.1.2):** dizin `templates/` → `templates~/` olarak yeniden adlandırıldı
+> (mimar kararı; Unity `~` ile biten dizinleri içe aktarmaz). Yukarıdaki 10 test sayısı
+> bu bölümün yazıldığı andaki değerdir; aşağıdaki mimar kararı turunda **15**'e çıktı.
+
+---
+
+## Mimar kararı (2026-08-15, v1.4.1)
+
+Yukarıdaki ölçüm mimar tarafından denetlendi ve araç doğrulaması bağımsız olarak
+yeniden koşuldu (10/10 OK). Karar:
+
+**`tehlike ↔ vurgu` çifti WCAG-oran kapsamından ÇIKTI → CIEDE2000 `ΔE00 ≥ 2,0`**
+(normal görüş + üç simülasyonun dördünde de).
+
+**Gerekçe:** oran metriği bu çiftte okunabilirlik vekiliydi; `L_vurgu ≥ 9·L_arka + 0,4`
+zinciri paleti **zorla desatüre ediyordu** (ölçüm: 12/12 aday düştü). Sinyal ayrımı ile
+okunabilirlik farklı sorulardır ve farklı metriklerle ölçülmelidir.
+
+**Değişmeyenler:** `tehlike ↔ arka plan` ve `ana özne ↔ arka plan` eşiği (3,0),
+`ui_metin ↔ ui_zemin` (4,5) ve G6'nın ek kuralı — **renk tek başına bilgi taşıyamaz;
+tehlike/vurgu ayrımı biçim/ikonla da desteklenir**. Ek kural bu kararla daha da
+kritikleşti (aşağıdaki sınır kaydına bakınız).
+
+**Kalibrasyon penceresi:** `gorsel_sinyal_deltae_min = 2,0` şerhlidir — CIE
+literatüründe "bakışta ayrım ≈ 2" kabulünden gelir ve `_etiketler.simdilik_tahmin`
+listesindedir. Kullanıcı 0A-6 formunda Ek C'ye değeri yazınca etiket düşer (L8).
+"Eşikler gerçek oyunda tutuyor mu?" sorusu ilk 3 koşuluk kalibrasyon penceresinde
+yanıtlanacaktır; bu pencere artık **taşıyıcıdır** (ilk-kosu.md §3 eksiksiz uygulanır).
+
+**Veto:** eşik ve metrik seçimi üzerindeki nihai söz kullanıcıdadır; bu karar mimar
+önerisidir ve kullanıcı vetosuna açıktır.
+
+### Uygulama ölçümü (executor, v0.1.2)
+
+Doygun palet (`#101418`/`#40D0F0`/`#FFD200`/`#FF5A5A`) — eski kapıda 4/4 düşen palet —
+yeni kapıda **geçti**:
+
+```
+tehlike/vurgu  dE00 : normal 49.42 · protanopi 15.23 · doteranopi 10.70 · tritanopi 2.55
+tehlike/arka   oran : protanopi 8.79 · doteranopi 10.91 · tritanopi 5.70
+ana_ozne/arka  oran : protanopi 5.46 · doteranopi 4.50 · tritanopi 11.51
+```
+
+Kararın amacı doğrulandı: **desatüre zorlaması kalktı.** (Tritanopide 2.55 ile eşiğe en
+yakın değer; kalibrasyon penceresinde izlenmeli.)
+
+CIEDE2000 uygulaması harici bağımlılık olmadan yazıldı ve **Sharma-Wu-Dalal (2005)**
+yayınlanmış test çiftleriyle doğrulandı (Pair 1/6/8/12/15 — beşi de birebir).
+
+### ⚠ Kapının bilinen sınırı (yeni bulgu, kalıcı testle belgelendi)
+
+Görev, "kırmızı↔yeşil çifti döteranopi simülasyonunda ΔE00 < 2,0 ise kapı kırmızı verir"
+testini istiyordu. **Ölçüm bunu çürüttü:**
+
+```
+kirmizi #D40000 / yesil #00A000 — dE00
+  normal 73.70 · protanopi 21.20 · doteranopi 44.91 · tritanopi 47.32
+```
+
+Hiçbiri 2,0'ın altına inmiyor. Sebep: lint içindeki CVD matrisleri (Brettel/Viénot
+yaklaşımı) iki rengi **tam birleştirmiyor**, parlaklık/kroma farkını koruyor.
+
+**Sonuç:** ΔE00 kapısı klasik kırmızı-yeşil karışıklığını **yakalamaz**. Aynı çifti eski
+WCAG-oran kapısı yakalıyordu (normal 1,59 < 3,0) — yani yeni ölçü bu özel durumda daha
+**gevşektir**. Bu, kararın bilinçli maliyetidir ve G6'nın ek kuralını (biçim/ikon
+desteği) mekanik olarak **vazgeçilmez** kılar.
+
+Eşik sessizce değiştirilmedi (görev talimatı). Bunun yerine: (1) önce-kırmızı amacını
+koruyan gerçek bir test yazıldı — çok yakın sinyal çifti `#E74C3C`/`#E85142`
+(ΔE00 = 1,20) kapıdan **KIRMIZI** alıyor; (2) sınır, kalıcı bir testle belgelendi ki
+sessizce unutulmasın. Mimar kararı beklenen madde: bu sınır kabul mü, yoksa CVD
+modelinin güçlendirilmesi (ör. Machado ve ark. 2009 matrisleri) gündeme mi alınsın?
