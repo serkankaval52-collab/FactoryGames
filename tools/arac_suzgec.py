@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """A1.2 arac suzgeci — normatif agacta adi gecen her aracin kurulum tablosunda
-satiri olup olmadigini denetler. CLAUDE.md kural 30'un teste cevrilmis halidir
+satiri olup olmadigini denetler. ESKI CLAUDE.md kural 30'un teste cevrilmis halidir
 (A4.1, v1.0.19): meta kural dosyadan dustu, mekanik bekci burada yasar.
+Not: numara 30, v1.0.20'de yeni bir kurala (resmi disi Unity MCP koprusu yasagi)
+verildi; bu dosyanin konusu degildir — tarihsel karisiklik notudur, mantik ayni.
 
 Kullanim: python3 tools/arac_suzgec.py  -> ihlal varsa liste + exit 1; yoksa PASS + exit 0.
 CI: factory-gates.yml `arac-testleri` isinin adimidir.

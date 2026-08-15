@@ -16,4 +16,5 @@ halka/
 # kurulum/probe makine çıktıları — makine kimliği, hesap/lisans izi taşır; public repoya GİRMEZ
 docs/probe/kurulum-raporu.md
 docs/probe/unity-pin.txt
+docs/probe/runlog/
 _probe-*/
