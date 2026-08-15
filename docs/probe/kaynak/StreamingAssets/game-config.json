@@ -1,0 +1,18 @@
+{
+  "riseSpeed": 3.2,
+  "fallSpeed": 3.6,
+  "worldHalfHeight": 4.5,
+  "playerX": -6.0,
+  "playerHalfSize": 0.35,
+  "gateSpeed": 4.0,
+  "gateSpawnX": 10.0,
+  "gateIntervalSeconds": 3.0,
+  "gateCount": 24,
+  "startDelaySeconds": 3.0,
+  "gateGapHalf": 1.15,
+  "gateHalfWidth": 0.35,
+  "gapAmplitude": 2.6,
+  "gapPhaseStep": 0.9,
+  "pointsPerGate": 10,
+  "completionBonus": 50
+}
