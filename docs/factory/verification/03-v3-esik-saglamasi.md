@@ -194,10 +194,13 @@ YESIL     tritanopi: tehlike/vurgu dE00 47.46 >= 2.0
 Kapının işi tam olarak budur: **normal görüşün apayrı gördüğü ama dikromatın
 ayıramadığı** çiftleri yakalamak. Ölçüm, dişlerin çalıştığını gösteriyor.
 
-*Ölçüm sapması (kayda geçirildi):* mimar aynı çift için normal **83,2** / protanopi
-**1,15**, executor **83.13** / **1.26** ölçtü. Karar her iki değerde de aynı
-(protanopi < 2,0 → kırmızı); sapma muhtemelen CVD uygulamasındaki kırpma (clamp)
-sırasından geliyor ve bu koşuda çözülmedi — kalibrasyon penceresinde izlenecek.
+*Ölçüm sapması — KAPANDI (2026-08-15):* mimar aynı çift için önce normal **83,2** /
+protanopi **1,15** ölçmüştü; executor **83.13** / **1.26** ölçtü ve sapma geçici olarak
+"CVD kırpma (clamp) sırası" şüphesiyle kalibrasyon penceresine yazılmıştı. Mimar ölçümü
+**tam hex** ile tekrarladı ve executor değerlerini son basamağa kadar üretti
+(83,13 / 1,26 / 19,57 / 47,46): sapmanın kaynağı mimarın tarama scriptindeki **girdi
+yuvarlamasıydı** (0,78/0,25 yerine 198/255, 64/255). Matriste, kırpmada ve kapıda kusur
+**yoktur**; kod değişikliği gerekmedi ve izleme maddesi kapatıldı.
 
 **(c) İzlenecek ara bölge.** Şablon paletinin `tehlike/vurgu` değeri **tritanopide
 2,55** ile eşiğe en yakın noktadır. Kalibrasyon penceresinde (ilk 3 koşu) bu değer ve
