@@ -21,6 +21,10 @@ turu, executor soruları S1–S3 (2026-08-15; mimar genelgeleri, v1.3.5).
   6. `py -3.12 tools/arac_suzgec.py` → exit 0
   7. `py -3.12 tools/esik_kapsama.py` → exit 0
   8. push → `git ls-remote origin refs/heads/arena/019fcd97-factorygames` ile teyit
+- Ölçüm tuzağı (v1.4.9 kaydı, executor bulgusu): satır bütçesi yalnız `wc -l` veya
+  `tools/arac_suzgec.py` ile ölçülür — PowerShell `Measure-Object -Line` **boş satırları
+  saymaz**; sanat paketi turunda 121→90 yanılgısı bu tuzağa bastı. Aynı tuzağa düşen
+  ölçüm tekrarlanmış sayılır, düzeltme yereldedir.
 - Repo-içi kimlik HER KOŞUDA, KOŞULSUZ kurulur; "gerekirse" YOK (tuzak 2026-08-15'te
   görüldü: `git config <anahtar>` lokalsiz sorguda sessizce global'e düşer ve gerçek
   e-posta public tarihe sızabilirdi): `git config user.name "FactoryGames Executor"` +
