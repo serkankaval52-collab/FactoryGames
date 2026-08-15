@@ -1,5 +1,13 @@
 # Preset seti — Unity 6000.3.16f1 (2D / URP)
 
+> **KANONİK DEĞİL — ham çıkarım (0A adım 4 kaydı, 2026-08-15):** bu dizin, şablon
+> paketinin Unity'den çıktığı **ham** hâlidir; tarihsel kanıt olarak saklanır (sonda
+> ölçümleri bu setle yapıldı, değiştirilmez). Ham şablonun asset şemaları 6000.1
+> hedeflidir; pinli 6000.3.16f1 projeyi ilk açılışta şemaları yükseltir (PRESET-SAPMA
+> bulgusu, factory.core v0.1.8). Oyun iskeletlerinin kullandığı **kanonik preset**
+> `factory.core` reposunda `templates~/` altındadır (yükseltilmiş hâl). Yeni oyun
+> kurulumu bu dizinden DEĞİL, factory.core scaffold adımından yapılır.
+
 Bu set **elle yazılmadı, Editor'de üretilmedi**: pinli Unity sürümüyle gelen kendi
 şablon paketinden mekanik olarak çıkarıldı (Sözleşme-2, `presets/README.md` "Üretim
 yöntemi"). Tek kaynak = pinli sürümle gelen şablon.
