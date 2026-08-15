@@ -65,8 +65,13 @@ Bu bilinçli bir durumdur, eksiklik değil:
 
 ## Kural 26 uyumu — saha kaydı
 
+> **Yerinde düzeltme (v1.4.4, PII-2):** bu bölümün ilk hâlinde dış-proje yolu ve adı
+> maskelenmemişti (maske haritası "proje" maddesi ihlali); mimar maskeli düzeltme
+> yaptı. Tarih yeniden yazılmadı (PII-1 genelgesi madde 3: denetim dalında zincir
+> bozulmaz; ihlal bu kayıtla yaşanır).
+
 Adım koşulurken makinede **kullanıcının kendi Unity projesi açıktı**
-(`…\Desktop\Games\Yonga`, ayrı süreç). Bu süreç:
+(`<ev dışı yol>\<proje>`, ayrı süreç). Bu süreç:
 
 - **tespit edildi** (süreç komut satırından proje yolu okunarak),
 - **dokunulmadı** — kapatılmadı, duraklatılmadı, projesine erişilmedi,

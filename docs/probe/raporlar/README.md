@@ -42,12 +42,19 @@ koşusu `-2`, `-3` soneki alır; eski dosya SİLİNMEZ, üzerine yazılmaz.
 | e-posta adresleri | `<hesap>` |
 | lisans serisi / ULF satırı | `<lisans>` |
 | GCP / bulut proje kimlikleri | `<proje>` |
+| fabrika-set dışı proje adları / yol parçaları (ör. kullanıcının kendi oyun projeleri) | `<proje>` / `<ev dışı yol>` |
 | token / anahtar / parola | ASLA giremez (kural 25) |
 
 Notlar (mimar kararları, 2026-08-15): kimlik taşımayan tarih alanları HAM kalabilir — ULF
 `StartDate`/`UpdateDate`/`InitialActivationDate` (vade aritmetiğinin kanıtı onlar;
 `SerialMasked` maskeli kalır). İkincil hesap adları `<hesap>` sayılır (ihtiyat zorunlu);
 aktif repo sahibinin adı repo URL'sinde zaten public olduğu için kalabilir.
+
+**Bilinmeyen adlar (PII-2 dersi):** tarayıcı örüntüleri ancak bilinen belirteçleri
+yakalar (adım 3'teki tarama güvencesi budur) — yerel proje adı gibi tanımadık adlar
+için geriye kalan tek savunma YAZARIN kendisidir: fabrika çalışma seti (`FactoryGames`,
+`factory.core`, `factorygames-hello`, `probe-project`) DIŞINDA kalan her proje adı /
+yol parçası, tarayıcı alarmı olmasa da maskelenir. Şüphede maskele.
 
 Araç sürümleri, komutlar, çıkış kodları, süreler, dal/HEAD maskelenMEZ — kanıt onlardır.
 
