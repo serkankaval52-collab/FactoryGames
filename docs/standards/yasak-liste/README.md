@@ -6,7 +6,9 @@ yapmaz — arşiv o ayın tek kaynağıdır (Sözleşme-2). Kaynak: Play + App S
 10 satır alınır.
 
 Dosya formatı:
-- okuma tarihi + kaynak URL'leri (iki liste),
+- okuma tarihi + kaynak URL'leri (iki liste) — bu satırlar `- ` ile BAŞLAMAZ (kura
+  ayrıştırıcısı `- ` gördüğü her satırı klişe sayar; 2026-08'deki adet=12 gürültüsünün
+  dersidir — havuz eşleşmesi olmadı, zarar yok ama kayıt kirlenir),
 - 10 klişe mekanik: `- **kısa ad** — kanıt (hangi listede kaçıncı sırada görüldü)`
   satırları; kura script'i (tools/kura.py) bu satırları ayrıştırır (M1).
 

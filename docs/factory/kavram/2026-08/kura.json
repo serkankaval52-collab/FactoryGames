@@ -1,0 +1,63 @@
+{
+  "arac": "tools/kura.py",
+  "ts_utc": "2026-08-15T16:44:46Z",
+  "girdiler": {
+    "havuz": {
+      "yol": "docs/standards/havuz.json",
+      "sha256": "a0abb2a5db7f87524ae74d4faa22ee6a8a9f8efbd09450f9a0e3df112b3c937d"
+    },
+    "yasak": {
+      "yol": "docs/standards/yasak-liste/2026-08.md",
+      "sha256": "e9fe12b135c0a06f19d1e7d2b96d054c024db38aa591d89611cad264d185958d",
+      "adet": 12
+    },
+    "defter": {
+      "yol": "docs/standards/model-klise-defteri.md",
+      "durum": "9 güçlü + 0 zayıf"
+    },
+    "dolu": null
+  },
+  "filtre_sonrasi": {
+    "tur": [
+      "bulmaca/mantık",
+      "kelime",
+      "arcade (refleks)",
+      "simülasyon (idle)",
+      "strateji",
+      "bilgi/trivia"
+    ],
+    "kisit": [
+      "tek el, dikey ekran",
+      "oturum sınırı 30 sn",
+      "geri alma yok",
+      "tek renk paleti",
+      "sınırlı görüş alanı",
+      "kaynak azalır, yenilenmez",
+      "ters kontrol şeması",
+      "yalnızca kaydırma girdisi"
+    ],
+    "kamera": [
+      "tek ekran (sabit)",
+      "üstten",
+      "yandan",
+      "izometrik",
+      "önden (derinlikli)"
+    ],
+    "oturum_uzunlugu": [
+      "30 sn",
+      "60-90 sn",
+      "2-3 dk",
+      "5 dk",
+      "sınırsız (sonsuz mod)"
+    ]
+  },
+  "elenen": [],
+  "zayif_defter_eslesmeleri": [],
+  "uzay_boyutu": 1200,
+  "secim": {
+    "tur": "strateji",
+    "kisit": "kaynak azalır, yenilenmez",
+    "kamera": "izometrik",
+    "oturum_uzunlugu": "30 sn"
+  }
+}
