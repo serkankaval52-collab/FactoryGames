@@ -25,6 +25,10 @@ turu, executor soruları S1–S3 (2026-08-15; mimar genelgeleri, v1.3.5).
   `tools/arac_suzgec.py` ile ölçülür — PowerShell `Measure-Object -Line` **boş satırları
   saymaz**; sanat paketi turunda 121→90 yanılgısı bu tuzağa bastı. Aynı tuzağa düşen
   ölçüm tekrarlanmış sayılır, düzeltme yereldedir.
+- Yerel yeşil yanıltabilir (v1.4.13 kaydı, Aşama 2 saha bulgusu): baseline/hash üretimi
+  yalnız **commit'lenecek içerikten** yapılır; "hash'i al, dosyayı sonra commit'le"
+  sıralaması yerelde yeşil CI'da kırmızı üretir (tezgah PR #1 üçüncü-commit kök nedeni).
+  Doğrulama ancak temiz checkout'ta geçerlidir.
 - Repo-içi kimlik HER KOŞUDA, KOŞULSUZ kurulur; "gerekirse" YOK (tuzak 2026-08-15'te
   görüldü: `git config <anahtar>` lokalsiz sorguda sessizce global'e düşer ve gerçek
   e-posta public tarihe sızabilirdi): `git config user.name "FactoryGames Executor"` +
